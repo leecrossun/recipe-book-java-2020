@@ -64,7 +64,7 @@ public class RefrigeratorDAO {
 		}
 	}
 	
-	// 재료 유효기간 얼마 남았는지 계산
+	//재료 유효기간 얼마 남았는지 계산
 	public static List<String> calRemainingTime(String userId) {
 		String sql = "SELECT ROUND(expiration - SYSDATE) - 2 AS REMAINING " 
 				+ "FROM USER_INGREDIENT "
@@ -89,7 +89,7 @@ public class RefrigeratorDAO {
 		return null;
 	}
 	
-	// 냉장고 재료 삭제 
+	//냉장고 재료 삭제
 	public static void deleteUserIngredient(String userId, String ingId) {
 		String sql = "DELETE FROM USER_INGREDIENT WHERE USERID = ? AND INGFREDIENTID = ? ";
 		Object[] param = new Object[] { userId, ingId };
@@ -106,7 +106,7 @@ public class RefrigeratorDAO {
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close(); // resource 諛섑솚
 		}
 	}
 	
@@ -139,7 +139,7 @@ public class RefrigeratorDAO {
 		return null;
 	}
 	
-	// 즐겨찾기 레시피 표시
+	//즐겨찾기 레시피 표시
 	public static List<Recipe> getFavoriteRecipetList(String userId) {
 		String sql = "SELECT RECIPENAME, SUMMARY "
 				+ "FROM FAVORITE f JOIN RECIPE r USING (RECIPEID) "
@@ -167,7 +167,7 @@ public class RefrigeratorDAO {
 		return null;
 	}
 	
-	// 즐겨찾기 레시피 삭제 
+	//즐겨찾기 레시피 삭제
 	public static void deletFavoriteRecipe(String userId, String recipeId) {
 		String sql = "DELETE FROM FAVORITE WHERE USERID = ? AND RECIPEID = ? ";
 		Object[] param = new Object[] { userId, recipeId };
@@ -184,11 +184,11 @@ public class RefrigeratorDAO {
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close(); // resource 諛섑솚
 		}
 	}
 	
-	// 내가 작성한 레시피 표시
+	// �궡媛� �옉�꽦�븳 �젅�떆�뵾 �몴�떆
 	public static List<Recipe> getMyRecipetList(String userId) {
 		String sql = "SELECT RECIPENAME, SUMMARY "
 				+ "FROM RECIPE "
