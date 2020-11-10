@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.*;
 import java.util.Date;
 
-// DAOë§Œë“œëŠ” ê³¼ì •ì—ì„œ reviewIdì™€ recipeNameì´ ìˆëŠ”ê²Œ í¸ë¦¬í•  ê²ƒ ê°™ì•„ ì¶”ê°€í•˜ì˜€ìŠµë‹ˆë‹¤.
+//DAO¸¸µå´Â °úÁ¤¿¡¼­ reviewId¿Í recipeNameÀÌ ÀÖ´Â°Ô Æí¸®ÇÒ °Í °°¾Æ Ãß°¡ÇÏ¿´½À´Ï´Ù.
 public class Review {
 	private String reviewId;
 	private String userId;
