@@ -14,7 +14,7 @@ public class RecipeDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 
-	// ë ˆì‹œí”¼ ì¶”ê°€ (recipeStep)
+	// ·¹½ÃÇÇ Ãß°¡ (recipeStep)
 	public static int insertRecipe (Recipe rcp) {
 		int result = 0;
 		String sql = "INSERT INTO RECIPE (recipeId, recipeName, summary, nation, difficulty, image, report) "
@@ -25,10 +25,10 @@ public class RecipeDAO {
 
 		try {
 			result = jdbcUtil.executeUpdate();
-			//			ë§¤ê°œë³€ìˆ˜ë¡œ (List<RecipeStep> rcpStepList, List<RecipeIngredient> rcpIngList)ë¥¼ ë°›ê±°ë‚˜
-			//			rcp.getRecipeId() ë¥¼ í†µí•´ ì¿¼ë¦¬ ëŒë ¤ì„œ Listë¥¼ ë°›ì€ í›„ ì•„ë˜ì˜ ë‘ ì¤„ ìˆ˜í–‰
-			//			insertRecipeStep(rcpStepList);
-			//			insertRecipeIngredient(rcpStepList);
+//			¸Å°³º¯¼ö·Î (List<RecipeStep> rcpStepList, List<RecipeIngredient> rcpIngList)¸¦ ¹Ş°Å³ª
+//			rcp.getRecipeId() ¸¦ ÅëÇØ Äõ¸® µ¹·Á¼­ List¸¦ ¹ŞÀº ÈÄ ¾Æ·¡ÀÇ µÎ ÁÙ ¼öÇà
+//			insertRecipeStep(rcpStepList);
+//			insertRecipeIngredient(rcpStepList);
 			if (result == 1)
 				System.out.println("insert recipe success");
 			else
@@ -47,9 +47,9 @@ public class RecipeDAO {
 		int result = 0;
 		String sql = "INSERT INTO RECIPESTEP (recipeId, stepNum, content) "
 				+ "VALUES (?, ?, ?)";
-		//		ë§¤ê°œë³€ìˆ˜ (RecipeStep rcpStep)
-		//		Object[] param = new Object[] { rcpStep.getRecipeId(), rcpStep.getStepNum(), rcpStep.getContent() };
-		//		jdbcUtil.setSqlAndParameters(sql, param);
+//		¸Å°³º¯¼ö (RecipeStep rcpStep)
+//		Object[] param = new Object[] { rcpStep.getRecipeId(), rcpStep.getStepNum(), rcpStep.getContent() };
+//		jdbcUtil.setSqlAndParameters(sql, param);
 
 		try {
 			for (int i = 0; i < rcpStepList.size(); i++) {
@@ -58,8 +58,8 @@ public class RecipeDAO {
 				result += jdbcUtil.executeUpdate();
 				jdbcUtil.close();
 			}
-			//			result = jdbcUtil.executeUpdate();
-			//			if (result == 1)
+//			result = jdbcUtil.executeUpdate();
+//			if (result == 1)
 			if (result == rcpStepList.size())
 				System.out.println("insert recipeStep success");
 			else {
@@ -80,10 +80,10 @@ public class RecipeDAO {
 		int result = 0;
 		String sql = "INSERT INTO RECIPESTEP (recipeId, ingredientId, ingredientName, amount, unit) "
 				+ "VALUES (?, ?, ?, ?, ?)";
-		//		ë§¤ê°œë³€ìˆ˜ (RecipeIngredient rcpIng)
-		//		Object[] param = new Object[] { rcpIng.getRecipeId(), rcpIng.getIngredientId(), rcpIng.getIngredientName()
-		//				, rcpIng.getAmount(), rcpIng.getUnit() };
-		//		jdbcUtil.setSqlAndParameters(sql, param);
+//		¸Å°³º¯¼ö (RecipeIngredient rcpIng)
+//		Object[] param = new Object[] { rcpIng.getRecipeId(), rcpIng.getIngredientId(), rcpIng.getIngredientName()
+//				, rcpIng.getAmount(), rcpIng.getUnit() };
+//		jdbcUtil.setSqlAndParameters(sql, param);
 
 		try {
 			for (int i = 0; i < rcpIngList.size(); i++) {
@@ -93,8 +93,8 @@ public class RecipeDAO {
 				result += jdbcUtil.executeUpdate();
 				jdbcUtil.close();
 			}
-			//			result = jdbcUtil.executeUpdate();
-			//			if (result == 1)
+//			result = jdbcUtil.executeUpdate();
+//			if (result == 1)
 			if (result == rcpIngList.size())
 				System.out.println("insert recipeIngredient success");
 			else {
@@ -111,7 +111,7 @@ public class RecipeDAO {
 		return result;
 	}
 
-	// ë ˆì‹œí”¼ ìˆ˜ì •
+	// ·¹½ÃÇÇ ¼öÁ¤
 	public static int updateRecipe (Recipe rcp, String userId) {
 
 		if (rcp.getUserId() != userId) 
@@ -122,56 +122,56 @@ public class RecipeDAO {
 			String sql = "UPDATE RECIPE SET ";
 			int index = 0;
 
-			Object[] tempParam = new Object[10];		// update ë¬¸ì— ì‚¬ìš©í•  ë§¤ê°œë³€ìˆ˜ë¥¼ ì €ì¥í•  ìˆ˜ ìˆëŠ” ì„ì‹œ ë°°ì—´
+			Object[] tempParam = new Object[10];		// update ¹®¿¡ »ç¿ëÇÒ ¸Å°³º¯¼ö¸¦ ÀúÀåÇÒ ¼ö ÀÖ´Â ÀÓ½Ã ¹è¿­
 
-			if (rcp.getRecipeName() != null) {		// ì´ë¦„ì´ ì„¤ì •ë˜ì–´ ìˆì„ ê²½ìš°
-				sql += "recipeName = ?, ";		// update ë¬¸ì— ì´ë¦„ ìˆ˜ì • ë¶€ë¶„ ì¶”ê°€
-				tempParam[index++] = rcp.getRecipeName();		// ë§¤ê°œë³€ìˆ˜ì— ìˆ˜ì •í•  ì´ë¦„ ì¶”ê°€
+			if (rcp.getRecipeName() != null) {		// ÀÌ¸§ÀÌ ¼³Á¤µÇ¾î ÀÖÀ» °æ¿ì
+				sql += "recipeName = ?, ";		// update ¹®¿¡ ÀÌ¸§ ¼öÁ¤ ºÎºĞ Ãß°¡
+				tempParam[index++] = rcp.getRecipeName();		// ¸Å°³º¯¼ö¿¡ ¼öÁ¤ÇÒ ÀÌ¸§ Ãß°¡
 			}
-			if (rcp.getSummary() != null) {		// summaryê°€ ì„¤ì •ë˜ì–´ ìˆì„ ê²½ìš°
-				sql += "summary = ?, ";		// update ë¬¸ì— summary ìˆ˜ì • ë¶€ë¶„ ì¶”ê°€
-				tempParam[index++] = rcp.getSummary();		// ë§¤ê°œë³€ìˆ˜ì— ìˆ˜ì •í•  summary ì¶”ê°€
+			if (rcp.getSummary() != null) {		// summary°¡ ¼³Á¤µÇ¾î ÀÖÀ» °æ¿ì
+				sql += "summary = ?, ";		// update ¹®¿¡ summary ¼öÁ¤ ºÎºĞ Ãß°¡
+				tempParam[index++] = rcp.getSummary();		// ¸Å°³º¯¼ö¿¡ ¼öÁ¤ÇÒ summary Ãß°¡
 			}
-			if (rcp.getNation() != null) {		// êµ­ê°€ê°€ ì„¤ì •ë˜ì–´ ìˆì„ ê²½ìš°
-				sql += "nation = ?, ";		// update ë¬¸ì— êµ­ê°€ ìˆ˜ì • ë¶€ë¶„ ì¶”ê°€
-				tempParam[index++] = rcp.getNation();		// ë§¤ê°œë³€ìˆ˜ì— ìˆ˜ì •í•  êµ­ê°€ ì¶”ê°€
+			if (rcp.getNation() != null) {		// ±¹°¡°¡ ¼³Á¤µÇ¾î ÀÖÀ» °æ¿ì
+				sql += "nation = ?, ";		// update ¹®¿¡ ±¹°¡ ¼öÁ¤ ºÎºĞ Ãß°¡
+				tempParam[index++] = rcp.getNation();		// ¸Å°³º¯¼ö¿¡ ¼öÁ¤ÇÒ ±¹°¡ Ãß°¡
 			}
-			if (rcp.getDifficulty() != null) {		// ë‚œì´ë„ê°€ ì„¤ì •ë˜ì–´ ìˆì„ ê²½ìš°
-				sql += "difficulty = ?, ";		// update ë¬¸ì— ë‚œì´ë„ ìˆ˜ì • ë¶€ë¶„ ì¶”ê°€
-				tempParam[index++] = rcp.getDifficulty();		// ë§¤ê°œë³€ìˆ˜ì— ìˆ˜ì •í•  ë‚œì´ë„ ì¶”ê°€
+			if (rcp.getDifficulty() != null) {		// ³­ÀÌµµ°¡ ¼³Á¤µÇ¾î ÀÖÀ» °æ¿ì
+				sql += "difficulty = ?, ";		// update ¹®¿¡ ³­ÀÌµµ ¼öÁ¤ ºÎºĞ Ãß°¡
+				tempParam[index++] = rcp.getDifficulty();		// ¸Å°³º¯¼ö¿¡ ¼öÁ¤ÇÒ ³­ÀÌµµ Ãß°¡
 			}
-			if (rcp.getImage() != null) {		// ì´ë¯¸ì§€ê°€ ì„¤ì •ë˜ì–´ ìˆì„ ê²½ìš°
-				sql += "image = ?, ";		// update ë¬¸ì— ì´ë¯¸ì§€ ìˆ˜ì • ë¶€ë¶„ ì¶”ê°€
-				tempParam[index++] = rcp.getImage();		// ë§¤ê°œë³€ìˆ˜ì— ìˆ˜ì •í•  ì´ë¯¸ì§€ ì¶”ê°€
+			if (rcp.getImage() != null) {		// ÀÌ¹ÌÁö°¡ ¼³Á¤µÇ¾î ÀÖÀ» °æ¿ì
+				sql += "image = ?, ";		// update ¹®¿¡ ÀÌ¹ÌÁö ¼öÁ¤ ºÎºĞ Ãß°¡
+				tempParam[index++] = rcp.getImage();		// ¸Å°³º¯¼ö¿¡ ¼öÁ¤ÇÒ ÀÌ¹ÌÁö Ãß°¡
 			}
 
-			sql += "WHERE recipeId = ? ";		// update ë¬¸ì— ì¡°ê±´ ì§€ì •
-			sql = sql.replace(", WHERE", " WHERE");		// update ë¬¸ì˜ where ì ˆ ì•ì— ìˆì„ ìˆ˜ ìˆëŠ” , ì œê±°
+			sql += "WHERE recipeId = ? ";		// update ¹®¿¡ Á¶°Ç ÁöÁ¤
+			sql = sql.replace(", WHERE", " WHERE");		// update ¹®ÀÇ where Àı ¾Õ¿¡ ÀÖÀ» ¼ö ÀÖ´Â , Á¦°Å
 
-			tempParam[index++] = rcp.getRecipeId();		// ì°¾ì„ ì¡°ê±´ì— í•´ë‹¹í•˜ëŠ” í•™ë²ˆì— ëŒ€í•œ ë§¤ê°œë³€ìˆ˜ ì¶”ê°€
+			tempParam[index++] = rcp.getRecipeId();		// Ã£À» Á¶°Ç¿¡ ÇØ´çÇÏ´Â ÇĞ¹ø¿¡ ´ëÇÑ ¸Å°³º¯¼ö Ãß°¡
 
 			Object[] newParam = new Object[index];
-			for (int i=0; i < newParam.length; i++)		// ë§¤ê°œë³€ìˆ˜ì˜ ê°œìˆ˜ë§Œí¼ì˜ í¬ê¸°ë¥¼ ê°–ëŠ” ë°°ì—´ì„ ìƒì„±í•˜ê³  ë§¤ê°œë³€ìˆ˜ ê°’ ë³µì‚¬
+			for (int i=0; i < newParam.length; i++)		// ¸Å°³º¯¼öÀÇ °³¼ö¸¸Å­ÀÇ Å©±â¸¦ °®´Â ¹è¿­À» »ı¼ºÇÏ°í ¸Å°³º¯¼ö °ª º¹»ç
 				newParam[i] = tempParam[i];
 
 			jdbcUtil.setSqlAndParameters(sql, newParam);
 
 			try {
-				int result = jdbcUtil.executeUpdate();		// update ë¬¸ ì‹¤í–‰
-				return result;			// update ì— ì˜í•´ ë°˜ì˜ëœ ë ˆì½”ë“œ ìˆ˜ ë°˜í™˜
+				int result = jdbcUtil.executeUpdate();		// update ¹® ½ÇÇà
+				return result;			// update ¿¡ ÀÇÇØ ¹İ¿µµÈ ·¹ÄÚµå ¼ö ¹İÈ¯
 			} catch (Exception ex) {
 				jdbcUtil.rollback();
 				ex.printStackTrace();
 			}
 			finally {
 				jdbcUtil.commit();
-				jdbcUtil.close();		// ResultSet, PreparedStatement, Connection ë°˜í™˜
+				jdbcUtil.close();		// ResultSet, PreparedStatement, Connection ¹İÈ¯
 			}		
 		}
 		return 0;
 	}
 
-	// ë ˆì‹œí”¼ ì‚­ì œ
+	// ·¹½ÃÇÇ »èÁ¦
 	public static void deleteRecipe (Recipe rcp, String userId) {
 
 		if (rcp.getUserId() != userId) 
@@ -223,7 +223,7 @@ public class RecipeDAO {
 		}
 	}
 
-	// ì¬ë£Œëª…ìœ¼ë¡œ ë ˆì‹œí”¼ DTO ë°˜í™˜ (ê²€ìƒ‰ê¸°ëŠ¥)
+	// Àç·á¸íÀ¸·Î ·¹½ÃÇÇ DTO ¹İÈ¯ (°Ë»ö±â´É)
 	public static List<Recipe> getRecipeListByIngredient(List<Ingredient> ingredientList) {
 		int size = ingredientList.size();
 
@@ -266,7 +266,7 @@ public class RecipeDAO {
 		return null;
 	}
 
-	// recipeNameìœ¼ë¡œ ë ˆì‹œí”¼ DTO ë°˜í™˜ (ê²€ìƒ‰ê¸°ëŠ¥)
+	// recipeNameÀ¸·Î ·¹½ÃÇÇ DTO ¹İÈ¯ (°Ë»ö±â´É)
 	public static List<Recipe> getRecipeListByName(String recipeName) {
 		String sql = "SELECT recipeId, recipeName, userId, summary, nation, difficulty, image, report "
 				+ "FROM RECIPE "
