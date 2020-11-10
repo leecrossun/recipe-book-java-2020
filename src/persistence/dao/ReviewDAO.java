@@ -1,13 +1,6 @@
 package persistence.dao;
 import java.sql.*;
 import java.util.*;
-//媛쒖씤 由щ럭 寃��깋
-//public static ArrayList<Review> findByUserId(String userId)
-//由щ럭 �벐湲�
-//public static void writeMyReview(Review review)
-//�젅�떆�뵾 蹂꾨줈 由щ럭 寃��깋
-//public static ArrayList<Review> findByRecipeId(String recipeId)
-import java.util.Date;
 
 import service.dto.Review;
 
