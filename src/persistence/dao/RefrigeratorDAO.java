@@ -13,7 +13,7 @@ public class RefrigeratorDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 	
-	//�깋�옣怨좎뿉 ���옣�븳 �옱猷� �몴�떆
+	//냉장고에 저장한 재료 표시
 	public static List<UserIngredient> getIngredientList(String userId) {
 		String sql = "SELECT INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION "
 				+ "FROM INGREDIENT i JOIN USER_INGREDIENT ug USING (INGREDIENTID) "
@@ -42,7 +42,7 @@ public class RefrigeratorDAO {
 		return null;
 	}
 	
-	//�깋�옣怨� �옱猷� 異붽�
+	//냉장고 재료 추가
 	public static void addUserIngredient(UserIngredient uIng) {
 		String sql = "INSERT INTO USER_INGREDIENT VALUES (?, ?, ?, ?, ?)";
 		Object[] param = new Object[] { uIng.getUserId(), uIng.getIngredientId(), 
@@ -64,11 +64,7 @@ public class RefrigeratorDAO {
 		}
 	}
 	
-<<<<<<< HEAD
 	//재료 유효기간 얼마 남았는지 계산
-=======
-	// �옱猷� �쑀�슚湲곌컙 �뼹留� �궓�븯�뒗吏� 怨꾩궛
->>>>>>> branch 'master' of https://github.com/leecrossun/RecipeBook.git
 	public static List<String> calRemainingTime(String userId) {
 		String sql = "SELECT ROUND(expiration - SYSDATE) - 2 AS REMAINING " 
 				+ "FROM USER_INGREDIENT "
@@ -93,11 +89,7 @@ public class RefrigeratorDAO {
 		return null;
 	}
 	
-<<<<<<< HEAD
 	//냉장고 재료 삭제
-=======
-	// �깋�옣怨� �옱猷� �궘�젣 
->>>>>>> branch 'master' of https://github.com/leecrossun/RecipeBook.git
 	public static void deleteUserIngredient(String userId, String ingId) {
 		String sql = "DELETE FROM USER_INGREDIENT WHERE USERID = ? AND INGFREDIENTID = ? ";
 		Object[] param = new Object[] { userId, ingId };
@@ -118,7 +110,7 @@ public class RefrigeratorDAO {
 		}
 	}
 	
-	//�깋�옣怨� �옱猷� 寃��깋
+	//냉장고 재료 검색
 	public static List<UserIngredient> findUserIngredient(String userId, String ingName) {
 		String sql = "SELECT INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION "
 				+ "FROM INGREDIENT i JOIN USER_INGREDIENT ug USING (INGREDIENTID) "
@@ -147,11 +139,7 @@ public class RefrigeratorDAO {
 		return null;
 	}
 	
-<<<<<<< HEAD
 	//즐겨찾기 레시피 표시
-=======
-	// 利먭꺼李얘린 �젅�떆�뵾 �몴�떆
->>>>>>> branch 'master' of https://github.com/leecrossun/RecipeBook.git
 	public static List<Recipe> getFavoriteRecipetList(String userId) {
 		String sql = "SELECT RECIPENAME, SUMMARY "
 				+ "FROM FAVORITE f JOIN RECIPE r USING (RECIPEID) "
@@ -178,12 +166,8 @@ public class RefrigeratorDAO {
 		}
 		return null;
 	}
-	
-<<<<<<< HEAD
+
 	//즐겨찾기 레시피 삭제
-=======
-	// 利먭꺼李얘린 �젅�떆�뵾 �궘�젣 
->>>>>>> branch 'master' of https://github.com/leecrossun/RecipeBook.git
 	public static void deletFavoriteRecipe(String userId, String recipeId) {
 		String sql = "DELETE FROM FAVORITE WHERE USERID = ? AND RECIPEID = ? ";
 		Object[] param = new Object[] { userId, recipeId };
@@ -204,7 +188,7 @@ public class RefrigeratorDAO {
 		}
 	}
 	
-	// �궡媛� �옉�꽦�븳 �젅�떆�뵾 �몴�떆
+	// 내가 작성한 레시피 표시
 	public static List<Recipe> getMyRecipetList(String userId) {
 		String sql = "SELECT RECIPENAME, SUMMARY "
 				+ "FROM RECIPE "
