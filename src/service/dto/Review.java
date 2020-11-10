@@ -1,7 +1,6 @@
 package service.dto;
 
 import java.sql.*;
-import java.util.*;
 import java.util.Date;
 
 //DAO만드는 과정에서 reviewId와 recipeName이 있는게 편리할 것 같아 추가하였습니다.

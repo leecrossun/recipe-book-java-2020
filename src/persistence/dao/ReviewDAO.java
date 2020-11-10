@@ -1,11 +1,11 @@
 package persistence.dao;
 import java.sql.*;
 import java.util.*;
-//개인 리뷰 검색
+//媛쒖씤 由щ럭 寃��깋
 //public static ArrayList<Review> findByUserId(String userId)
-//리뷰 쓰기
+//由щ럭 �벐湲�
 //public static void writeMyReview(Review review)
-//레시피 별로 리뷰 검색
+//�젅�떆�뵾 蹂꾨줈 由щ럭 寃��깋
 //public static ArrayList<Review> findByRecipeId(String recipeId)
 import java.util.Date;
 
@@ -19,7 +19,7 @@ public class ReviewDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 	
-	// 개인 리뷰 검색
+	// UserId와 일치하는 Review return
 	public static List<Review> findReviewByUserID(String userId) {
 		String sql = "SELECT RECIPENAME, RATING FROM REVIEW WHERE USERID = ?";
 		Object[] param = new Object[] {userId};
@@ -54,10 +54,10 @@ public class ReviewDAO {
 		return list;
 	}
 	
-	// 리뷰 쓰기
+	// 리뷰 작성
 	public static void writeMyReview(Review review) {
 		String sql = "INSERT INTO REVIEW(REVIEWID, CONTENT, RATING, USERID, RECIPEID, PUBLISHED) VALUES(?, ?, ?, ?, ?, ?)";
-		// 현재시간 구하기 (이걸 DAO에 포함시키는게 맞는지 고민 ... 이후에 SELECT할 떄  담을게 필요해서 published 추가했습니다.
+//		현재시간 구하기 (이걸 DAO에 포함시키는게 맞는지 고민 ... 이후에 SELECT할 떄  담을게 필요해서 published 추가했습니다.
 //		Calendar cal = new GregorianCalendar();
 //		Timestamp now = new Timestamp(cal.getTimeInMillis());
 		
@@ -74,7 +74,7 @@ public class ReviewDAO {
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close(); // resource 諛섑솚
 		}
 	}
 	
@@ -96,7 +96,7 @@ public class ReviewDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
+			jdbcUtil.close();	// resource 諛섑솚
 		}	
 	}
 	
@@ -117,7 +117,7 @@ public class ReviewDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
+			jdbcUtil.close();	// resource 諛섑솚
 		}		 
 	}
 	
