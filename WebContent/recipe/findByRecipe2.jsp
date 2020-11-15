@@ -11,7 +11,7 @@
 
 <link rel="stylesheet" href="<c:url value='/css/find.css' />"
 	type="text/css">
-<link rel="stylesheet" href="<c:url value='/css/style.css' />"
+	<link rel="stylesheet" href="<c:url value='/css/style.css' />"
 	type="text/css">
 
 <title>Recipe Book</title>
@@ -37,20 +37,14 @@
 	</div>
 	<!-- TitleArea -->
 	<div class="container">
-		<p class="mainTitle">💜 재료명으로 검색 💜</p>
+		<p class="mainTitle">💜 요리명으로 검색 💜</p>
 	</div>
 
 	<!-- 검색 -->
 	<div class="container mx-auto">
 		<div class="searchContainer mx-auto" style="border: none;">
-			<input class="searchBar" type="text" placeholder="재료명 입력">
-			<button class="searchBtn2">재료 검색</button>
-		</div>
-		<div class="center-block">
-		<button type="submit" class="mx-auto btn-outline-dark"
-			style="margin-bottom: 10rem"
-			onClick="location.href='/UserMan3/user/findByIngredient2.jsp'">검색한
-			재료대로 레시피 검색</button>
+			<input class="searchBar" type="text" placeholder="요리명 입력">
+			<button class="searchBtn2">검색</button>
 		</div>
 				
 		<div class="container" style="margin-top:30px">

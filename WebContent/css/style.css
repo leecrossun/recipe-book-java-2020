@@ -61,7 +61,7 @@
 	display: inline;
 	position: relative;
 	top: 15px;
-	left: 30px;
+	left: 50px;
 }
 
 .nav>.logo {
@@ -69,7 +69,7 @@
 	position: relative;
 	top: 15px;
 	left: 0px;
-	font-size: 2.5em;
+	font-size: 3em;
 	font-family: 'Lobster', cursive;
 }
 
@@ -104,11 +104,6 @@
 
 .searchBtn {
 	width: 50px;
-	box-shadow: 3px 3px black;
-}
-
-.searchBtn2 {
-	width: 80px;
 	box-shadow: 3px 3px black;
 }
 

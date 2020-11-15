@@ -34,19 +34,17 @@
 	</div>
 	<!-- TitleArea -->
 	<div class="container">
-		<p class="mainTitle">💜 재료명으로 검색 💜</p>
+		<p class="mainTitle">💜 요리명으로 검색 💜</p>
 	</div>
 
 
 	<!-- 검색 -->
-	
 	<div class="container">
 		<div class="searchContainer" style="border: none;">
-			<input class="searchBar" type="text" placeholder="재료명 입력">
-			<button class="searchBtn">검색</button>
+			<input class="searchBar" type="text" placeholder="요리명 입력">
+			<button class="searchBtn"
+			onClick="location.href='/RecipeBook/recipe/findByRecipe2.jsp'">검색</button>
 		</div>
-		<button class="searchBtn2" style="margin-top: 2rem;"
-		onClick="location.href='/RecipeBook/recipe/findByIngredient2.jsp'">입력한 재료명으로 검색</button>
 		<p class="text-center" style="margin-top:10rem">아직 검색한 내용이 없어요!</p>
 	</div>
 </body>
