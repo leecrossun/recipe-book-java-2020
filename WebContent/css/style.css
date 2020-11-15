@@ -1,0 +1,130 @@
+/* Font */
+@import
+	url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@300&display=swap')
+	;
+
+* {
+	margin: 5px;
+	padding: 5px;
+	font-family: 'Roboto', sans-serif;
+}
+
+.container {
+	display: block;
+	border: 1px solid black;
+	border-radius: 1em;
+}
+
+.container>* {
+	display: inline-flex;
+	flex-direction: column;
+	width: 48.5%;
+}
+
+.container div {
+	border-radius: 1em;
+	border: 1px solid black;
+}
+
+/* Button */
+.btn {
+	border: 1px solid black;
+	margin: 10px;
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+	border-radius: 0.5em;
+	font-size: 0.5em;
+	box-shadow: 3px 3px rgb(56, 56, 56);
+	text-transform: uppercase;
+}
+
+.btn:hover {
+	background-color: rgb(56, 56, 56);
+	box-shadow: 3px 3px rgb(56, 56, 56);
+	color: rgb(255, 255, 255);
+}
+
+/* Navigation */
+.nav {
+	display: block;
+	height: 90px;
+	text-align: center;
+}
+
+.nav>.hamburger {
+	position: absolute;
+	top: 35px;
+	left: 40px;
+}
+
+.nav>.menu {
+	display: inline;
+	position: relative;
+	top: 15px;
+	left: 30px;
+}
+
+.nav>.logo {
+	display: inline;
+	position: relative;
+	top: 15px;
+	left: 0px;
+	font-size: 2.5em;
+	font-family: 'Lobster', cursive;
+}
+
+/* Hamburger Menu*/
+.hamburger {
+	width: 60px;
+	height: 60px;
+	background: rgb(199, 199, 199);
+	text-align: center;
+}
+
+.line {
+	margin: 3px auto;
+	background: #ffffff;
+	width: 30px;
+	height: 1px;
+	border-radius: 2px;
+}
+
+#wrapper {
+	margin: auto auto;
+	border: none;
+}
+
+/* Search Bar */
+.searchBar {
+	font-size: 16px;
+	padding: 10px;
+	width: 400px;
+	box-shadow: 3px 3px black;
+}
+
+.searchBtn {
+	width: 50px;
+	box-shadow: 3px 3px black;
+}
+
+.searchBtn2 {
+	width: 80px;
+	box-shadow: 3px 3px black;
+}
+
+.searchContainer {
+	position: relative;
+	left: 20px;
+	top: 10px;
+	width: 500px;
+	display: inline-flex;
+	flex-direction: row;
+	margin: auto auto;
+}
+
+/* Title Area */
+.mainTitle {
+	text-align: center;
+	font-size: 1.5em;
+	width: 100%;
+}
