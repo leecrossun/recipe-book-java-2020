@@ -71,4 +71,8 @@
         
     </div>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> branch 'master' of https://github.com/leecrossun/RecipeBook.git

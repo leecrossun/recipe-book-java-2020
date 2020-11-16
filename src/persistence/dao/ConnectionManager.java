@@ -3,9 +3,8 @@ package persistence.dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.dbcp2.BasicDataSource;
+import javax.sql.DataSource;
 
 public class ConnectionManager {
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
