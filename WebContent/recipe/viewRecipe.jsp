@@ -3,24 +3,77 @@
 
 <!doctype html>
 <html lang="en">
+
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="<c:url value='/css/find.css' />" type="text/css">
+	<link rel="stylesheet" href="<c:url value='/css/style.css' />" type="text/css">
+	<link rel="stylesheet" href="<c:url value='/css/viewRecipe.css' />" type="text/css">
+	<title>레시피 상세페이지</title>
+	<style>
+		.container {
+			align-items: center !important;
+		}
+		.sub-container {
+			border: none !important;
+			display: flex;
+			flex-direction: column;
+			align-items: center !important;
+			width: 90%;
+		}
 
-<!-- Bootstrap CSS -->
 
-<link rel="stylesheet" href="<c:url value='/css/find.css' />"
-	type="text/css">
-<link rel="stylesheet" href="<c:url value='/css/style.css' />"
-	type="text/css">
+		/* Recipe  */
+		img {
+			border-radius: 20px;
+		}
+		.recipe {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
 
-<title>레시피 상세페이지</title>
+
+		/* Table */
+		table {
+			border-collapse: collapse;
+			border: 1px solid black;
+			width: 40%;
+		}
+
+		tr,
+		td {
+			padding: 10px;
+			text-align: center;
+			border-bottom: 1px solid black;
+		}
+
+
+		/* Button  */
+		.button-box {
+			display: inline !important;
+			border: none !important;
+			text-align: center;
+			width: 200px;
+		}
+
+		.btn {
+			padding: 5px 15px;
+			font-size: 0.7em;
+		}
+
+
+		/* Form Area */
+		.form {
+			border-radius: 10px;
+		}
+	</style>
 </head>
+
 <body>
-	<div class="container">
-	
 	<!-- Navigation Bar -->
 	<div class="container nav">
 		<div class="hamburger">
@@ -39,68 +92,96 @@
 		<p class="menu">🛒Refrigerator</p>
 		<p class="menu">⚙ Settings</p>
 	</div>
-	
-		<blockquote class="blockquote"
-			style="margin-top: 3rem; margin-bottom: 3rem; margin-left: 1rem">
-			<p class="mb-0">레시피 이름</p>
-			<footer class="blockquote-footer"> 레시피 요약.. 어쩌구 저쩌구 </footer>
-		</blockquote>
 
-		<div class="row" style="margin-top: 20px">
-			<div class="col-8">
-				<img style="width: 600px; height: auto"
-					src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
-					alt="사진" />
-			</div>
-			<div class="col-4">
-				<ul class="list-unstyled">
-					<li>준비물
-						<form class="form-inline">
-							<select class="custom-select my-1 mr-sm-2"
-								id="inlineFormCustomSelectPref">
-								<option selected>Choose...</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-							</select> <label class="my-1 mr-2" for="inlineFormCustomSelectPref">인분
-								조리</label>
-							<button type="submit" class="btn btn-light my-1">적용</button>
-						</form>
-						<ul>
-							<li>사과 1개</li>
-							<li>귤 5개</li>
-							<li>당근 1개</li>
-						</ul>
-					</li>
-					<li><br>요리방법
-						<ol>
-							<li>어쩌구</li>
-							<li>어쩌구</li>
-							<li>어쩌구</li>
-						</ol></li>
-				</ul>
-			</div>
+	<!-- recipe Area -->
+	<div class="container">
+		<p class="mainTitle">💜 레시피 이름 💜</p>
+	</div>
+	<div class="container recipe">
+		<br>
+		<p class="mainTitle">🍧 레시피 요약 -------------------------- 한 레시피 🍧</p>
+		<br>
+		<div class="image sub-container">
+			<img style="width: 600px; height: auto"
+				src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E" alt="사진" />
 		</div>
-
-		<button type="button" class="mx-auto btn btn-outline-dark">레시피
-			저장</button>
-
-
-		<form style="margin-top: 3rem">
-			<p class="font-weight-normal">후기 작성</p>
-			<div class="form-group">
-				<label for="exampleFormControlInput1">아이디</label>
-				<p class="font-weight-light">somvengers</p>
-			</div>
-			<div class="form-group">
-				<label for="exampleFormControlTextarea1">후기</label>
-				<textarea class="form-control" id="exampleFormControlTextarea1"
-					rows="3"></textarea>
-			</div>
-		</form>
-
-		<button type="button" class="mx-auto btn btn-outline-dark">후기
-			등록</button>
+		<br><br>
+		<div class="material sub-container">
+			<p class="title">🥕 준비물</p><br>
+			<form>
+				<select class="form">
+					<option selected>몇인분?</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</select> <label>인분 조리</label>
+				<button type="submit" class="btn">적용</button>
+			</form>
+			<table>
+				<th>재료명</th>
+				<th width="150px">개수</th>
+				<tr>
+					<td>사과</td>
+					<td>1 개</td>
+				</tr>
+				<tr>
+					<td>귤</td>
+					<td>5 개</td>
+				</tr>
+				<tr>
+					<td>당근</td>
+					<td>1 개</td>
+				</tr>
+			</table>
+		</div>
+		<br><br>
+		<div class="step sub-container">
+			<p class="title">🥕 요리방법</p><br>
+			<table>
+				<tr>
+					<td width="150px">1</td>
+					<td>당근을 잘게 다진다</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>-------------------------</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>-------------------------</td>
+				</tr>
+			</table>
+		</div><br><br>
+		<div class="button-box">
+			<a class="btn">수정</a>
+			<a class="btn">삭제</a>
+		</div>
+		<br><br>
+	</div>
+	</div>
+	<!-- Review Area -->
+	<div class="container" style="align-items: center; text-align: center;">
+		<div class="sub-container" style="margin: 0px auto;"><br><br>
+			<p class="title">🍰 후기 작성</p><br>
+			<form>
+				⭐ 별점
+				<select class="form">
+					<option selected>별점</option>
+					<option value="1">⭐</option>
+					<option value="2">⭐⭐</option>
+					<option value="3">⭐⭐⭐</option>
+					<option value="4">⭐⭐⭐⭐</option>
+					<option value="5">⭐⭐⭐⭐⭐</option>
+				</select>
+				<br>
+				<textarea placeholder="후기를 작성해주세요" style="width: 300px; height: 200px;" class="form"></textarea>
+				<br>
+				<div class="button-box">
+					<a class="btn">후기 등록</a>
+				</div>
+			</form>
+		</div>
 	</div>
 </body>
+
 </html>
