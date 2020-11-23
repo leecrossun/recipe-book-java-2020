@@ -38,7 +38,7 @@ public class UpdateUserController implements Controller {
 			
 			request.setAttribute("updateFailed", true);
 			request.setAttribute("exception", 
-					new IllegalStateException("Ÿ���� ������ ������ �� �����ϴ�."));            
+					new IllegalStateException("타인의 정보는 수정할 수 없습니다"));            
 			return "/user/view.jsp";	
 	    }	
     	
