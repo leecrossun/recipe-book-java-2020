@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import controller.user.UserSessionUtils;
 import persistence.dao.RefrigeratorDAO;
 import persistence.dao.ReviewDAO;
 import service.dto.Recipe;
@@ -14,16 +16,25 @@ import service.dto.UserIngredient;
 
 public class RefrigeratorController implements Controller{
 
-	private RefrigeratorDAO refrigeratorDAO = new RefrigeratorDAO();
-	private ReviewDAO reviewDAO = new ReviewDAO();
+	private RefrigeratorDAO refrigeratorDAO;
+	private ReviewDAO reviewDAO;
+	
+	public RefrigeratorController() {
+		try {
+			refrigeratorDAO = new RefrigeratorDAO();
+			reviewDAO = new ReviewDAO();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		
-		// 로그인 검사 필요한지?
+		HttpSession session = request.getSession();	
 		
-		String userId = request.getParameter("userId");
+		String userId = UserSessionUtils.getLoginUserId(session);
 		
 		List<UserIngredient> userIngredient = refrigeratorDAO.getIngredientList(userId);
 		List<String> remainingTime = refrigeratorDAO.calRemainingTime(userId);
