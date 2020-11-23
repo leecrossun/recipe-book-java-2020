@@ -10,7 +10,6 @@ public class Recipe {
 	private String image;
 	private int report;
 
-
 	public Recipe(String recipeId, String recipeName, String userId, String summary, String nation, String difficulty, String image,
 			int report) {
 		super();
@@ -23,19 +22,14 @@ public class Recipe {
 		this.image = image;
 		this.report = report;
 	}
-
-
 	public Recipe(String recipeName, String summary) {
 		super();
 		this.recipeName = recipeName;
 		this.summary = summary;
 	}
-	
 	public Recipe() {
 		super();
 	}
-
-
 	public String getRecipeId() {
 		return recipeId;
 	}

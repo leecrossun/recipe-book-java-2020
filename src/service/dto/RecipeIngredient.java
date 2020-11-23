@@ -1,4 +1,5 @@
 package service.dto;
+
 public class RecipeIngredient {
 	private String recipeId;
 	private String ingredientId;
@@ -12,6 +13,9 @@ public class RecipeIngredient {
 		this.ingredientName = ingredientName;
 		this.amount = amount;
 		this.unit = unit;
+	}
+	public RecipeIngredient() {
+		this(null, null, null, 0, null);
 	}
 	public String getRecipeId() {
 		return recipeId;
@@ -42,8 +46,5 @@ public class RecipeIngredient {
 	}
 	public void setUnit(String unit) {
 		this.unit = unit;
-	}
-	
-	
-	
+	}	
 }

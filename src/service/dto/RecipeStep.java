@@ -4,12 +4,16 @@ public class RecipeStep {
 	private int stepNum;
 	private String content;
 	
-	
 	public RecipeStep(String recipeId, int stepNum, String content) {
+		super();
 		this.recipeId = recipeId;
 		this.stepNum = stepNum;
 		this.content = content;
 	}
+	public RecipeStep() {
+		this(null, 0, null);
+	}
+	
 	public String getRecipeId() {
 		return recipeId;
 	}
