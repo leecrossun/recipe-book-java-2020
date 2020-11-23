@@ -11,7 +11,7 @@ public class Review {
 	private String recipeName;
 	private String content;
 	private int rating;
-	private Date published;
+	private String published;
 	
 	public Review() {
 		
@@ -19,7 +19,7 @@ public class Review {
 	
 	
 	public Review(String reviewId, String userId, String recipeId, String recipeName, String content, int rating,
-			Date published) {
+			String published) {
 		super();
 		this.reviewId = reviewId;
 		this.userId = userId;
@@ -31,7 +31,7 @@ public class Review {
 	}
 
 	public Review(String reviewId, String userId, String recipeId, String content, int rating,
-			Date published) {
+			String published) {
 		super();
 		this.reviewId = reviewId;
 		this.userId = userId;
@@ -52,11 +52,11 @@ public class Review {
 	}
 
 
-	public Date getPublished() {
+	public String getPublished() {
 		return published;
 	}
 
-	public void setPublished(Timestamp published) {
+	public void setPublished(String published) {
 		this.published = published;
 	}
 

@@ -127,7 +127,7 @@ public class ReviewDAO {
 			list = new ArrayList<Review>();
 
 			while (rs.next()) {
-				Review myReview = new Review(rs.getString("REVIEWID"), rs.getString("USERID"), rs.getString("RECIPEID"), rs.getString("CONTENT"), rs.getInt("RATING"), rs.getDate("PUBLISHED"));
+				Review myReview = new Review(rs.getString("REVIEWID"), rs.getString("USERID"), rs.getString("RECIPEID"), rs.getString("CONTENT"), rs.getInt("RATING"), rs.getString("PUBLISHED"));
 				list.add(myReview);
 			}
 			
