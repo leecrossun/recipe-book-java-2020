@@ -36,6 +36,7 @@ public class RequestMapping {
         //refrigerator
         mappings.put("/refrigerator/view", new RefrigeratorController());
         mappings.put("/refrigerator/addIngredient", new ForwardController("/refrigerator/addIngredient.jsp"));
+        mappings.put("/refrigerator/deleteIngredient", new DeleteIngredientController());
         
         logger.info("Initialized Request Mapping!");
     }

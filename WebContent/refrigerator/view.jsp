@@ -101,7 +101,10 @@
 			
 				<c:forEach var="ingredient" items="${userIngredient}">
 					<p class="list">
-						🤍 ${ingredient.ingredientName} >> ${ingredient.amout}${ingredient.unit} &#40; ${ingredient.expireDate} &#41; <a class="btn">Delete</a> 🤍
+						🤍 ${ingredient.ingredientName} >> ${ingredient.amout}${ingredient.unit} &#40; ${ingredient.expireDate} &#41; 
+						<a class="btn" href="<c:url value='/refrigerator/deleteIngredient'>
+												<c:param name='ingId' value='${ingredient.ingredientId}'/>
+												</c:url>">Delete</a> 🤍
 					</p>
 			 	--%>
 				<p class="list">
