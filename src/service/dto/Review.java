@@ -1,9 +1,7 @@
 package service.dto;
 
-import java.sql.*;
-import java.util.Date;
 
-//DAO¸¸µå´Â °úÁ¤¿¡¼­ reviewId¿Í recipeNameÀÌ ÀÖ´Â°Ô Æí¸®ÇÒ °Í °°¾Æ Ãß°¡ÇÏ¿´½À´Ï´Ù.
+//DAOï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ reviewIdï¿½ï¿½ recipeNameï¿½ï¿½ ï¿½Ö´Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
 public class Review {
 	private String reviewId;
 	private String userId;

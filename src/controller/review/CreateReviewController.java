@@ -1,41 +1,59 @@
 package controller.review;
 
-import java.security.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import controller.user.UserSessionUtils;
+import persistence.dao.ReviewDAO;
 import service.dto.Review;
 
 public class CreateReviewController implements Controller{
+	
+	private ReviewDAO reviewDAO;
+
+	public CreateReviewController() {
+		try {
+			reviewDAO = new ReviewDAO();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		private String reviewId;
-//		private String userId;
-//		private String recipeId;
-//		private String recipeName;
-//		private String content;
-//		private int rating;
-//		private Date published;
+		HttpSession session = request.getSession();	
 		
-		Date date_now = new Date(System.currentTimeMillis()); // 현재시간을 가져와 Date형으로 저장한다
-		// 년월일시분초 14자리 포멧
+		String reviewId = request.getParameter("reviewId");
+		String userId = UserSessionUtils.getLoginUserId(session);
+		String recipeId = request.getParameter("recipeId");
+		String recipeName = request.getParameter("recipeName");
+		int rating = Integer.parseInt(request.getParameter("rating"));
+		
+		Date date_now = new Date(System.currentTimeMillis());
 		SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyy/MM/dd"); 
 		String published = fourteen_format.format(date_now);
 		
 		Review review = new Review(
-				null, null, null, null,
+				reviewId, userId, recipeId, recipeName,
 				request.getParameter("content"),
-				request.getParameter("rating"),
-				request.getParameter("content"),
+				rating,
 				published
 				);
 		
-		return null;
+		try {
+			reviewDAO.writeMyReview(review);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "/recipe/view";
+		}
+		
+		return "redirect:/recipe/view";
 	}
 
 }

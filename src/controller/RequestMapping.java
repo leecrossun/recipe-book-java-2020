@@ -6,16 +6,19 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import controller.review.CreateReviewController;
+import controller.review.DeleteReviewController;
+import controller.review.UpdateReviewController;
 import controller.user.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
     
-    // �� ��û uri�� ���� controller ��ü�� ������ HashMap ����
+    // 占쏙옙 占쏙옙청 uri占쏙옙 占쏙옙占쏙옙 controller 占쏙옙체占쏙옙 占쏙옙占쏙옙占쏙옙 HashMap 占쏙옙占쏙옙
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	// �� uri�� �����Ǵ� controller ��ü�� ���� �� ����
+    	// 占쏙옙 uri占쏙옙 占쏙옙占쏙옙占실댐옙 controller 占쏙옙체占쏙옙 占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
@@ -25,14 +28,17 @@ public class RequestMapping {
         mappings.put("/user/update/form", new UpdateUserController());
         mappings.put("/user/update", new UpdateUserController());
         mappings.put("/user/delete", new DeleteUserController());
-        
+        // Review Area
+        mappings.put("/review/create", new CreateReviewController());
+        mappings.put("/review/delete", new DeleteReviewController());
+        mappings.put("/review/update", new UpdateReviewController());
         
         
         logger.info("Initialized Request Mapping!");
     }
 
     public Controller findController(String uri) {	
-    	// �־��� uri�� �����Ǵ� controller ��ü�� ã�� ��ȯ
+    	// 占쌍억옙占쏙옙 uri占쏙옙 占쏙옙占쏙옙占실댐옙 controller 占쏙옙체占쏙옙 찾占쏙옙 占쏙옙환
         return mappings.get(uri);
     }
 }
