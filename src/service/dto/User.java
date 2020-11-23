@@ -7,6 +7,13 @@ public class User {
 	private String phone;
 	private String authority;
 	
+	public User(String userId, String password, String name, String email, String phone) {
+		this.userId = userId;
+		this.password = password;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+	}
 	public User(String userId, String password, String name, String email, String phone, String authority) {
 		this.userId = userId;
 		this.password = password;
@@ -52,5 +59,10 @@ public class User {
 		this.authority = authority;
 	}
 	
-	
+	public boolean matchPassword(String password) {
+		if (password == null) {
+			return false;
+		}
+		return this.password.equals(password);
+	}
 }
