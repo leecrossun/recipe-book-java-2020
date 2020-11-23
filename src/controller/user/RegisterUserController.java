@@ -29,7 +29,7 @@ public class RegisterUserController implements Controller {
 			manager.create(user);
 	        return "redirect:/user/list";	
 	        
-		} catch (ExistingUserException e) {	
+		} catch (ExistingUserException e) {	// 예외 발생 시 회원가입 form으로 forwarding
             request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("user", user);
