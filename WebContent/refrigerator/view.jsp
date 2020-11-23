@@ -115,7 +115,9 @@
 				</p>
 				<br>
 				<p class="list" style="text-align: center; border: 1px solid black;">
-					<a href="<curl value='/refrigerator/add/form' />"> ➕ </a>
+					<a href="<c:url value='/refrigerator/addIngredient'>
+								<c:param name='userId' value='${user.userId}'/>
+								</c:url>"> ➕ </a>
 				</p>
 			</div>
 		</div>

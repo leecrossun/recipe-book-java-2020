@@ -28,8 +28,8 @@ public class RequestMapping {
         mappings.put("/user/delete", new DeleteUserController());
         
         //refrigerator
-        mappings.put("/refrigerator/refrigerator", new RefrigeratorController());
-        mappings.put("/refrigerator/add/form", new ForwardController("/refrigerator/addIngredient.jsp"));
+        mappings.put("/refrigerator/view", new RefrigeratorController());
+        mappings.put("/refrigerator/addIngredient", new ForwardController("/refrigerator/addIngredient.jsp"));
         
         logger.info("Initialized Request Mapping!");
     }
