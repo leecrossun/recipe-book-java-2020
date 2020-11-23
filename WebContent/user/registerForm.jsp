@@ -28,7 +28,7 @@
             </script>
 </head>
 <body>
-<div id="headers"></div>
+	<div id="headers"></div>
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">회원가입창</div>
@@ -79,4 +79,8 @@
         
     </div>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> branch 'master' of https://github.com/leecrossun/RecipeBook.git
