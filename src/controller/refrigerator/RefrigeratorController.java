@@ -32,12 +32,12 @@ public class RefrigeratorController implements Controller{
 		List<Review> myReview = reviewDAO.findReviewByUserID(userId);
 		
 		request.setAttribute("userIngredient", userIngredient);
-		request.setAttribute("remainingTime", remainingTime);
+		request.setAttribute("remainingTimes", remainingTime);
 		request.setAttribute("favorites", favorite);
 		request.setAttribute("myRecipes", myRecipe);
 		request.setAttribute("myReviews", myReview);
 		
-		return "/refrigerator/refrigerator.jsp";
+		return "/refrigerator/view.jsp";
 
 	}
 

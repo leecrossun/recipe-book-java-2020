@@ -29,6 +29,6 @@ public class AddUserIngredientController implements Controller{
 	    
 	    refrigeratorDAO.addUserIngredient(uIng);
 	    
-		return "redirect:/refrigerator/refrigerator";
+		return "redirect:/refrigerator/view";
 	}
 }
