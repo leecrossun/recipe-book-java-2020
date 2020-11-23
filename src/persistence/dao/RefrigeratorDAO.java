@@ -14,7 +14,7 @@ public class RefrigeratorDAO {
 	}
 	
 	//냉장고에 저장한 재료 표시
-	public static List<UserIngredient> getIngredientList(String userId) {
+	public List<UserIngredient> getIngredientList(String userId) {
 		String sql = "SELECT INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION "
 				+ "FROM INGREDIENT i JOIN USER_INGREDIENT ug USING (INGREDIENTID) "
 				+ "WHERE USERID = ? ";
@@ -43,7 +43,7 @@ public class RefrigeratorDAO {
 	}
 	
 	//냉장고 재료 추가
-	public static void addUserIngredient(UserIngredient uIng) {
+	public void addUserIngredient(UserIngredient uIng) {
 		String sql = "INSERT INTO USER_INGREDIENT VALUES (?, ?, ?, ?, ?)";
 		Object[] param = new Object[] { uIng.getUserId(), uIng.getIngredientId(), 
 				uIng.getAmount(), uIng.getUnit(), uIng.getExpireDate() };
@@ -65,7 +65,7 @@ public class RefrigeratorDAO {
 	}
 	
 	//재료 유효기간 얼마 남았는지 계산
-	public static List<String> calRemainingTime(String userId) {
+	public List<String> calRemainingTime(String userId) {
 		String sql = "SELECT ROUND(expiration - SYSDATE) - 2 AS REMAINING " 
 				+ "FROM USER_INGREDIENT "
 				+ "WHERE USERID = ? ";
@@ -90,7 +90,7 @@ public class RefrigeratorDAO {
 	}
 	
 	//냉장고 재료 삭제
-	public static void deleteUserIngredient(String userId, String ingId) {
+	public void deleteUserIngredient(String userId, String ingId) {
 		String sql = "DELETE FROM USER_INGREDIENT WHERE USERID = ? AND INGFREDIENTID = ? ";
 		Object[] param = new Object[] { userId, ingId };
 		jdbcUtil.setSqlAndParameters(sql, param);
@@ -111,7 +111,7 @@ public class RefrigeratorDAO {
 	}
 	
 	//냉장고 재료 검색
-	public static List<UserIngredient> findUserIngredient(String userId, String ingName) {
+	public List<UserIngredient> findUserIngredient(String userId, String ingName) {
 		String sql = "SELECT INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION "
 				+ "FROM INGREDIENT i JOIN USER_INGREDIENT ug USING (INGREDIENTID) "
 				+ "WHERE USERID = ? AND INGREDIENTNAME LIKE ? ";
@@ -140,7 +140,7 @@ public class RefrigeratorDAO {
 	}
 	
 	//즐겨찾기 레시피 표시
-	public static List<Recipe> getFavoriteRecipetList(String userId) {
+	public List<Recipe> getFavoriteRecipetList(String userId) {
 		String sql = "SELECT RECIPENAME, SUMMARY "
 				+ "FROM FAVORITE f JOIN RECIPE r USING (RECIPEID) "
 				+ "WHERE f.USERID = ? ";
@@ -168,7 +168,7 @@ public class RefrigeratorDAO {
 	}
 
 	//즐겨찾기 레시피 삭제
-	public static void deletFavoriteRecipe(String userId, String recipeId) {
+	public void deletFavoriteRecipe(String userId, String recipeId) {
 		String sql = "DELETE FROM FAVORITE WHERE USERID = ? AND RECIPEID = ? ";
 		Object[] param = new Object[] { userId, recipeId };
 		jdbcUtil.setSqlAndParameters(sql, param);
@@ -189,7 +189,7 @@ public class RefrigeratorDAO {
 	}
 	
 	// 내가 작성한 레시피 표시
-	public static List<Recipe> getMyRecipetList(String userId) {
+	public List<Recipe> getMyRecipetList(String userId) {
 		String sql = "SELECT RECIPENAME, SUMMARY "
 				+ "FROM RECIPE "
 				+ "WHERE USERID = ? ";

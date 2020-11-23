@@ -13,7 +13,7 @@ public class ReviewDAO {
 	}
 	
 	// UserId와 일치하는 Review return
-	public static List<Review> findReviewByUserID(String userId) {
+	public List<Review> findReviewByUserID(String userId) {
 		String sql = "SELECT RECIPENAME, RATING FROM REVIEW WHERE USERID = ?";
 		Object[] param = new Object[] {userId};
 		List<Review> list = null;
@@ -48,7 +48,7 @@ public class ReviewDAO {
 	}
 	
 	// 리뷰 작성
-	public static void writeMyReview(Review review) {
+	public void writeMyReview(Review review) {
 		String sql = "INSERT INTO REVIEW(REVIEWID, CONTENT, RATING, USERID, RECIPEID, PUBLISHED) VALUES(?, ?, ?, ?, ?, ?)";
 //		현재시간 구하기 (이걸 DAO에 포함시키는게 맞는지 고민 ... 이후에 SELECT할 떄  담을게 필요해서 published 추가했습니다.
 //		Calendar cal = new GregorianCalendar();
@@ -72,7 +72,7 @@ public class ReviewDAO {
 	}
 	
 	// 리뷰 삭제
-	public static void deleteMyReview(Review review) {
+	public void deleteMyReview(Review review) {
 		
 		String sql = "DELETE FROM REVIEW WHERE REVIEWID = ?";
 		Object[] param = new Object[] {review.getReviewId()};
@@ -94,7 +94,7 @@ public class ReviewDAO {
 	}
 	
 	// 리뷰 수정
-	public static void updateMyReview(Review review) {
+	public void updateMyReview(Review review) {
 		String sql = "UPDATE REVIEW SET CONTENT = ? , RATING = ?, PUBLISHED = ? WHERE REVIEWID = ?";
 		Object[] param = new Object[] {review.getContent(), review.getRating(), review.getPublished(), review.getReviewId()};
 		jdbcUtil.setSqlAndParameters(sql, param);
@@ -115,7 +115,7 @@ public class ReviewDAO {
 	}
 	
 	// 레시피 별로 리뷰 검색
-	public static List<Review> findReviewByRecipeId(String recipeId) {
+	public List<Review> findReviewByRecipeId(String recipeId) {
 		String sql = "SELECT * FROM REVIEW WHERE RECIPEID = ?";
 		Object[] param = new Object[] {recipeId};
 		List<Review> list = null;

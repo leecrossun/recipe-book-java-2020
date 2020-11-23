@@ -97,6 +97,13 @@
 			</div>
 			<div class="mine">
 				<p class="title">🥕 My Ingredients</p>
+				<%--
+			
+				<c:forEach var="ingredient" items="${userIngredient}">
+					<p class="list">
+						🤍 ${ingredient.ingredientName} >> ${ingredient.amout}${ingredient.unit} &#40; ${ingredient.expireDate} &#41; <a class="btn">Delete</a> 🤍
+					</p>
+			 	--%>
 				<p class="list">
 					🤍 당근 >> 100g &#40; 2020/12/15 &#41; <a class="btn">Delete</a> 🤍
 				</p>
@@ -116,6 +123,10 @@
 		<div class="recipe">
 			<div class="favorite">
 				<p class="title">📌 Favorite Recipe</p>
+				<%--
+				<c:forEach var="favorite" items="${favorites}">
+					<p class="list">🤍 ${favorite.recipeName} >> ${favorite.summary} 🤍</p>
+				 --%>
 				<p class="list">🤍 Recipe Name >> Description 🤍</p>
 				<p class="list">🤍 Recipe Name >> Description 🤍</p>
 				<p class="list">🤍 Recipe Name >> Description 🤍</p>
@@ -123,10 +134,18 @@
 			</div>
 			<div class="mine">
 				<p class="title">📜 My Recipe</p>
+				<%--
+				<c:forEach var="myRecipe" items="${myRecipes}">
+					<p class="list">🤍 ${myRecipe.recipeName} >> ${myRecipe.summary} 🤍</p>
+				 --%>
 				<p class="list">🤍 Recipe Name >> Description 🤍</p>
 				<p class="list">🤍 Recipe Name >> Description 🤍</p>
 			</div>
 			<div class="review">
+				<%--
+				<c:forEach var="myReview" items="${myReviews}">
+					<p class="list">🤍 ${myReview.recipeName} >> ${myRecipe.rating} 🤍</p>
+				 --%>
 				<p class="title">✍ My Review</p>
 				<p class="list">🤍 Recipe Name >> ⭐⭐⭐ 🤍</p>
 				<p class="list">🤍 Recipe Name >> ⭐⭐⭐⭐⭐ 🤍</p>
