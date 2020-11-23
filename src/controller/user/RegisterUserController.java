@@ -27,9 +27,9 @@ public class RegisterUserController implements Controller {
 		try {
 			UserManager manager = UserManager.getInstance();
 			manager.create(user);
-	        return "redirect:/user/list";	// ���� �� ����� ����Ʈ ȭ������ redirect
+	        return "redirect:/user/list";	
 	        
-		} catch (ExistingUserException e) {	// ���� �߻� �� ȸ������ form���� forwarding
+		} catch (ExistingUserException e) {	
             request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("user", user);

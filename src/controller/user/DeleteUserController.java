@@ -22,27 +22,27 @@ public class DeleteUserController implements Controller {
 		UserManager manager = UserManager.getInstance();		
 		HttpSession session = request.getSession();	
 	
-		if ((UserSessionUtils.isLoginUser("admin", session) && 	// �α����� ����ڰ� �������̰� 	
-			 !deleteId.equals("admin"))							// ���� ����� �Ϲ� ������� ���, 
-			   || 												// �Ǵ� 
-			(!UserSessionUtils.isLoginUser("admin", session) &&  // �α����� ����ڰ� �����ڰ� �ƴϰ� 
-			  UserSessionUtils.isLoginUser(deleteId, session))) { // �α����� ����ڰ� ���� ����� ��� (�ڱ� �ڽ��� ����)
+		if ((UserSessionUtils.isLoginUser("admin", session) && 	
+			 !deleteId.equals("admin"))						
+			   || 												
+			(!UserSessionUtils.isLoginUser("admin", session) &&  
+			  UserSessionUtils.isLoginUser(deleteId, session))) { 
 				
-			manager.remove(deleteId);// ����� ���� ����
-			if (UserSessionUtils.isLoginUser("admin", session))	// �α����� ����ڰ� ������ 	
-				return "redirect:/user/list";		// ����� ����Ʈ�� �̵�
-			else 									// �α����� ����ڴ� �̹� ������
-				return "redirect:/user/logout";		// logout ó��
+			manager.remove(deleteId);
+			if (UserSessionUtils.isLoginUser("admin", session))	
+				return "redirect:/user/list";		
+			else 									
+				return "redirect:/user/logout";		
 		}
 		
-		/* ������ �Ұ����� ��� */
-		User user = manager.findUser(deleteId);	// ����� ���� �˻�
+		
+		User user = manager.findUser(deleteId);	
 		request.setAttribute("user", user);						
 		request.setAttribute("deleteFailed", true);
 		String msg = (UserSessionUtils.isLoginUser("admin", session)) 
-				   ? "�ý��� ������ ������ ������ �� �����ϴ�."		
-				   : "Ÿ���� ������ ������ �� �����ϴ�.";													
+				   ? "성공"		
+				   : "실패.";													
 		request.setAttribute("exception", new IllegalStateException(msg));            
-		return "/user/view.jsp";		// ����� ���� ȭ������ �̵� (forwarding)	
+		return "/user/view.jsp";		
 	}
 }

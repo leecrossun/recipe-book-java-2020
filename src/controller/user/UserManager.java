@@ -5,12 +5,7 @@ import java.sql.SQLException;
 import persistence.dao.UserDAO;
 import service.dto.User;
 
-/**
- * ����� ���� API�� ����ϴ� �����ڵ��� ���� �����ϰ� �Ǵ� Ŭ����. UserDAO�� �̿��Ͽ�
- * �����ͺ��̽��� ������ ���� �۾��� �����ϵ��� �ϸ�, �����ͺ��̽��� �����͵��� �̿��Ͽ�
- * �����Ͻ� ������ �����ϴ� ������ �Ѵ�. �����Ͻ� ������ ������ ��쿡�� �����Ͻ�
- * �������� �����ϴ� Ŭ������ ������ �� �� �ִ�.
- */
+
 public class UserManager {
 	private static UserManager userMan = new UserManager();
 	private UserDAO userDAO;
@@ -55,7 +50,7 @@ public class UserManager {
 		User user = findUser(userId);
 
 		if (!user.matchPassword(password)) {
-			throw new PasswordMismatchException("��й�ȣ�� ��ġ���� �ʽ��ϴ�.");
+			throw new PasswordMismatchException("비밀번호가 틀렸습니다.");
 		}
 		return true;
 	}
