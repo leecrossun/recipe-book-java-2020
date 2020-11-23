@@ -278,7 +278,7 @@ public class RecipeDAO {
 				+ "FROM RECIPE r, RECIPE_INGREDIENT ri "
 				+ "WHERE ingredientid = ? "; 
 	
-		for (int i = 0; i < ingredientList.size()-1; i++)
+		for (int i = 0; i < ingredientList.size(); i++)
 			sql += " or ingredientId = ? ";
 	
 		Object[] param = new Object[size];
