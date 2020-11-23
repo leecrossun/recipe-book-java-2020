@@ -115,7 +115,7 @@
 				</p>
 				<br>
 				<p class="list" style="text-align: center; border: 1px solid black;">
-					<a> ➕ </a>
+					<a href="<curl value='/refrigerator/add/form' />"> ➕ </a>
 				</p>
 			</div>
 		</div>

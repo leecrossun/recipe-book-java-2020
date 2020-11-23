@@ -21,7 +21,7 @@ public class RefrigeratorController implements Controller{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		
-		// ·Î±×ÀÎ ¿©ºÎ È®ÀÎ?
+		// ë¡œê·¸ì¸ ê²€ì‚¬ í•„ìš”í•œì§€?
 		
 		String userId = request.getParameter("userId");
 		

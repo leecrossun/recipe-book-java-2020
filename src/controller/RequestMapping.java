@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.user.*;
+import controller.refrigerator.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -26,7 +27,9 @@ public class RequestMapping {
         mappings.put("/user/update", new UpdateUserController());
         mappings.put("/user/delete", new DeleteUserController());
         
-        
+        //refrigerator
+        mappings.put("/refrigerator/refrigerator", new RefrigeratorController());
+        mappings.put("/refrigerator/add/form", new ForwardController("/refrigerator/addIngredient.jsp"));
         
         logger.info("Initialized Request Mapping!");
     }

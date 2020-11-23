@@ -66,7 +66,7 @@ public class RefrigeratorDAO {
 	
 	//재료 유효기간 얼마 남았는지 계산
 	public List<String> calRemainingTime(String userId) {
-		String sql = "SELECT ROUND(expiration - SYSDATE) - 2 AS REMAINING " 
+		String sql = "SELECT ROUND(expiration - SYSDATE) - 1 AS REMAINING " 
 				+ "FROM USER_INGREDIENT "
 				+ "WHERE USERID = ? ";
 		Object[] param = new Object[] { userId };
