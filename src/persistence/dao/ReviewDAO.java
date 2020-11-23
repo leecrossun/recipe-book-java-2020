@@ -147,5 +147,47 @@ public class ReviewDAO {
 		}
 		return list;
 	}
+	
+	// 리뷰 아이디로 리뷰 검색
+	public Review findReviewByReviewId(String reviewId) {
+		String sql = "SELECT * FROM REVIEW WHERE REVIEWID = ?";
+		Object[] param = new Object[] {reviewId};
+		Review review = null;
+		
+		jdbcUtil.setSqlAndParameters(sql,  param);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			review = new Review();
+
+			while (rs.next()) {
+				review = new Review(rs.getString("REVIEWID"), rs.getString("USERID"), rs.getString("RECIPEID"), rs.getString("CONTENT"), rs.getInt("RATING"), rs.getString("PUBLISHED"));
+			}
+			
+			if (empty(review))
+				System.out.println("findReviewByRecipeID failed");
+			else
+				System.out.println("findReviewByRecipeId success");
+			
+			return review;
+			
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}
+		return review;
+	}
+	
+	// 객체가 비어있는지 확인
+	 public static Boolean empty(Object obj) {
+		  if (obj instanceof String) return obj == null || "".equals(obj.toString().trim());
+		  else if (obj instanceof List) return obj == null || ((List<?>) obj).isEmpty();
+		  else if (obj instanceof Map) return obj == null || ((Map<?, ?>) obj).isEmpty();
+		  else if (obj instanceof Object[]) return obj == null;
+		  else return obj == null;
+		 }
 
 }
