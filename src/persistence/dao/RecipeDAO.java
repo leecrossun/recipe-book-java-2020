@@ -1,9 +1,11 @@
 package persistence.dao;
 
 import java.sql.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import filter.ResourceFilter;
 import service.dto.*;
 
 public class RecipeDAO {
@@ -14,8 +16,8 @@ public class RecipeDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 
-	// ?????? ?߰? (recipeStep)
 	public static int insertRecipe(Recipe rcp) {
+
 		int result = 0;
 		String sql = "INSERT INTO RECIPE (recipeId, recipeName, summary, nation, difficulty, image, report) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -25,12 +27,11 @@ public class RecipeDAO {
 
 		try {
 			result = jdbcUtil.executeUpdate();
-			//			?Ű??????? (List<RecipeStep> rcpStepList, List<RecipeIngredient> rcpIngList)?? ?ްų?
-			//			rcp.getRecipeId() ?? ???? ???? ?????? List?? ???? ?? ?Ʒ??? ?? ?? ????
-			//			insertRecipeStep(rcpStepList);
-			//			insertRecipeIngredient(rcpStepList);
-			if (result == 1)
+			if (result == 1) {
 				System.out.println("insert recipe success");
+				insertRecipeIngredient(rcp.getIngList());
+				insertRecipeStep(rcp.getStepList());
+			}
 			else
 				System.out.println("insert recipe failed");
 		} catch (Exception ex) {
@@ -43,32 +44,23 @@ public class RecipeDAO {
 		return result;
 	}
 
-	public static int insertRecipeStep(List<RecipeStep> rcpStepList) {
+	public static int insertRecipeStep(List<RecipeStep> rcpStepList) throws Exception {
 		int result = 0;
 		String sql = "INSERT INTO RECIPESTEP (recipeId, stepNum, content) " + "VALUES (?, ?, ?)";
-		//		?Ű????? (RecipeStep rcpStep)
-		//		Object[] param = new Object[] { rcpStep.getRecipeId(), rcpStep.getStepNum(), rcpStep.getContent() };
-		//		jdbcUtil.setSqlAndParameters(sql, param);
-
 		try {
 			for (int i = 0; i < rcpStepList.size(); i++) {
 				Object[] param = new Object[] { rcpStepList.get(i).getRecipeId(), rcpStepList.get(i).getStepNum(),
 						rcpStepList.get(i).getContent() };
 				jdbcUtil.setSqlAndParameters(sql, param);
 				result += jdbcUtil.executeUpdate();
-				jdbcUtil.close();
 			}
-			//			result = jdbcUtil.executeUpdate();
-			//			if (result == 1)
 			if (result == rcpStepList.size())
 				System.out.println("insert recipeStep success");
-			else {
+			else 
 				System.out.println("insert recipeStep failed");
-				jdbcUtil.rollback();
-			}
-		} catch (Exception ex) {
+		} catch (Exception e) {
+			e.printStackTrace();
 			jdbcUtil.rollback();
-			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
 			jdbcUtil.close();
@@ -76,14 +68,10 @@ public class RecipeDAO {
 		return result;
 	}
 
-	public static int insertRecipeIngredient(List<RecipeIngredient> rcpIngList) {
+	public static int insertRecipeIngredient(List<RecipeIngredient> rcpIngList) throws Exception {
 		int result = 0;
 		String sql = "INSERT INTO RECIPESTEP (recipeId, ingredientId, ingredientName, amount, unit) "
 				+ "VALUES (?, ?, ?, ?, ?)";
-		//		?Ű????? (RecipeIngredient rcpIng)
-		//		Object[] param = new Object[] { rcpIng.getRecipeId(), rcpIng.getIngredientId(), rcpIng.getIngredientName()
-		//				, rcpIng.getAmount(), rcpIng.getUnit() };
-		//		jdbcUtil.setSqlAndParameters(sql, param);
 
 		try {
 			for (int i = 0; i < rcpIngList.size(); i++) {
@@ -92,19 +80,14 @@ public class RecipeDAO {
 						rcpIngList.get(i).getUnit() };
 				jdbcUtil.setSqlAndParameters(sql, param);
 				result += jdbcUtil.executeUpdate();
-				jdbcUtil.close();
 			}
-			//			result = jdbcUtil.executeUpdate();
-			//			if (result == 1)
 			if (result == rcpIngList.size())
 				System.out.println("insert recipeIngredient success");
-			else {
+			else 
 				System.out.println("insert recipeIngredient failed");
-				jdbcUtil.rollback();
-			}
-		} catch (Exception ex) {
+		} catch (Exception e) {
+			e.printStackTrace();
 			jdbcUtil.rollback();
-			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
 			jdbcUtil.close();
@@ -112,66 +95,62 @@ public class RecipeDAO {
 		return result;
 	}
 
-	// ?????? ????
 	public static int updateRecipe(Recipe rcp) {
 
 		String sql = "UPDATE RECIPE SET ";
 		int index = 0;
 
-		Object[] tempParam = new Object[10]; // update ???? ????? ?Ű??????? ?????? ?? ?ִ? ?ӽ? ?迭
+		Object[] tempParam = new Object[10];
 
-		if (rcp.getRecipeName() != null) { // ?̸??? ?????Ǿ? ???? ???
-			sql += "recipeName = ?, "; // update ???? ?̸? ???? ?κ? ?߰?
-			tempParam[index++] = rcp.getRecipeName(); // ?Ű??????? ?????? ?̸? ?߰?
+		if (rcp.getRecipeName() != null) { 
+			sql += "recipeName = ?, "; 
+			tempParam[index++] = rcp.getRecipeName(); 
 		}
-		if (rcp.getSummary() != null) { // summary?? ?????Ǿ? ???? ???
-			sql += "summary = ?, "; // update ???? summary ???? ?κ? ?߰?
-			tempParam[index++] = rcp.getSummary(); // ?Ű??????? ?????? summary ?߰?
+		if (rcp.getSummary() != null) { 
+			sql += "summary = ?, ";
+			tempParam[index++] = rcp.getSummary(); 
 		}
-		if (rcp.getNation() != null) { // ?????? ?????Ǿ? ???? ???
-			sql += "nation = ?, "; // update ???? ???? ???? ?κ? ?߰?
-			tempParam[index++] = rcp.getNation(); // ?Ű??????? ?????? ???? ?߰?
+		if (rcp.getNation() != null) { 
+			sql += "nation = ?, "; 
+			tempParam[index++] = rcp.getNation(); 
 		}
-		if (rcp.getDifficulty() != null) { // ???̵??? ?????Ǿ? ???? ???
-			sql += "difficulty = ?, "; // update ???? ???̵? ???? ?κ? ?߰?
-			tempParam[index++] = rcp.getDifficulty(); // ?Ű??????? ?????? ???̵? ?߰?
+		if (rcp.getDifficulty() != null) { 
+			sql += "difficulty = ?, "; 
+			tempParam[index++] = rcp.getDifficulty();
 		}
-		if (rcp.getImage() != null) { // ?̹????? ?????Ǿ? ???? ???
-			sql += "image = ?, "; // update ???? ?̹??? ???? ?κ? ?߰?
-			tempParam[index++] = rcp.getImage(); // ?Ű??????? ?????? ?̹??? ?߰?
+		if (rcp.getImage() != null) { 
+			sql += "image = ?, "; 
+			tempParam[index++] = rcp.getImage();
 		}
 
-		sql += "WHERE recipeId = ? "; // update ???? ???? ????
-		sql = sql.replace(", WHERE", " WHERE"); // update ???? where ?? ?տ? ???? ?? ?ִ? , ????
+		sql += "WHERE recipeId = ? "; 
+		sql = sql.replace(", WHERE", " WHERE"); 
 
-		tempParam[index++] = rcp.getRecipeId(); // ã?? ???ǿ? ?ش??ϴ? ?й??? ???? ?Ű????? ?߰?
+		tempParam[index++] = rcp.getRecipeId(); 
 
 		Object[] newParam = new Object[index];
-		for (int i = 0; i < newParam.length; i++) // ?Ű??????? ??????ŭ?? ũ?⸦ ???? ?迭?? ?????ϰ? ?Ű????? ?? ????
+		for (int i = 0; i < newParam.length; i++)
 			newParam[i] = tempParam[i];
 
 		jdbcUtil.setSqlAndParameters(sql, newParam);
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // update ?? ????
-			return result; // update ?? ???? ?ݿ??? ???ڵ? ?? ??ȯ
+			int result = jdbcUtil.executeUpdate(); 
+			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // ResultSet, PreparedStatement, Connection ??ȯ
+			jdbcUtil.close(); 
 		}
-
 		return 0;
 	}
 
 	public static int updateRecipeStep (List<RecipeStep> rcpStepList) {
 
 		String sql = "UPDATE RECIPESTEP SET " + "SET STEPNUM=?, CONTENT=?" /*+  "WHERE RECIPEID=?"*/;
-
 		int result = 0;
-
 		try {
 			for (RecipeStep rcpStep : rcpStepList) {
 				Object[] param = new Object[] {rcpStep.getStepNum(), rcpStep.getContent()/*, rcpStep.getRecipeId() */};
@@ -193,9 +172,7 @@ public class RecipeDAO {
 	public static int updateRecipeIngredient (List<RecipeIngredient> rcpIngList) {
 
 		String sql = "UPDATE RECIPEINGREDIENT SET " + "SET INGREDIENTID=?, INGREDIENTNAME=?, AMOUNT=?, UNIT=?" /* + "WHERE RECIPEID=? "*/;
-
 		int result = 0;
-
 		try {
 			for (RecipeIngredient rcpIng : rcpIngList) {
 				Object[] param = new Object[] {rcpIng.getIngredientId(), rcpIng.getIngredientName(), rcpIng.getAmount(), rcpIng.getUnit()};
@@ -214,8 +191,8 @@ public class RecipeDAO {
 		return 0;
 	}
 
-	// ?????? ????
 	public static void deleteRecipe (String rcpId) {
+
 		deleteRecipeStep(rcpId);
 		deleteRecipeIngredient(rcpId);
 
@@ -231,7 +208,6 @@ public class RecipeDAO {
 			jdbcUtil.close();
 		}
 	}
-
 
 	public static void deleteRecipeStep (String recipeId) {
 		String sql = "DELETE FROM RECIPESTEP WHERE recipeID = ?";
@@ -261,7 +237,6 @@ public class RecipeDAO {
 		}
 	}
 
-	// ???????? ?????? DTO ??ȯ (?˻????)
 	public static List<Recipe> getRecipeListByIngredient(List<Ingredient> ingredientList) {
 		int size = ingredientList.size();
 
@@ -305,7 +280,7 @@ public class RecipeDAO {
 	}
 
 	public static List<Recipe> getRecipeListByName(String recipeName) {
-		String sql = "SELECT recipeId, recipeName, userId, summary, nation, difficulty, image, report " + "FROM RECIPE "
+		String sql = "SELECT recipeId, recipeName, userId, summary, image " + "FROM RECIPE "
 				+ "WHERE recipeName LIKE ? ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {  "%"+recipeName+"%" });
 
@@ -318,10 +293,7 @@ public class RecipeDAO {
 				rcp.setRecipeName(rs.getString("recipeName"));
 				rcp.setUserId(rs.getString("userId"));
 				rcp.setSummary(rs.getString("summary"));
-				rcp.setNation(rs.getString("nation"));
-				rcp.setDifficulty(rs.getString("difficulty"));
 				rcp.setImage(rs.getString("image"));
-				rcp.setReport(rs.getInt("report"));
 				rcpList.add(rcp);
 			}
 			if (rcpList.isEmpty())
@@ -335,8 +307,8 @@ public class RecipeDAO {
 		return null;
 	}
 
-	public static Recipe FindRecipeById(String recipeId) {
-		String sql = "SELECT recipeId, recipeName, userId, summary, nation, difficulty, image, report " + "FROM RECIPE "
+	public static Recipe findRecipeById(String recipeId) {
+		String sql = "SELECT recipeName, userId, summary, image " + "FROM RECIPE "
 				+ "WHERE recipeId=? ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});
 
@@ -344,17 +316,15 @@ public class RecipeDAO {
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			if (rs.next()) {
-				rcp = new Recipe(
-						rs.getString("recipeId"),
-						rs.getString("recipeName"),
-						rs.getString("userId"),
-						rs.getString("summary"),
-						rs.getString("nation"),
-						rs.getString("difficulty"),
-						rs.getString("image"),
-						rs.getInt("report"));
-				return rcp;
+				rcp = new Recipe();
+				rcp.setRecipeName(rs.getString("recipeName"));
+				rcp.setUserId(rs.getString("userId"));
+				rcp.setSummary(rs.getString("summary"));
+				rcp.setImage(rs.getString("image"));
 			}
+			rcp.setIngList(findRcpIngById(recipeId));
+			rcp.setStepList(findRcpStepById(recipeId));
+			return rcp;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -363,21 +333,17 @@ public class RecipeDAO {
 		return null;
 	}
 
-	public static List<RecipeIngredient> FindRcpIngById (String recipeId) {
-		String sqlIng = "SELECT recipeId, ingredientId, ingredientName, amount, unit " + "FROM RECIPEINGREDIENT "
-				+ "WHERE recipeId=? ";
-		jdbcUtil.setSqlAndParameters(sqlIng, new Object[] {recipeId});
-		RecipeIngredient rcpIng;
+	public static List<RecipeIngredient> findRcpIngById (String recipeId) {
+		String sql = "SELECT ingredientName, amount, unit " + "FROM RECIPEINGREDIENT " + "WHERE recipeId=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			List<RecipeIngredient> rcpIngList = new ArrayList<RecipeIngredient>();
 			while (rs.next()) {
-				rcpIng = new RecipeIngredient(
-						rs.getString("recipeId"),
-						rs.getString("ingredientId"),
-						rs.getString("ingredientName"),
-						Integer.parseInt(rs.getString("amount")),
-						rs.getString("unit"));
+				RecipeIngredient rcpIng = new RecipeIngredient();
+				rcpIng.setIngredientName(rs.getString("ingredientName"));
+				rcpIng.setAmount(Integer.parseInt(rs.getString("amount")));
+				rcpIng.setUnit(rs.getString("unit"));
 				rcpIngList.add(rcpIng);
 			}
 			return rcpIngList;
@@ -389,18 +355,17 @@ public class RecipeDAO {
 		return null;
 	}
 
-	public static List<RecipeStep> FindRcpStepById (String recipeId) {
-		String sqlStep = "SELECT recipeId, stepNum, content " + "FROM RECIPESTEP " + "WHERE recipeId=? ";
-		jdbcUtil.setSqlAndParameters(sqlStep, new Object[] {recipeId});
-		RecipeStep rcpStep;
+	public static List<RecipeStep> findRcpStepById (String recipeId) {
+		String sql = "SELECT stepNum, content " + "FROM RECIPESTEP " + "WHERE recipeId=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});
+		RecipeStep rcpStep = null;
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			List<RecipeStep> rcpStepList = new ArrayList<RecipeStep>();
 			while (rs.next()) {
-				rcpStep = new RecipeStep(
-						rs.getString("recipeId"),
-						Integer.parseInt(rs.getString("stepNum")),
-						rs.getString("content"));
+				rcpStep = new RecipeStep();
+				rcpStep.setStepNum(Integer.parseInt(rs.getString("amount")));
+				rcpStep.setContent(rs.getString("content"));
 				rcpStepList.add(rcpStep);
 			}
 			return rcpStepList;
