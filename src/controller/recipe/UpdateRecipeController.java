@@ -18,6 +18,14 @@ public class UpdateRecipeController implements Controller{
 	
 	private RecipeDAO recipeDAO = new RecipeDAO();
 	
+	public UpdateRecipeController() {
+		try {
+			recipeDAO = new RecipeDAO();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -25,12 +33,13 @@ public class UpdateRecipeController implements Controller{
 		   
 		if (request.getMethod().equals("GET")) {
 
-			Recipe recipe = recipeDAO.FindRecipeById(recipeId);
-			List<RecipeIngredient> rcpIng = recipeDAO.FindRcpIngById(recipeId);
-			List<RecipeStep> rcpStep = recipeDAO.FindRcpStepById(recipeId);
+			Recipe recipe = recipeDAO.findRecipeById(recipeId);
+			List<RecipeIngredient> rcpIng = recipeDAO.findRcpIngById(recipeId);
+			List<RecipeStep> rcpStep = recipeDAO.findRcpStepById(recipeId);
 			request.setAttribute("recipe", recipe);
 			request.setAttribute("rcpIng", rcpIng);
 			request.setAttribute("rcpStep", rcpStep);
+			
 			HttpSession session = request.getSession();
 			if (UserSessionUtils.isLoginUser(recipe.getUserId(), session)||
 				UserSessionUtils.isLoginUser("admin", session)) {

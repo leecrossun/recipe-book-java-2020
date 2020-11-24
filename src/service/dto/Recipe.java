@@ -1,5 +1,7 @@
 package service.dto;
 
+import java.util.List;
+
 public class Recipe {
 	private String recipeId;
 	private String recipeName;
@@ -8,6 +10,8 @@ public class Recipe {
 	private String nation;
 	private String difficulty;
 	private String image;
+	private List<RecipeIngredient> ingList;
+	private List<RecipeStep> stepList;
 	private int report;
 
 	public Recipe(String recipeId, String recipeName, String userId, String summary, String nation, String difficulty, String image,
@@ -78,5 +82,16 @@ public class Recipe {
 	public void setReport(int report) {
 		this.report = report;
 	}
-
+	public List<RecipeIngredient> getIngList() {
+		return ingList;
+	}
+	public void setIngList(List<RecipeIngredient> ingList) {
+		this.ingList = ingList;
+	}
+	public List<RecipeStep> getStepList() {
+		return stepList;
+	}
+	public void setStepList(List<RecipeStep> stepList) {
+		this.stepList = stepList;
+	}
 }
