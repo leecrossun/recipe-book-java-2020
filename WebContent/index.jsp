@@ -1,1 +1,3 @@
-<% response.sendRedirect(request.getContextPath() + "/refrigerator/addIngredient"); %>
+
+
+<% response.sendRedirect(request.getContextPath() + "/user/login/form"); %>
