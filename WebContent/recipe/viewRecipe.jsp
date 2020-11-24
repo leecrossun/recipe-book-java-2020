@@ -97,10 +97,12 @@ tr, td {
 	<!-- recipe Area -->
 	<div class="container">
 		<p class="mainTitle">💜 레시피 이름 💜</p>
+<%-- 		<p class="mainTitle">💜 ${recipe.recipeName} 💜</p> --%>
 	</div>
 	<div class="container recipe">
 		<br>
 		<p class="mainTitle">🍧 레시피 요약 -------------------------- 한 레시피 🍧</p>
+<%-- 		<p class="mainTitle">🍧 ${recipe.summary} 🍧</p> --%>
 		<br>
 		<div class="image sub-container">
 			<img style="width: 600px; height: auto"
@@ -124,6 +126,14 @@ tr, td {
 			<table>
 				<th>재료명</th>
 				<th width="150px">개수</th>
+			<%-- 			
+			<c:forEach var="ingredient" items="${recipe.ingList}">
+				<tr>
+					<td>${ingredient.ingredientName}</td>
+					<td>${ingredient.amount} ${ingredient.unit}</td>
+				<tr>
+			</c:forEach> 
+			--%>		
 				<tr>
 					<td>사과</td>
 					<td>1 개</td>
@@ -144,6 +154,12 @@ tr, td {
 			<p class="title">🥕 요리방법</p>
 			<br>
 			<table>
+<%-- 			<c:forEach var="recipeStep" items="${recipe.stepList}">
+				<tr>
+					<td width="150px">${recipeStep.stepNum}</td>
+					<td>${recipeStep.content}</td>
+				</tr>
+			</c:forEach> --%>
 				<tr>
 					<td width="150px">1</td>
 					<td>당근을 잘게 다진다</td>
@@ -161,6 +177,8 @@ tr, td {
 		<br>
 		<br>
 		<div class="button-box">
+<%-- 			<a class="btn" href="<c:url value='recipe/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a> --%>
+<%-- 			<a class="btn" href="<c:url value='recipe/delete'> <c:param name='recipeId' value='&{recipe.recipeId}'/> </c:url>">삭제</a> --%>
 			<a class="btn">수정</a> <a class="btn">삭제</a>
 		</div>
 		<br>
