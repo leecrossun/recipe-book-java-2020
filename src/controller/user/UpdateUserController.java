@@ -39,7 +39,7 @@ public class UpdateUserController implements Controller {
 			request.setAttribute("updateFailed", true);
 			request.setAttribute("exception", 
 					new IllegalStateException("타인의 정보는 수정할 수 없습니다"));            
-			return "/user/view.jsp";	
+			return "/";	
 	    }	
     	
     	
@@ -54,6 +54,6 @@ public class UpdateUserController implements Controller {
 
 		UserManager manager = UserManager.getInstance();
 		manager.update(updateUser);			
-        return "redirect:/user/list";			
+        return "redirect:/";			
     }
 }
