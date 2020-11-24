@@ -1,5 +1,15 @@
 package controller.recipe;
 
-public class FindByIngListController {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import controller.Controller;
+
+public class FindByIngListController implements Controller{
+	
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return null;
+		
+	}
 }
