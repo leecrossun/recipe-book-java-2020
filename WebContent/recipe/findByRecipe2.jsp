@@ -11,13 +11,13 @@
 
 <link rel="stylesheet" href="<c:url value='/css/find.css' />"
 	type="text/css">
-	<link rel="stylesheet" href="<c:url value='/css/style.css' />"
+<link rel="stylesheet" href="<c:url value='/css/style.css' />"
 	type="text/css">
 
 <title>Recipe Book</title>
 </head>
 <body>
-		<!-- Navigation Bar -->
+	<!-- Navigation Bar -->
 	<div class="container nav">
 		<div class="hamburger">
 			<div id="wrapper">
@@ -46,8 +46,8 @@
 			<input class="searchBar" type="text" placeholder="요리명 입력">
 			<button class="searchBtn2">검색</button>
 		</div>
-				
-		<div class="container" style="margin-top:30px">
+
+		<div class="container" style="margin-top: 30px">
 			<div class="row">
 				<div class="col-3">
 					<article id="3685" class="location-listing">
@@ -94,7 +94,7 @@
 					</article>
 				</div>
 			</div>
-			<div class="row" style="margin-top:10%">
+			<div class="row" style="margin-top: 10%">
 				<div class="col-3">
 					<article id="3697" class="location-listing">
 

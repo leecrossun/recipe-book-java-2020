@@ -8,8 +8,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Recipe Book</title>
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css' />" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/find.css' />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/style.css' />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/find.css' />" />
 </head>
 <style>
 </style>
@@ -43,9 +45,9 @@
 		<div class="searchContainer" style="border: none;">
 			<input class="searchBar" type="text" placeholder="요리명 입력">
 			<button class="searchBtn"
-			onClick="location.href='/RecipeBook/recipe/findByRecipe2.jsp'">검색</button>
+				onClick="location.href='/RecipeBook/recipe/findByRecipe2.jsp'">검색</button>
 		</div>
-		<p class="text-center" style="margin-top:10rem">아직 검색한 내용이 없어요!</p>
+		<p class="text-center" style="margin-top: 10rem">아직 검색한 내용이 없어요!</p>
 	</div>
 </body>
 
