@@ -1,4 +1,4 @@
-s<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +14,11 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 	crossorigin="anonymous"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#headers").load("loginHeader.jsp");
+	});
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@300&display=swap');
 /* Navigation */
@@ -22,20 +27,17 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 	height: 90px;
 	text-align: center;
 }
-
 .nav>.hamburger {
 	position: absolute;
 	top: 35px;
 	left: 40px;
 }
-
 .nav>.menu {
 	display: inline;
 	position: relative;
 	top: 15px;
 	left: 50px;
 }
-
 .nav>.logo {
 	display: inline;
 	position: relative;
@@ -44,7 +46,6 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 	font-size: 3em;
 	font-family: 'Lobster', cursive;
 }
-
 </style>
 </head>
 <body>
