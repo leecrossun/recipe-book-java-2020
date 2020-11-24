@@ -20,6 +20,7 @@
 	});
 </script>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@300&display=swap');
 /* Navigation */
 .nav {
 	display: block;
@@ -52,7 +53,7 @@
 </style>
 </head>
 <body>
-	<div class="nav">
+	<div class="nav" style="font-family:'Lobster', cursive;">
 		<p class="logo">Recipe Book</p>
 	</div>
 	<div id="headers"></div>
