@@ -28,15 +28,15 @@
 			<div class="panel-heading">로그인 창</div>
 			<div class="panel-body">
 				<ul>
-					<br />
+					<br/>
 					<li class="form-inline"><label>아이디</label> : <input
 						type="text" class="form-control" placeholder="아이디를 입력해주세요">
 					</li>
-					<br />
+					<br/>
 					<li class="form-inline"><label>비밀번호</label> : <input
 						type="password" class="form-control" placeholder="비빌번호를 입력해주세요">
 					</li>
-					<br />
+					<br/>
 
 				</ul>
 				<div style="float: right;">
