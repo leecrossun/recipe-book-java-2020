@@ -27,17 +27,20 @@
 	height: 90px;
 	text-align: center;
 }
+
 .nav>.hamburger {
 	position: absolute;
 	top: 35px;
 	left: 40px;
 }
+
 .nav>.menu {
 	display: inline;
 	position: relative;
 	top: 15px;
 	left: 50px;
 }
+
 .nav>.logo {
 	display: inline;
 	position: relative;
@@ -46,6 +49,7 @@
 	font-size: 3em;
 	font-family: 'Lobster', cursive;
 }
+
 </style>
 </head>
 <body>
@@ -82,3 +86,4 @@
 	</div>
 </body>
 </html>
+
