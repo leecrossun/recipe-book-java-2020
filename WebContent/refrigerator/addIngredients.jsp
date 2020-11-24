@@ -14,26 +14,32 @@
 			width: 31%;
 			margin-right: 18px;
 		}
+
 		.table>.title {
 			font-size: 20px;
 			text-align: center;
 		}
+
 		table {
 			text-align: center;
 			margin: 0px auto;
 			border-collapse: collapse;
 		}
+
 		tr {
 			border-bottom: 1px solid black;
 		}
+
 		td>div {
 			height: 90%;
 			width: 100px;
 			border: none;
 		}
+
 		td .btn {
 			font-size: 15px;
 		}
+
 		td>input {
 			width: 100px;
 			border: 1.5px solid rgb(255, 67, 192);
@@ -212,3 +218,4 @@
 </body>
 
 </html>
+
