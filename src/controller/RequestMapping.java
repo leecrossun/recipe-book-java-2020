@@ -11,6 +11,7 @@ import controller.review.DeleteReviewController;
 import controller.review.UpdateReviewController;
 import controller.user.*;
 import controller.refrigerator.*;
+import controller.recipe.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -37,6 +38,11 @@ public class RequestMapping {
         mappings.put("/refrigerator/view", new RefrigeratorController());
         mappings.put("/refrigerator/addIngredient", new ForwardController("/refrigerator/addIngredient.jsp"));
         mappings.put("/refrigerator/deleteIngredient", new DeleteIngredientController());
+        // Recipe
+        mappings.put("/recipe/createForm", new ForwardController("/recipe/writeRecipe/jsp"));
+        mappings.put("/recipe/create", new CreateRecipeController());
+        mappings.put("/recipe/update", new UpdateRecipeController());
+        mappings.put("/recipe/delete", new DeleteRecipeController());
         
         logger.info("Initialized Request Mapping!");
     }

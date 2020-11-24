@@ -34,7 +34,7 @@ public class UpdateRecipeController implements Controller{
 			HttpSession session = request.getSession();
 			if (UserSessionUtils.isLoginUser(recipe.getUserId(), session)||
 				UserSessionUtils.isLoginUser("admin", session)) {
-				return "recipe/writeRecipe.jsp"; // 등록 폼과 수정 폼이 동일하다면  
+				return "recipe/writeRecipe.jsp"; // 등록 폼과 수정 폼이 동일하다면 writeRecipe.jsp 창을 띄워줌
 			}
 			
 			request.setAttribute("updateFailed", true);
@@ -67,7 +67,6 @@ public class UpdateRecipeController implements Controller{
 		}
 		recipeDAO.updateRecipeIngredient(rcpIngList);
 		
-		// CreateRecipeStep
 		List<RecipeStep> rcpStepList = new ArrayList<RecipeStep>();
 		String[] stepNum = request.getParameterValues("stepNum");
 		String[] content = request.getParameterValues("content");
@@ -78,7 +77,7 @@ public class UpdateRecipeController implements Controller{
 		}
 		recipeDAO.updateRecipeStep(rcpStepList);
 		
-		return "/recipe/viewRecipe.jsp";
+		return "redirect:/recipe/view";
 
 	}
 }
