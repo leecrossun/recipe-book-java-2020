@@ -25,13 +25,10 @@ public class UpdateUserController implements Controller {
     		UserManager manager = UserManager.getInstance();
 			User user = manager.findUser(updateId);	
 			request.setAttribute("user", user);			
-
 			HttpSession session = request.getSession();
 			if (UserSessionUtils.isLoginUser(updateId, session) ||
-				UserSessionUtils.isLoginUser("admin", session)) {
+				UserSessionUtils.isAdminUser(session)) {
 				
-								
-			
 				return "/user/updateForm.jsp";    
 			}    
 			
@@ -39,7 +36,7 @@ public class UpdateUserController implements Controller {
 			request.setAttribute("updateFailed", true);
 			request.setAttribute("exception", 
 					new IllegalStateException("타인의 정보는 수정할 수 없습니다"));            
-			return "/";	
+			return "/user/test";	
 	    }	
     	
     	
@@ -54,6 +51,6 @@ public class UpdateUserController implements Controller {
 
 		UserManager manager = UserManager.getInstance();
 		manager.update(updateUser);			
-        return "redirect:/";			
+        return "redirect:/user/test";			
     }
 }
