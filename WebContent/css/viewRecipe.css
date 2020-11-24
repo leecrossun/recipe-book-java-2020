@@ -1,56 +1,53 @@
 .container {
-    align-items: center !important;
-}
-.sub-container {
-    border: none !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center !important;
-    width: 90%;
+	align-items: center !important;
 }
 
+.sub-container {
+	border: none !important;
+	display: flex;
+	flex-direction: column;
+	align-items: center !important;
+	width: 90%;
+}
 
 /* Recipe  */
 img {
-    border-radius: 20px;
-}
-.recipe {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	border-radius: 20px;
 }
 
+.recipe {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 
 /* Table */
 table {
-    border-collapse: collapse;
-    border: 1px solid black;
-    width: 40%;
+	border-collapse: collapse;
+	border: 1px solid black;
+	width: 40%;
 }
 
-tr,
-td {
-    padding: 10px;
-    text-align: center;
-    border-bottom: 1px solid black;
+tr, td {
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid black;
 }
-
 
 /* Button  */
 .button-box {
-    display: inline !important;
-    border: none !important;
-    text-align: center;
-    width: 200px;
+	display: inline !important;
+	border: none !important;
+	text-align: center;
+	width: 200px;
 }
 
 .btn {
-    padding: 5px 15px;
-    font-size: 0.7em;
+	padding: 5px 15px;
+	font-size: 0.7em;
 }
-
 
 /* Form Area */
 .form {
-    border-radius: 10px;
+	border-radius: 10px;
 }

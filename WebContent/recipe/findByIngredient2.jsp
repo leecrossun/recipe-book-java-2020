@@ -17,7 +17,7 @@
 <title>Recipe Book</title>
 </head>
 <body>
-		<!-- Navigation Bar -->
+	<!-- Navigation Bar -->
 	<div class="container nav">
 		<div class="hamburger">
 			<div id="wrapper">
@@ -47,13 +47,13 @@
 			<button class="searchBtn2">재료 검색</button>
 		</div>
 		<div class="center-block">
-		<button type="submit" class="mx-auto btn-outline-dark"
-			style="margin-bottom: 10rem"
-			onClick="location.href='/UserMan3/user/findByIngredient2.jsp'">검색한
-			재료대로 레시피 검색</button>
+			<button type="submit" class="mx-auto btn-outline-dark"
+				style="margin-bottom: 10rem"
+				onClick="location.href='/UserMan3/user/findByIngredient2.jsp'">검색한
+				재료대로 레시피 검색</button>
 		</div>
-				
-		<div class="container" style="margin-top:30px">
+
+		<div class="container" style="margin-top: 30px">
 			<div class="row">
 				<div class="col-3">
 					<article id="3685" class="location-listing">
@@ -100,7 +100,7 @@
 					</article>
 				</div>
 			</div>
-			<div class="row" style="margin-top:10%">
+			<div class="row" style="margin-top: 10%">
 				<div class="col-3">
 					<article id="3697" class="location-listing">
 

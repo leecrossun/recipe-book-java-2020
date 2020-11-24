@@ -3,48 +3,49 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css' />" />
-<style>
-/* Table Area */
-.table {
-	width: 31%;
-	margin-right: 18px;
-}
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css' />" />
+	<style>
+		/* Table Area */
+		.table {
+			width: 31%;
+			margin-right: 18px;
+		}
 
-.table>.title {
-	font-size: 20px;
-	text-align: center;
-}
+		.table>.title {
+			font-size: 20px;
+			text-align: center;
+		}
 
-table {
-	text-align: center;
-	margin: 0px auto;
-	border-collapse: collapse;
-}
+		table {
+			text-align: center;
+			margin: 0px auto;
+			border-collapse: collapse;
+		}
 
-tr {
-	border-bottom: 1px solid black;
-}
+		tr {
+			border-bottom: 1px solid black;
+		}
 
-td>div {
-	height: 90%;
-	width: 100px;
-	border: none;
-}
+		td>div {
+			height: 90%;
+			width: 100px;
+			border: none;
+		}
 
-td .btn {
-	font-size: 15px;
-}
+		td .btn {
+			font-size: 15px;
+		}
 
-td>input {
-	width: 100px;
-	border: 1.5px solid rgb(255, 67, 192);
-	box-shadow: 3px 3px rgb(115, 28, 214);
-}
-</style>
+		td>input {
+			width: 100px;
+			border: 1.5px solid rgb(255, 67, 192);
+			box-shadow: 3px 3px rgb(115, 28, 214);
+		}
+	</style>
 </head>
 
 <body>
@@ -71,6 +72,14 @@ td>input {
 		<p class="mainTitle">💜 Add Ingredients 💜</p>
 		<br>
 		<p class="mainTitle">Please Select Ingredients to Add</p>
+	</div>
+	<div class="container">
+		<div style="display: flex; flex-direction: row; border: none;">
+			<form>
+				<input class="searchBar" type="text" style="border-radius: 20px; font-size: 12px; width: 200px;" placeholder="추가할 재료 검색">
+				<button class="searchBtn">검색</button>
+			</form>
+		</div>
 	</div>
 	<div class="container" style="border: none;">
 		<div class="table">
@@ -209,3 +218,4 @@ td>input {
 </body>
 
 </html>
+

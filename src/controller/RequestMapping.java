@@ -20,7 +20,7 @@ public class RequestMapping {
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	// 占쏙옙 uri占쏙옙 占쏙옙占쏙옙占실댐옙 controller 占쏙옙체占쏙옙 占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙
+    	// user
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
@@ -30,13 +30,14 @@ public class RequestMapping {
         mappings.put("/user/update/form", new UpdateUserController());
         mappings.put("/user/update", new UpdateUserController());
         mappings.put("/user/delete", new DeleteUserController());
+        mappings.put("/user/test", new ForwardController("/user/userTestPage.jsp"));
         // Review Area
         mappings.put("/review/create", new CreateReviewController());
         mappings.put("/review/delete", new DeleteReviewController());
         mappings.put("/review/update", new UpdateReviewController());
         //refrigerator
         mappings.put("/refrigerator/view", new RefrigeratorController());
-        mappings.put("/refrigerator/addIngredient", new ForwardController("/refrigerator/addIngredient.jsp"));
+        mappings.put("/refrigerator/addIngredient", new ForwardController("/refrigerator/addIngredients.jsp"));
         mappings.put("/refrigerator/deleteIngredient", new DeleteIngredientController());
         // Recipe
         mappings.put("/recipe/createForm", new ForwardController("/recipe/writeRecipe/jsp"));

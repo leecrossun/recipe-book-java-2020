@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Recipe Book</title>
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css' />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/style.css' />" />
 <style>
 
 /* Ingredients Area */
@@ -118,9 +119,11 @@
 				</p>
 				<br>
 				<p class="list" style="text-align: center; border: 1px solid black;">
-					<a href="<c:url value='/refrigerator/addIngredient'>
+					<a
+						href="<c:url value='/refrigerator/addIngredient'>
 								<c:param name='userId' value='${user.userId}'/>
-								</c:url>"> ➕ </a>
+								</c:url>">
+						➕ </a>
 				</p>
 			</div>
 		</div>

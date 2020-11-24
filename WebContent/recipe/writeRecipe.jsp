@@ -5,74 +5,72 @@
 <html lang="en">
 
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link rel="stylesheet" href="<c:url value='/css/find.css' />" type="text/css">
-	<link rel="stylesheet" href="<c:url value='/css/style.css' />" type="text/css">
+<link rel="stylesheet" href="<c:url value='/css/find.css' />"
+	type="text/css">
+<link rel="stylesheet" href="<c:url value='/css/style.css' />"
+	type="text/css">
 
-	<title>레시피 등록</title>
-	<style>
-		.container {
-			align-items: center !important;
-		}
+<title>레시피 등록</title>
+<style>
+.container {
+	align-items: center !important;
+}
 
-		.sub-container {
-			border: none !important;
-			display: flex;
-			flex-direction: column;
-			align-items: center !important;
-			width: 90%;
-		}
+.sub-container {
+	border: none !important;
+	display: flex;
+	flex-direction: column;
+	align-items: center !important;
+	width: 90%;
+}
 
+/* Recipe  */
+img {
+	border-radius: 20px;
+}
 
-		/* Recipe  */
-		img {
-			border-radius: 20px;
-		}
+.recipe {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 
-		.recipe {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
+/* Table */
+table {
+	border-collapse: collapse;
+	border: 1px solid black;
+	width: 90%;
+}
 
+tr, td {
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid black;
+}
 
-		/* Table */
-		table {
-			border-collapse: collapse;
-			border: 1px solid black;
-			width: 90%;
-		}
+/* Button  */
+.button-box {
+	display: inline !important;
+	border: none !important;
+	text-align: center;
+	width: 200px;
+}
 
-		tr,
-		td {
-			padding: 10px;
-			text-align: center;
-			border-bottom: 1px solid black;
-		}
+.btn {
+	padding: 5px 15px;
+	font-size: 0.7em;
+}
 
-
-		/* Button  */
-		.button-box {
-			display: inline !important;
-			border: none !important;
-			text-align: center;
-			width: 200px;
-		}
-
-		.btn {
-			padding: 5px 15px;
-			font-size: 0.7em;
-		}
-
-
-		/* Form Area */
-		.form {
-			border-radius: 10px;
-		}
-	</style>
+/* Form Area */
+.form {
+	border-radius: 10px;
+}
+</style>
 </head>
 
 <body>
@@ -105,12 +103,13 @@
 				<table>
 					<tr>
 						<td width="100px">레시피 이름</td>
-						<td width="700px"><input type="text" class="form" style="width: 90%;" placeholder="레시피명을 적어주세요">
-						</td>
+						<td width="700px"><input type="text" class="form"
+							style="width: 90%;" placeholder="레시피명을 적어주세요"></td>
 					</tr>
 					<tr>
 						<td>한줄 설명</td>
-						<td><input type="text" class="form" style="width: 90%;" placeholder="레시피를 한줄로 설명해주세요"></td>
+						<td><input type="text" class="form" style="width: 90%;"
+							placeholder="레시피를 한줄로 설명해주세요"></td>
 					</tr>
 					<tr>
 						<td>음식 사진</td>
@@ -118,13 +117,13 @@
 					</tr>
 					<tr>
 						<td>필요한 재료</td>
-						<td><input type="text" class="form" placeholder="재료명 입력"><a class="btn">검색</a><a
-								class="btn">등록</a></td>
+						<td><input type="text" class="form" placeholder="재료명 입력"><a
+							class="btn">검색</a><a class="btn">등록</a></td>
 					</tr>
 					<tr>
 						<td>조리 과정</td>
-						<td><textarea placeholder="1. ... 2. ..." style="width: 300px; height: 500px;"
-								class="form"></textarea></td>
+						<td><textarea placeholder="1. ... 2. ..."
+								style="width: 300px; height: 500px;" class="form"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2">
