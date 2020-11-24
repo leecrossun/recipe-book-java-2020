@@ -23,15 +23,21 @@ public class UserSessionUtils {
         return false;
     }
 
-  
+    public static boolean isAdminUser(HttpSession session) throws SQLException, UserNotFoundException{
+    	String userId = getLoginUserId(session);
+    	if(userId!=null) {
+    		User user = usermanager.findUser(userId);
+    		if(user.getAuthority().equals("m"))
+    			return true;
+    	}
+		return false;
+    }
     public static boolean isLoginUser(String userId, HttpSession session) throws SQLException, UserNotFoundException {
         String loginUserId = getLoginUserId(session);
         
         if (loginUserId != null) {
-        	User user = usermanager.findUser(loginUserId); //관리자이면 OK
-        	if(user.getAuthority().equals('a'))
-        		return true;
-        	else if(loginUserId.equals(userId)) //세션과 비교하는 userId가 같으면 OK
+        	User user = usermanager.findUser(loginUserId); 
+        	if(loginUserId.equals(userId)) //세션과 비교하는 userId가 같으면 OK
         		return true;
         }
         return false;

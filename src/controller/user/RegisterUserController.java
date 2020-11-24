@@ -15,12 +15,14 @@ public class RegisterUserController implements Controller {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		User user = new User(
+		String phone = request.getParameter("phone1") + request.getParameter("phone2") + request.getParameter("phone3");
+		String email = request.getParameter("email1") + "@" + request.getParameter("email2");
+    	User user = new User(
 			request.getParameter("userId"),
 			request.getParameter("password"),
 			request.getParameter("name"),
-			request.getParameter("email"),
-			request.getParameter("phone"));
+			email,
+			phone);
 		
         log.debug("Create User : {}", user);
 
