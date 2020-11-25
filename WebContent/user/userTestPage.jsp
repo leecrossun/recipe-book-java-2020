@@ -49,6 +49,12 @@
                <c:param name='userId' value='${sessionScope.userId }'/>
                </c:url>">냉장고</a></li>
                   <li class="divider"></li>
+                  <li><a href="<c:url value='/recipe/createForm'>
+               <c:param name='userId' value='${sessionScope.userId }'/>
+               </c:url>">레시피 쓰기</a></li>
+       
+                  
+                  <li class="divider"></li>
                   <li><a href="<c:url value='/user/delete'>
 
                <c:param name='userId' value='${sessionScope.userId }'/>
