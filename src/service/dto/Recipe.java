@@ -26,6 +26,18 @@ public class Recipe {
 		this.image = image;
 		this.report = report;
 	}
+	
+	//createRecipe할떄필요
+	public Recipe(String recipeName, String userId, String summary, String nation, String difficulty, String image, int report) {
+		super();
+		this.recipeName = recipeName;
+		this.userId = userId;
+		this.summary = summary;
+		this.nation = nation;
+		this.difficulty = difficulty;
+		this.image = image;
+		this.report = report;
+	}
 	public Recipe(String recipeName, String summary) {
 		super();
 		this.recipeName = recipeName;
@@ -94,4 +106,12 @@ public class Recipe {
 	public void setStepList(List<RecipeStep> stepList) {
 		this.stepList = stepList;
 	}
+
+	@Override
+	public String toString() {
+		return "Recipe [recipeId=" + recipeId + ", recipeName=" + recipeName + ", userId=" + userId + ", summary="
+				+ summary + ", nation=" + nation + ", difficulty=" + difficulty + ", image=" + image + ", ingList="
+				+ ingList + ", stepList=" + stepList + ", report=" + report + "]";
+	}
+	
 }

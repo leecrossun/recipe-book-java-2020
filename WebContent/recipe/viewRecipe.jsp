@@ -98,7 +98,7 @@ tr, td {
 			<input class="searchBar" type="text" placeholder="검색어 입력">
 			<button class="searchBtn">검색</button>
 		</div>
-		<p class="menu">Somvengers 님</p>
+		<p class="menu">${sessionScope.userId } 님</p>
 		<p class="menu">🛒Refrigerator</p>
 		<p class="menu">⚙ Settings</p>
 	</div>
@@ -106,12 +106,12 @@ tr, td {
 	<!-- recipe Area -->
 	<div class="container">
 		<p class="mainTitle">💜 레시피 이름 💜</p>
-<%-- 		<p class="mainTitle">💜 ${recipe.recipeName} 💜</p> --%>
+	<p class="mainTitle">💜 ${recipe.recipeName} 💜</p> 
 	</div>
 	<div class="container recipe">
 		<br>
 		<p class="mainTitle">🍧 레시피 요약 -------------------------- 한 레시피 🍧</p>
-<%-- 		<p class="mainTitle">🍧 ${recipe.summary} 🍧</p> --%>
+		<p class="mainTitle">🍧 ${recipe.summary} 🍧</p> 
 		<br>
 		<div class="image sub-container">
 			<img style="width: 600px; height: auto"
@@ -163,31 +163,19 @@ tr, td {
 			<p class="title">🥕 요리방법</p>
 			<br>
 			<table>
-<%-- 			<c:forEach var="recipeStep" items="${recipe.stepList}">
+ 			<c:forEach var="recipeStep" items="${recipe.stepList}" varStatus="st">
 				<tr>
-					<td width="150px">${recipeStep.stepNum}</td>
+					<td width="150px">${st.count }번</td>
 					<td>${recipeStep.content}</td>
 				</tr>
-			</c:forEach> --%>
-				<tr>
-					<td width="150px">1</td>
-					<td>당근을 잘게 다진다</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>-------------------------</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>-------------------------</td>
-				</tr>
+			</c:forEach>
 			</table>
 		</div>
 		<br>
 		<br>
 		<div class="button-box">
-<%-- 			<a class="btn" href="<c:url value='recipe/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a> --%>
-<%-- 			<a class="btn" href="<c:url value='recipe/delete'> <c:param name='recipeId' value='&{recipe.recipeId}'/> </c:url>">삭제</a> --%>
+ 			<a class="btn" href="<c:url value='recipe/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a> 
+ 			<a class="btn" href="<c:url value='recipe/delete'> <c:param name='recipeId' value='&{recipe.recipeId}'/> </c:url>">삭제</a>
 			<a class="btn">수정</a> <a class="btn">삭제</a>
 		</div>
 		<br>
@@ -222,14 +210,14 @@ tr, td {
 		<div class="comment">
 			<p>작성자 : USER1</p>
 			<p>별점 : ⭐⭐⭐⭐⭐</p>
-			<p>TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST</p>
+			<p>TESTTESTTESTTESTTEST</p>
 			<p>0000.00.00 작성</p>
 			<p><a class="btn">수정</a><a class="btn">삭제</a></p>
 		</div>
 		<div class="comment">
 			<p>작성자 : USER2</p>
 			<p>별점 : ⭐⭐⭐⭐⭐</p>
-			<p>TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST</p>
+			<p>TESTTESTTESTTESTTESTSTTEST</p>
 			<p>0000.00.00 작성</p>
 			<p><a class="btn">수정</a><a class="btn">삭제</a></p>
 		</div>

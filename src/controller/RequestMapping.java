@@ -40,7 +40,7 @@ public class RequestMapping {
         mappings.put("/refrigerator/addIngredient", new ForwardController("/refrigerator/addIngredients.jsp"));
         mappings.put("/refrigerator/deleteIngredient", new DeleteIngredientController());
         // Recipe
-        mappings.put("/recipe/createForm", new ForwardController("/recipe/writeRecipe/jsp"));
+        mappings.put("/recipe/createForm", new ForwardController("/recipe/writeRecipe.jsp"));
         mappings.put("/recipe/create", new CreateRecipeController());
         mappings.put("/recipe/update", new UpdateRecipeController());
         mappings.put("/recipe/delete", new DeleteRecipeController());

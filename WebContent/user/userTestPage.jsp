@@ -27,7 +27,7 @@
         <a class="navbar-brand" href="#">RecipeBook <span
             class="glyphicon glyphicon-cutlery"></span></a>
             
-    </div>
+      </div>
   
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -45,10 +45,15 @@
                 href="<c:url value='/user/update'>
                <c:param name='userId' value='${sessionScope.userId }'/>
                </c:url>">회원 수정</a></li>
+               <li class="divider"></li>
                <li><a
                 href="<c:url value='/refrigerator/view'>
                <c:param name='userId' value='${sessionScope.userId }'/>
                </c:url>">냉장고</a></li>
+              <li class="divider"></li>
+              <li><a href="<c:url value='/recipe/createForm'>
+               <c:param name='userId' value='${sessionScope.userId }'/>
+               </c:url>">레시피 쓰기</a></li>
               <li class="divider"></li>
               <li><a
                 href="<c:url value='/user/delete'>
