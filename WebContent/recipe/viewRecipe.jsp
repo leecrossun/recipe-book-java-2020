@@ -71,6 +71,15 @@ tr, td {
 .form {
 	border-radius: 10px;
 }
+
+/* Comment */
+.comment {
+	display: flex;
+	flex-direction: column;
+	margin: 10px auto;
+	background-color: rgb(241, 241, 241);
+	border: none !important;
+}
 </style>
 </head>
 
@@ -192,8 +201,8 @@ tr, td {
 			<br>
 			<p class="title">🍰 후기 작성</p>
 			<br>
-			<form>
-				⭐ 별점 <select class="form">
+			<form method="POST" action="<c:url value='/review/create' />">
+				⭐ 별점 <select class="form" name="rating">
 					<option selected>별점</option>
 					<option value="1">⭐</option>
 					<option value="2">⭐⭐</option>
@@ -202,13 +211,40 @@ tr, td {
 					<option value="5">⭐⭐⭐⭐⭐</option>
 				</select> <br>
 				<textarea placeholder="후기를 작성해주세요"
-					style="width: 300px; height: 200px;" class="form"></textarea>
+					style="width: 700px; height: 70px;" class="form" name="review"></textarea>
 				<br>
 				<div class="button-box">
-					<a class="btn">후기 등록</a>
+					<input class="btn" type="submit" value="등록">
 				</div>
 			</form>
 		</div>
+
+		<div class="comment">
+			<p>작성자 : USER1</p>
+			<p>별점 : ⭐⭐⭐⭐⭐</p>
+			<p>TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST</p>
+			<p>0000.00.00 작성</p>
+			<p><a class="btn">수정</a><a class="btn">삭제</a></p>
+		</div>
+		<div class="comment">
+			<p>작성자 : USER2</p>
+			<p>별점 : ⭐⭐⭐⭐⭐</p>
+			<p>TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST</p>
+			<p>0000.00.00 작성</p>
+			<p><a class="btn">수정</a><a class="btn">삭제</a></p>
+		</div>
+<%-- 		<c:forEach var="review" items="${review}">
+			<div class="comment">
+				<p>작성자 : ${review.userId} </p>
+				<p>별점 : ⭐⭐⭐⭐⭐</p>
+				<p>${review.content}</p>
+				<p>${review.published} 작성</p>
+				<p>
+				<a class="btn" href="<c:url value='review/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a>
+				<a class="btn" href="<c:url value='review/delete'> <c:param name='recipeId' value='&{recipe.recipeId}'/> </c:url>">삭제</a>
+				</p>
+			</div>
+		</c:forEach> --%>
 	</div>
 </body>
 

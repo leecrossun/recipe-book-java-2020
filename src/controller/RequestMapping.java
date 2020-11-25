@@ -31,7 +31,7 @@ public class RequestMapping {
         mappings.put("/user/update", new UpdateUserController());
         mappings.put("/user/delete", new DeleteUserController());
         mappings.put("/user/test", new ForwardController("/user/userTestPage.jsp"));
-        // Review Area
+        // Review
         mappings.put("/review/create", new CreateReviewController());
         mappings.put("/review/delete", new DeleteReviewController());
         mappings.put("/review/update", new UpdateReviewController());
