@@ -46,6 +46,13 @@
 			box-shadow: 3px 3px rgb(115, 28, 214);
 		}
 	</style>
+	
+	<script type="text/javascript">
+	function showPopup() {
+		window.open("/RecipeBook/ingredient/find.jsp", "재료명 검색", "width=500, height=600, left=100, top=50");
+	}
+	
+	</script>
 </head>
 
 <body>
@@ -77,7 +84,7 @@
 		<div style="display: flex; flex-direction: row; border: none;">
 			<form>
 				<input class="searchBar" type="text" style="border-radius: 20px; font-size: 12px; width: 200px;" placeholder="추가할 재료 검색">
-				<button class="searchBtn">검색</button>
+				<button class="searchBtn" onClick="showPopup();">검색</button>
 			</form>
 		</div>
 	</div>

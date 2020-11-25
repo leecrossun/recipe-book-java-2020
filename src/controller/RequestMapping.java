@@ -11,6 +11,7 @@ import controller.review.DeleteReviewController;
 import controller.review.UpdateReviewController;
 import controller.user.*;
 import controller.refrigerator.*;
+import controller.ingredient.FindIngredientController;
 import controller.recipe.*;
 
 public class RequestMapping {
@@ -44,6 +45,9 @@ public class RequestMapping {
         mappings.put("/recipe/create", new CreateRecipeController());
         mappings.put("/recipe/update", new UpdateRecipeController());
         mappings.put("/recipe/delete", new DeleteRecipeController());
+        //ingredient
+        mappings.put("/ingredient/find/form", new ForwardController("/ingredient/find.jsp"));
+        mappings.put("/ingredient/find", new FindIngredientController());
         
         logger.info("Initialized Request Mapping!");
     }
