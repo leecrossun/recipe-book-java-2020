@@ -10,6 +10,10 @@ public class RecipeStep {
 		this.stepNum = stepNum;
 		this.content = content;
 	}
+	public RecipeStep(int stepNum, String content) {
+		this.stepNum = stepNum;
+		this.content = content;
+	}
 	public RecipeStep() {
 		this(null, 0, null);
 	}
