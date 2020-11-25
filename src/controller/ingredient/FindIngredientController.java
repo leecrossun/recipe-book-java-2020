@@ -24,7 +24,10 @@ public class FindIngredientController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		String ingName = request.getParameter("keyword");
+		String ingName = null;
+		
+		if (request.getMethod().equals("POST")) {
+			ingName = request.getParameter("keyword");
 		
 		try {
 			List<Ingredient> ingredientList = ingredientDAO.findIngredient(ingName);
@@ -33,6 +36,14 @@ public class FindIngredientController implements Controller {
 		} catch (Exception e) {
 			
 		}
-		return "/ingredient/find.jsp";
+		return "/refrigerator/addIngredients.jsp";
 		}
+		
+		ingName = request.getParameter("selectName");
+		List<Ingredient> ingredientList = ingredientDAO.findIngredient(ingName);
+		Ingredient ingredient = ingredientList.get(0);
+		request.setAttribute("ingredient", ingredient);
+		
+		return "/refrigerator/addIngredients.jsp";
+	}
 }
