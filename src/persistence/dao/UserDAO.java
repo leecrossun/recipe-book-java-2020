@@ -29,11 +29,17 @@ public class UserDAO {
 	}
 
 	public static int deleteUser(String userId) {
-		String sql = "DELETE FROM USERINFO WHERE USERID=?";		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil에 delete문과 매개 변수 설정
+		
 
-		try {				
-			int result = jdbcUtil.executeUpdate();	// delete 문 실행
+		try {
+			String sql= "DELETE FROM FAVORITE WHERE USERID=?";
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});
+			int result = jdbcUtil.executeUpdate();
+			sql = "DELETE FROM USERINFO WHERE USERID=?";		
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil에 delete문과 매개 변수 설정
+			result = jdbcUtil.executeUpdate();	// delete 문 실행
+			if(result==0)
+				throw new Exception("사용자가 삭제되지 않았습니다");
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
