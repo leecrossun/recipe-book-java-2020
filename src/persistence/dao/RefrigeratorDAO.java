@@ -3,7 +3,6 @@ package persistence.dao;
 import java.sql.*;
 import java.util.*;
 
-import service.dto.Ingredient;
 import service.dto.Recipe;
 import service.dto.Review;
 import service.dto.UserIngredient;
@@ -42,36 +41,6 @@ public class RefrigeratorDAO {
 			jdbcUtil.close();
 		}
 		return null;
-	}
-	
-	//재료 추가 전 재료명으로 재료 검색 
-	public List<Ingredient> findIngredient(String ingName) {
-		String sql = "SELECT * FROM INGREDIENT WHERE WHERE INGREDIENTNAME LIKE ? ";
-		Object[] param = new Object[] { "%" + ingName + "%" };
-		List<Ingredient> list = null;
-		jdbcUtil.setSqlAndParameters(sql, param);
-		
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();
-			list = new ArrayList<Ingredient>();
-
-			while (rs.next()) {
-				
-			}
-			
-			if (list.isEmpty())
-				System.out.println("finding Ingredients failed");
-			else
-				System.out.println("finding Ingredients success");
-			
-			return list;
-			
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();
-		}
-		return list;
 	}
 	
 	//냉장고 재료 추가
@@ -147,7 +116,7 @@ public class RefrigeratorDAO {
 		String sql = "SELECT INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION "
 				+ "FROM INGREDIENT i JOIN USER_INGREDIENT ug USING (INGREDIENTID) "
 				+ "WHERE USERID = ? AND INGREDIENTNAME LIKE ? ";
-		Object[] param = new Object[] { userId, "%"+ingName+"%" };
+		Object[] param = new Object[] { userId, "'%"+ingName+"%'" };
 		
 		jdbcUtil.setSqlAndParameters(sql, param);
 		
