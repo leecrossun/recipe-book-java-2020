@@ -50,6 +50,7 @@
                </c:url>">냉장고</a></li>
                   <li class="divider"></li>
                   <li><a href="<c:url value='/user/delete'>
+
                <c:param name='userId' value='${sessionScope.userId }'/>
                </c:url>">회원 탈퇴</a></li>
                 </ul>
