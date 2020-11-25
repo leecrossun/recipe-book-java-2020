@@ -31,6 +31,6 @@ public class DeleteFavoriteController implements Controller {
 		} catch (Exception e) {
 			
 		}
-		return "redirect:/recipe/view";
+		return "redirect:/refrigerator/view";
 	}
 }
