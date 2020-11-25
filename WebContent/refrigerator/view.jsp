@@ -98,8 +98,6 @@
 			</div>
 			<div class="mine">
 				<p class="title">🥕 My Ingredients</p>
-				<%--
-			
 				<c:forEach var="ingredient" items="${userIngredient}">
 					<p class="list">
 						🤍 ${ingredient.ingredientName} >> ${ingredient.amout}${ingredient.unit} &#40; ${ingredient.expireDate} &#41; 
@@ -107,8 +105,8 @@
 												<c:param name='ingId' value='${ingredient.ingredientId}'/>
 												</c:url>">Delete</a> 🤍
 					</p>
-			 	--%>
-				<p class="list">
+			 	</c:forEach>
+				<!-- <p class="list">
 					🤍 당근 >> 100g &#40; 2020/12/15 &#41; <a class="btn">Delete</a> 🤍
 				</p>
 				<p class="list">
@@ -116,7 +114,7 @@
 				</p>
 				<p class="list">
 					🤍 표고버섯 >> 70g &#40; 2020/12/11 &#41; <a class="btn">Delete</a>🤍
-				</p>
+				</p> -->
 				<br>
 				<p class="list" style="text-align: center; border: 1px solid black;">
 					<a
@@ -131,32 +129,33 @@
 		<div class="recipe">
 			<div class="favorite">
 				<p class="title">📌 Favorite Recipe</p>
-				<%--
+				
 				<c:forEach var="favorite" items="${favorites}">
 					<p class="list">🤍 ${favorite.recipeName} >> ${favorite.summary} 🤍</p>
-				 --%>
+				</c:forEach>
+				<!-- <p class="list">🤍 Recipe Name >> Description 🤍</p>
 				<p class="list">🤍 Recipe Name >> Description 🤍</p>
 				<p class="list">🤍 Recipe Name >> Description 🤍</p>
-				<p class="list">🤍 Recipe Name >> Description 🤍</p>
-				<p class="list">🤍 Recipe Name >> Description 🤍</p>
+				<p class="list">🤍 Recipe Name >> Description 🤍</p> -->
 			</div>
 			<div class="mine">
 				<p class="title">📜 My Recipe</p>
-				<%--
+				
 				<c:forEach var="myRecipe" items="${myRecipes}">
 					<p class="list">🤍 ${myRecipe.recipeName} >> ${myRecipe.summary} 🤍</p>
-				 --%>
-				<p class="list">🤍 Recipe Name >> Description 🤍</p>
-				<p class="list">🤍 Recipe Name >> Description 🤍</p>
+				 </c:forEach>
+				<!-- <p class="list">🤍 Recipe Name >> Description 🤍</p>
+				<p class="list">🤍 Recipe Name >> Description 🤍</p> -->
 			</div>
 			<div class="review">
-				<%--
+				
+				<p class="title">✍ My Review</p>
 				<c:forEach var="myReview" items="${myReviews}">
 					<p class="list">🤍 ${myReview.recipeName} >> ${myRecipe.rating} 🤍</p>
-				 --%>
-				<p class="title">✍ My Review</p>
-				<p class="list">🤍 Recipe Name >> ⭐⭐⭐ 🤍</p>
-				<p class="list">🤍 Recipe Name >> ⭐⭐⭐⭐⭐ 🤍</p>
+				 </c:forEach>
+				
+				<!-- <p class="list">🤍 Recipe Name >> ⭐⭐⭐ 🤍</p>
+				<p class="list">🤍 Recipe Name >> ⭐⭐⭐⭐⭐ 🤍</p> -->
 			</div>
 		</div>
 	</div>

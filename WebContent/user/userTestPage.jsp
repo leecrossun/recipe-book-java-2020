@@ -45,6 +45,10 @@
                 href="<c:url value='/user/update'>
                <c:param name='userId' value='${sessionScope.userId }'/>
                </c:url>">회원 수정</a></li>
+               <li><a
+                href="<c:url value='/refrigerator/view'>
+               <c:param name='userId' value='${sessionScope.userId }'/>
+               </c:url>">냉장고</a></li>
               <li class="divider"></li>
               <li><a
                 href="<c:url value='/user/delete'>
