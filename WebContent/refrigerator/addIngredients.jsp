@@ -48,10 +48,8 @@
 	</style>
 	
 	<script type="text/javascript">
-	function showPopup() {
-		window.open("/RecipeBook/ingredient/find.jsp", "재료명 검색", "width=500, height=600, left=100, top=50");
-	}
 	
+	document.getElementById("currentDate").value = new Date().toISOString().substring(0, 10);;
 	</script>
 </head>
 
@@ -82,137 +80,45 @@
 	</div>
 	<div class="container">
 		<div style="display: flex; flex-direction: row; border: none;">
-			<form>
-				<input class="searchBar" type="text" style="border-radius: 20px; font-size: 12px; width: 200px;" placeholder="추가할 재료 검색">
-				<button class="searchBtn" onClick="showPopup();">검색</button>
+			<form method="POST" action="<c:url value="/ingredient/find"/>">
+				<input class="searchBar" type="text" name="keyword"
+					value="${keyword}"
+					style="border-radius: 20px; font-size: 12px; width: 100px;"
+					placeholder="재료명 입력"> 
+				<input type="submit"
+					class="searchBtn" value="검색"></input>
 			</form>
+		</div>
+		<div class="container" style="border: none; width: 400px;">
+			<div class="table">
+				<table>
+					<th width="50px">재료목록</th>
+					<c:forEach var="ingredient" items="${ingredientList}">
+						<tr>
+							<td><a href="<c:url value='/ingredient/find'>
+							<c:param name='selectName' value='${ingredient.ingredientName}'/>
+							</c:url>">${ingredient.ingredientName}
+								</a>
+							</td>					
+						</tr>
+					</c:forEach>
+				</table>
 		</div>
 	</div>
 	<div class="container" style="border: none;">
-		<div class="table">
+		<div class="table" style="width: 800px;">
 			<table>
-				<p class="title">🥕 채소 🥕</p>
+				<p class="title">정보 입력</p>
 				<th width="100px">재료명</th>
 				<th>양</th>
-				<th>추가버튼</th>
+				<th>단위</th>
+				<th>유통기한</th>
+				<th>추가</th>
 				<tr>
-					<td>당근</td>
-					<td><input type="text"></td>
-					<td>
-						<div style="border: none;">
-							<a class="btn"> ADD </a>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>오이</td>
-					<td><input type="text"></td>
-					<td>
-						<div style="border: none;">
-							<a class="btn"> ADD </a>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>양파</td>
-					<td><input type="text"></td>
-					<td>
-						<div style="border: none;">
-							<a class="btn"> ADD </a>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>배추</td>
-					<td><input type="text"></td>
-					<td>
-						<div style="border: none;">
-							<a class="btn"> ADD </a>
-						</div>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="table">
-			<p class="title">🧂 양념 🧂</p>
-			<table>
-				<th width="100px">재료명</th>
-				<th>양</th>
-				<th>추가버튼</th>
-				<tr>
-					<td>소금</td>
-					<td><input type="text"></td>
-					<td>
-						<div style="border: none;">
-							<a class="btn"> ADD </a>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>설탕</td>
-					<td><input type="text"></td>
-					<td>
-						<div style="border: none;">
-							<a class="btn"> ADD </a>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>후추</td>
-					<td><input type="text"></td>
-					<td>
-						<div style="border: none;">
-							<a class="btn"> ADD </a>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>고춧가루</td>
-					<td><input type="text"></td>
-					<td>
-						<div style="border: none;">
-							<a class="btn"> ADD </a>
-						</div>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="table">
-			<p class="title">🍗 육류 🍗</p>
-			<table>
-				<th width="100px">재료명</th>
-				<th>양</th>
-				<th>추가버튼</th>
-				<tr>
-					<td>닭다리</td>
-					<td><input type="text"></td>
-					<td>
-						<div style="border: none;">
-							<a class="btn"> ADD </a>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>안심</td>
-					<td><input type="text"></td>
-					<td>
-						<div style="border: none;">
-							<a class="btn"> ADD </a>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>등심</td>
-					<td><input type="text"></td>
-					<td>
-						<div style="border: none;">
-							<a class="btn"> ADD </a>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>뒷다리</td>
-					<td><input type="text"></td>
+					<td>${ingredient.ingredientName}</td>
+					<td><input type="text" placeholder="ex) 300"></td>
+					<td><input type="text" placeholder="ex) g"></td>
+					<td><input type="date" id="currentDate"></td>
 					<td>
 						<div style="border: none;">
 							<a class="btn"> ADD </a>

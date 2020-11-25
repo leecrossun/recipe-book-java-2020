@@ -16,8 +16,8 @@ private static JDBCUtil jdbcUtil = null;
 	
 	//재료 추가 전 재료명으로 재료 검색 
 	public List<Ingredient> findIngredient(String ingName) {
-		String sql = "SELECT * FROM INGREDIENT WHERE WHERE INGREDIENTNAME LIKE ? ";
-		Object[] param = new Object[] { "\'%" + ingName + "%\'" };
+		String sql = "SELECT * FROM INGREDIENT WHERE INGREDIENTNAME LIKE '%' || ? || '%'";
+		Object[] param = new Object[] {ingName};
 		List<Ingredient> list = null;
 		jdbcUtil.setSqlAndParameters(sql, param);
 		
@@ -42,6 +42,6 @@ private static JDBCUtil jdbcUtil = null;
 		} finally {
 			jdbcUtil.close();
 		}
-		return list;
+		return null;
 	}
 }

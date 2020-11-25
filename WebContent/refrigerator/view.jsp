@@ -99,19 +99,11 @@
 												<c:param name='ingId' value='${ingredient.ingredientId}'/>
 												</c:url>">Delete</a> 🤍
 					</p>
-				</c:forEach>
-				<!-- <p class="list">
-					🤍 당근 >> 100g &#40; 2020/12/15 &#41; <a class="btn">Delete</a> 🤍
-				</p>
-				<p class="list">
-					🤍 양파 >> 50g &#40; 2020/11/10 &#41; <a class="btn">Delete</a> 🤍
-				</p>
-				<p class="list">
-					🤍 표고버섯 >> 70g &#40; 2020/12/11 &#41; <a class="btn">Delete</a>🤍
-				</p> -->
+			 	</c:forEach>
 				<br>
 				<p class="list" style="text-align: center; border: 1px solid black;">
-					<a href="<c:url value='/refrigerator/addIngredient'>
+					<a
+						href="<c:url value='/refrigerator/selectIngredient'>
 								<c:param name='userId' value='${user.userId}'/>
 								</c:url>">
 						➕ </a>

@@ -9,6 +9,17 @@ public class UserIngredient {
 	private String unit;
 	private Date expireDate;
 	
+	public UserIngredient(String userId, String ingredientName, String ingredientId, int amount, String unit,
+			Date expireDate) {
+		super();
+		this.userId = userId;
+		this.ingredientName = ingredientName;
+		this.ingredientId = ingredientId;
+		this.amount = amount;
+		this.unit = unit;
+		this.expireDate = expireDate;
+	}
+	
 	public UserIngredient(String ingredientName, int amount, String unit,
 			Date expireDate) {
 		super();

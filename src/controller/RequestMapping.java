@@ -38,7 +38,8 @@ public class RequestMapping {
         mappings.put("/review/update", new UpdateReviewController());
         //refrigerator
         mappings.put("/refrigerator/view", new RefrigeratorController());
-        mappings.put("/refrigerator/addIngredient", new ForwardController("/refrigerator/addIngredients.jsp"));
+        mappings.put("/refrigerator/selectIngredient", new ForwardController("/refrigerator/addIngredients.jsp"));
+        mappings.put("/refrigerator/addIngredient", new AddUserIngredientController());
         mappings.put("/refrigerator/deleteIngredient", new DeleteIngredientController());
         // Recipe
         mappings.put("/recipe/createForm", new ForwardController("/recipe/writeRecipe.jsp"));
@@ -46,7 +47,7 @@ public class RequestMapping {
         mappings.put("/recipe/update", new UpdateRecipeController());
         mappings.put("/recipe/delete", new DeleteRecipeController());
         //ingredient
-        mappings.put("/ingredient/find/form", new ForwardController("/ingredient/find.jsp"));
+       
         mappings.put("/ingredient/find", new FindIngredientController());
         
         logger.info("Initialized Request Mapping!");

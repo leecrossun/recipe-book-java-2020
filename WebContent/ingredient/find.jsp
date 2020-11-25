@@ -37,6 +37,12 @@ td>div {
 	border: none;
 }
 </style>
+<script type="text/javascript">
+	function sendChildValue(name) {
+		opener.setChildValue(name);
+		window.close();
+	}
+</script>
 <title>재료 검색</title>
 </head>
 <body>
@@ -58,7 +64,9 @@ td>div {
 					<th width="50px">재료목록</th>
 					<c:forEach var="ingredient" items="${ingredientList}">
 						<tr>
-							<td>${ingredient.ingredientname}</td>
+							<td><a href="javascript:sendChild">${ingredient.ingredientName}
+								</a>
+							</td>					
 						</tr>
 					</c:forEach>
 				</table>
