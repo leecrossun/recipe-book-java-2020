@@ -1,12 +1,13 @@
 package persistence.dao;
 
-import java.sql.*;
-
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import filter.ResourceFilter;
-import service.dto.*;
+import service.dto.Ingredient;
+import service.dto.Recipe;
+import service.dto.RecipeIngredient;
+import service.dto.RecipeStep;
 
 public class RecipeDAO {
 
@@ -16,7 +17,7 @@ public class RecipeDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 
-	public static int insertRecipe(Recipe rcp) {
+	public int insertRecipe(Recipe rcp) {
 
 		int result = 0;
 		String sql = "INSERT INTO RECIPE (recipeId, recipeName, summary, nation, difficulty, userId, image, report, published) "
@@ -34,8 +35,8 @@ public class RecipeDAO {
 				rcp.setRecipeId(String.valueOf(generatedKey));
 				System.out.println("insert recipe success");
 //				insertRecipeIngredient(rcp.getIngList()); //ingredient해결되면 주석 풀면 될 것 같습니다. 
-				if(rcp.getStepList().size()!=insertRecipeStep(String.valueOf(generatedKey), rcp.getStepList()))
-					throw new Exception("레시피 저장에 실패했습니다. ");
+//				if(rcp.getStepList().size()!=insertRecipeStep(String.valueOf(generatedKey), rcp.getStepList()))
+//					throw new Exception("레시피 저장에 실패했습니다. ");
 			}
 			
 		} catch (Exception ex) {
@@ -48,7 +49,7 @@ public class RecipeDAO {
 		return result;
 	}
 
-	public static int insertRecipeStep(String rcpId, List<RecipeStep> rcpStepList) throws Exception {
+	public int insertRecipeStep(String rcpId, List<RecipeStep> rcpStepList) throws Exception {
 		int result = 0;
 		String sql = "INSERT INTO RECIPESTEP(recipeId, stepNum, content) " + "VALUES (rcpId, ?, ?)";
 		try {
@@ -72,7 +73,7 @@ public class RecipeDAO {
 		return result;
 	}
 
-	public static int insertRecipeIngredient(List<RecipeIngredient> rcpIngList) throws Exception {
+	public int insertRecipeIngredient(List<RecipeIngredient> rcpIngList) throws Exception {
 		int result = 0;
 		String sql = "INSERT INTO RECIPESTEP (recipeId, ingredientId, ingredientName, amount, unit) "
 				+ "VALUES (?, ?, ?, ?, ?)";
@@ -99,7 +100,7 @@ public class RecipeDAO {
 		return result;
 	}
 
-	public static int updateRecipe(Recipe rcp) {
+	public int updateRecipe(Recipe rcp) {
 
 		String sql = "UPDATE RECIPE SET ";
 		int index = 0;
@@ -151,7 +152,7 @@ public class RecipeDAO {
 		return 0;
 	}
 
-	public static int updateRecipeStep (List<RecipeStep> rcpStepList) {
+	public int updateRecipeStep (List<RecipeStep> rcpStepList) {
 
 		String sql = "UPDATE RECIPESTEP SET " + "SET STEPNUM=?, CONTENT=?" /*+  "WHERE RECIPEID=?"*/;
 		int result = 0;
@@ -173,7 +174,7 @@ public class RecipeDAO {
 		return 0;
 	}
 
-	public static int updateRecipeIngredient (List<RecipeIngredient> rcpIngList) {
+	public int updateRecipeIngredient (List<RecipeIngredient> rcpIngList) {
 
 		String sql = "UPDATE RECIPEINGREDIENT SET " + "SET INGREDIENTID=?, INGREDIENTNAME=?, AMOUNT=?, UNIT=?" /* + "WHERE RECIPEID=? "*/;
 		int result = 0;
@@ -195,7 +196,7 @@ public class RecipeDAO {
 		return 0;
 	}
 
-	public static void deleteRecipe (String rcpId) {
+	public void deleteRecipe (String rcpId) {
 
 		deleteRecipeStep(rcpId);
 		deleteRecipeIngredient(rcpId);
@@ -213,7 +214,7 @@ public class RecipeDAO {
 		}
 	}
 
-	public static void deleteRecipeStep (String recipeId) {
+	public void deleteRecipeStep (String recipeId) {
 		String sql = "DELETE FROM RECIPESTEP WHERE recipeID = ?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});
 
@@ -227,7 +228,7 @@ public class RecipeDAO {
 		}
 	}
 
-	public static void deleteRecipeIngredient (String recipeId) {
+	public void deleteRecipeIngredient (String recipeId) {
 		String sql = "DELETE FROM RECIPE_INGREDIENT WHERE recipeId = ?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});
 
@@ -241,7 +242,7 @@ public class RecipeDAO {
 		}
 	}
 
-	public static List<Recipe> getRecipeListByIngredient(List<Ingredient> ingredientList) {
+	public List<Recipe> getRecipeListByIngredient(List<Ingredient> ingredientList) {
 		int size = ingredientList.size();
 
 		String sql = "SELECT recipeId, recipeName, userId, summary, nation, difficulty, image, report "
@@ -283,7 +284,7 @@ public class RecipeDAO {
 		return null;
 	}
 
-	public static List<Recipe> getRecipeListByName(String recipeName) {
+	public List<Recipe> getRecipeListByName(String recipeName) {
 		String sql = "SELECT recipeId, recipeName, userId, summary, image " + "FROM RECIPE "
 				+ "WHERE recipeName LIKE ? ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {  "%"+recipeName+"%" });
@@ -311,7 +312,7 @@ public class RecipeDAO {
 		return null;
 	}
 
-	public static Recipe findRecipeById(String recipeId) {
+	public Recipe findRecipeById(String recipeId) {
 		String sql = "SELECT recipeName, userId, summary, image " + "FROM RECIPE "
 				+ "WHERE recipeId=? ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});
@@ -337,7 +338,7 @@ public class RecipeDAO {
 		return null;
 	}
 
-	public static List<RecipeIngredient> findRcpIngById (String recipeId) {
+	public List<RecipeIngredient> findRcpIngById (String recipeId) {
 		String sql = "SELECT ingredientName, amount, unit " + "FROM RECIPEINGREDIENT " + "WHERE recipeId=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});
 		try {
@@ -359,7 +360,7 @@ public class RecipeDAO {
 		return null;
 	}
 
-	public static List<RecipeStep> findRcpStepById (String recipeId) {
+	public List<RecipeStep> findRcpStepById (String recipeId) {
 		String sql = "SELECT stepNum, content " + "FROM RECIPESTEP " + "WHERE recipeId=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});
 		RecipeStep rcpStep = null;
