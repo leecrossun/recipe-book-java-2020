@@ -43,7 +43,7 @@ public class UpdateRecipeController implements Controller{
 			HttpSession session = request.getSession();
 			if (UserSessionUtils.isLoginUser(recipe.getUserId(), session)||
 				UserSessionUtils.isLoginUser("admin", session)) {
-				return "recipe/writeRecipe.jsp"; // 등록 폼과 수정 폼이 동일하다면 writeRecipe.jsp 창을 띄워줌
+				return "/recipe/updateRecipe.jsp"; // 등록 폼과 수정 폼이 동일하다면 writeRecipe.jsp 창을 띄워줌
 			}
 			
 			request.setAttribute("updateFailed", true);
@@ -67,7 +67,7 @@ public class UpdateRecipeController implements Controller{
 		List<RecipeIngredient> rcpIngList = new ArrayList<RecipeIngredient>();
 		String[] ingId = request.getParameterValues("ingredientId");
 		String[] ingName = request.getParameterValues("IngredientName");
-		String[] amount = request.getParameterValues("amoount");
+		String[] amount = request.getParameterValues("amount");
 		String[] unit = request.getParameterValues("unit");
 		int size = ingId.length;
 		for(int i = 0; i < size; i++) {
