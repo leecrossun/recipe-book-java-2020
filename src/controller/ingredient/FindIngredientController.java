@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import controller.user.UserSessionUtils;
 import persistence.dao.IngredientDAO;
 import service.dto.Ingredient;
 
@@ -23,7 +25,6 @@ public class FindIngredientController implements Controller {
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
 		String ingName = request.getParameter("keyword");
 		
 		try {
@@ -33,6 +34,7 @@ public class FindIngredientController implements Controller {
 		} catch (Exception e) {
 			
 		}
+		 
 		return "/ingredient/find.jsp";
 	
 		

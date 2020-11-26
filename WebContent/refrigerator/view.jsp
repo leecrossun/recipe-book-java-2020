@@ -66,7 +66,7 @@
 			<input class="searchBar" type="text" placeholder="검색어 입력">
 			<button class="searchBtn">검색</button>
 		</div>
-		<p class="menu">Somvengers 님</p>
+		<p class="menu">${userId}님</p>
 		<p class="menu">🛒Refrigerator</p>
 		<p class="menu">⚙ Settings</p>
 	</div>
@@ -93,7 +93,7 @@
 				<p class="title">🥕 My Ingredients</p>
 				<c:forEach var="ingredient" items="${userIngredient}">
 					<p class="list">
-						🤍 ${ingredient.ingredientName} >> ${ingredient.amout}${ingredient.unit} &#40;
+						🤍 ${ingredient.ingredientName} >> ${ingredient.amount}${ingredient.unit} &#40;
 						${ingredient.expireDate} &#41;
 						<a class="btn" href="<c:url value='/refrigerator/deleteIngredient'>
 												<c:param name='ingId' value='${ingredient.ingredientId}'/>

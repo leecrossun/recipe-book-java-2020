@@ -33,7 +33,6 @@ public class RefrigeratorController implements Controller{
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();	
-		
 		String userId = UserSessionUtils.getLoginUserId(session);
 		
 		List<UserIngredient> userIngredient = refrigeratorDAO.getIngredientList(userId);
@@ -47,6 +46,7 @@ public class RefrigeratorController implements Controller{
 		request.setAttribute("favorites", favorite);
 		request.setAttribute("myRecipes", myRecipe);
 		request.setAttribute("myReviews", myReview);
+		session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
 		
 		return "/refrigerator/view.jsp";
 
