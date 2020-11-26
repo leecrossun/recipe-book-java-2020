@@ -85,7 +85,6 @@
 		<br>
 		<p class="mainTitle">Please Select Ingredients to Add</p>
 		<br>
-		<button class="searchBtn" onClick="javascript:openWin()">검색</button>
 	</div>
 	<div class="container" style="border: none;">
 		<div class="table" style="width: 800px;">
