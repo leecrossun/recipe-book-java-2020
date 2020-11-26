@@ -46,15 +46,13 @@ td>div {
 <title>재료 검색</title>
 </head>
 <body>
-
-	<div class="container" style="width: 400px;">
+	<div class="container">
 		<div style="display: flex; flex-direction: row; border: none;">
-			<form method="POST" action="<c:url value="/ingredient/find"/>">
+			<form action="<c:url value="/ingredient/find"/>">
 				<input class="searchBar" type="text" name="keyword"
 					value="${keyword}"
 					style="border-radius: 20px; font-size: 12px; width: 100px;"
-					placeholder="재료명 입력"> 
-				<input type="submit"
+					placeholder="재료명 입력"> <input type="submit"
 					class="searchBtn" value="검색"></input>
 			</form>
 		</div>
@@ -64,9 +62,9 @@ td>div {
 					<th width="50px">재료목록</th>
 					<c:forEach var="ingredient" items="${ingredientList}">
 						<tr>
-							<td><a href="javascript:sendChild">${ingredient.ingredientName}
-								</a>
-							</td>					
+							<td><a
+								href="javascript:sendChildValue('${ingredient.ingredientName}')">
+									${ingredient.ingredientName} </a></td>
 						</tr>
 					</c:forEach>
 				</table>

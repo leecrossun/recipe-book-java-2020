@@ -48,6 +48,13 @@
 	</style>
 	
 	<script type="text/javascript">
+	function openWin(){
+		window.open("/RecipeBook/ingredient/find.jsp", "재료검색", "width=500, height=600");
+		
+	}
+	function setChildValue(name) {
+		document.getElementById("selectName").value = name;
+	}
 	
 	document.getElementById("currentDate").value = new Date().toISOString().substring(0, 10);;
 	</script>
@@ -77,33 +84,7 @@
 		<p class="mainTitle">💜 Add Ingredients 💜</p>
 		<br>
 		<p class="mainTitle">Please Select Ingredients to Add</p>
-	</div>
-	<div class="container">
-		<div style="display: flex; flex-direction: row; border: none;">
-			<form method="POST" action="<c:url value="/ingredient/find"/>">
-				<input class="searchBar" type="text" name="keyword"
-					value="${keyword}"
-					style="border-radius: 20px; font-size: 12px; width: 100px;"
-					placeholder="재료명 입력"> 
-				<input type="submit"
-					class="searchBtn" value="검색"></input>
-			</form>
-		</div>
-		<div class="container" style="border: none; width: 400px;">
-			<div class="table">
-				<table>
-					<th width="50px">재료목록</th>
-					<c:forEach var="ingredient" items="${ingredientList}">
-						<tr>
-							<td><a href="<c:url value='/ingredient/find'>
-							<c:param name='selectName' value='${ingredient.ingredientName}'/>
-							</c:url>">${ingredient.ingredientName}
-								</a>
-							</td>					
-						</tr>
-					</c:forEach>
-				</table>
-		</div>
+		<br>
 	</div>
 	<div class="container" style="border: none;">
 		<div class="table" style="width: 800px;">
@@ -115,7 +96,7 @@
 				<th>유통기한</th>
 				<th>추가</th>
 				<tr>
-					<td>${ingredient.ingredientName}</td>
+					<td><input type="text" placeholder="검색버튼 클릭" id="selectName"><button class="searchBtn" onClick="javascript:openWin()">검색</button></td>
 					<td><input type="text" placeholder="ex) 300"></td>
 					<td><input type="text" placeholder="ex) g"></td>
 					<td><input type="date" id="currentDate"></td>
