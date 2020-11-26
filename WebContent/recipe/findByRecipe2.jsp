@@ -103,7 +103,7 @@
 	</div>
 	<!-- TitleArea -->
 	<div class="container">
-		<p class="mainTitle">💜 요리명으로 검색 💜</p>
+		<p class="mainTitle">💜 검색 결과 💜</p>
 	</div>
 	<div id="columns">
 		<div class="figure">
