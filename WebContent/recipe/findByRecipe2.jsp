@@ -24,11 +24,55 @@
 			document.getElementById("mySidebar").style.display = "none";
 		}
 	</script>
+	<style>
+		.btn {
+			text-align: center;
+			width: 100px;
+			height: 100px;
+			margin: 3px;
+			padding: 5px;
+			border: 1px solid black;
+			color: rgb(0, 0, 0);
+			font-size: 10pt;
+		}
+
+		.btn:hover {
+			background-color: rgb(177, 53, 248);
+			color: black;
+		}
+
+		#columns {
+			display: grid;
+			grid-gap: 10px;
+			grid-template-rows: repeat(2, 1fr);
+			grid-template-columns: repeat(5, 1fr);
+			padding: 10px;
+		}
+
+		#columns .figure {
+			display: inline-block;
+			border: 1px solid rgba(0, 0, 0, 0.2);
+			margin: 0;
+			margin-bottom: 15px;
+			padding: 10px;
+			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+		}
+
+		#columns .figure img {
+			width: 100%;
+		}
+
+		#columns .figure figcaption {
+			border-top: 1px solid rgba(0, 0, 0, 0.2);
+			padding: 10px;
+			margin-top: 11px;
+		}
+	</style>
 </head>
 
 <body>
 	<!-- Navigation Bar -->
-	<div class="container nav" style="width: 100%;">
+	<div class="container nav" style="width: 100%; height: 100px;">
 		<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none; border-radius: 0px;" id="mySidebar">
 			<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
 			<c:if test="${sessionScope.userId eq null}">
@@ -36,21 +80,23 @@
 			</c:if>
 			<c:if test="${sessionScope.userId ne null }">
 				<a href="<c:url value='/user/logout' />" class="w3-bar-item w3-button">로그아웃하기</a>
-				<a href="<c:url value='/user/update'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>" class="w3-bar-item w3-button">회원 수정</a>
-				<a href="<c:url value='/refrigerator/view'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>" class="w3-bar-item w3-button">냉장고</a>
-				<a href="<c:url value='/recipe/createForm'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>" class="w3-bar-item w3-button">레시피 쓰기</a>
-				<a href="<c:url value='/user/delete'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>" class="w3-bar-item w3-button">회원 탈퇴</a>
+				<a href="<c:url value='/user/update'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>"
+					class="w3-bar-item w3-button">회원 수정</a>
+				<a href="<c:url value='/refrigerator/view'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>"
+					class="w3-bar-item w3-button">냉장고</a>
+				<a href="<c:url value='/recipe/createForm'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>"
+					class="w3-bar-item w3-button">레시피 쓰기</a>
+				<a href="<c:url value='/user/delete'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>"
+					class="w3-bar-item w3-button">회원 탈퇴</a>
 			</c:if>
 			<a href="#" class="w3-bar-item w3-button">Link 1</a>
-			<a href="#" class="w3-bar-item w3-button">Link 2</a>
-			<a href="#" class="w3-bar-item w3-button">Link 3</a>
 		</div>
 		<div style="width: 70px; float: left; background-color: rgb(226, 226, 226); border: none; border-radius: 10px;">
 			<button class="w3-button w3-xlarge" onclick="w3_open()">☰</button>
 		</div>
 		<p class="logo">Recipe Book</p>
 		<div class="searchContainer" style="border: none;">
-			<input class="searchBar" type="text" placeholder="검색어 입력">
+			<input class="searchBar" type="text" placeholder="레시피명 입력">
 			<button class="searchBtn">검색</button>
 		</div>
 		<p class="menu">🍒 ${sessionScope.userId } 님 환영합니다</p>
@@ -59,7 +105,80 @@
 	<div class="container">
 		<p class="mainTitle">💜 요리명으로 검색 💜</p>
 	</div>
-
+	<div id="columns">
+		<div class="figure">
+			<img src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
+				alt="san francisco">
+			<figcaption>Recipe Name</figcaption>
+			<hr>
+			<div style="text-align: right;">
+				<a class="btn" href="#"> More </a>
+				<!-- <a class="btn" href="#"> Edit </a>
+					<a class="btn" href="#"> Delete </a> -->
+				<br>
+			</div>
+		</div>
+		<div class="figure">
+			<img src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
+				alt="san francisco">
+			<figcaption>Recipe Name</figcaption>
+			<hr>
+			<div style="text-align: right;">
+				<a class="btn" href="#"> More </a>
+				<!-- <a class="btn" href="#"> Edit </a>
+					<a class="btn" href="#"> Delete </a> -->
+				<br>
+			</div>
+		</div>
+		<div class="figure">
+			<img src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
+				alt="san francisco">
+			<figcaption>Recipe Name</figcaption>
+			<hr>
+			<div style="text-align: right;">
+				<a class="btn" href="#"> More </a>
+				<!-- <a class="btn" href="#"> Edit </a>
+					<a class="btn" href="#"> Delete </a> -->
+				<br>
+			</div>
+		</div>
+		<div class="figure">
+			<img src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
+				alt="san francisco">
+			<figcaption>Recipe Name</figcaption>
+			<hr>
+			<div style="text-align: right;">
+				<a class="btn" href="#"> More </a>
+				<!-- <a class="btn" href="#"> Edit </a>
+					<a class="btn" href="#"> Delete </a> -->
+				<br>
+			</div>
+		</div>
+		<div class="figure">
+			<img src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
+				alt="san francisco">
+			<figcaption>Recipe Name</figcaption>
+			<hr>
+			<div style="text-align: right;">
+				<a class="btn" href="#"> More </a>
+				<!-- <a class="btn" href="#"> Edit </a>
+					<a class="btn" href="#"> Delete </a> -->
+				<br>
+			</div>
+		</div>
+		<div class="figure">
+			<img src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
+				alt="san francisco">
+			<figcaption>Recipe Name</figcaption>
+			<hr>
+			<div style="text-align: right;">
+				<a class="btn" href="#"> More </a>
+				<!-- <a class="btn" href="#"> Edit </a>
+					<a class="btn" href="#"> Delete </a> -->
+				<br>
+			</div>
+		</div>
+	</div>
 	<!-- 검색 -->
 	<!-- <div class="container mx-auto">
 		<div class="searchContainer mx-auto" style="border: none;">
