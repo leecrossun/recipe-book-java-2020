@@ -73,6 +73,10 @@ tr, td {
 	border-radius: 10px;
 }
 
+/* 조리과정 */
+.stepTable td {
+	border: 1px solid white;
+}
 </style>
 <script language="javascript">
 
@@ -120,7 +124,8 @@ $(document).ready(function(){
 			frm.nation.focus();
 			return false;
 		}
-		if(frm.difficulty.value==""){
+		if(frm.difficulty.value == ""){
+
 			alert("해당하는 난이도를 선택해주십시오");
 			frm.difficulty.focus();
 			return false;
@@ -210,7 +215,7 @@ $(document).ready(function(){
 					<tr>
 						<td>조리 과정</td>
 						<td style="border:none;">
-							<table id="addTable"  style="border:none;"></table>
+							<table id="addTable"  class="stepTable" style="border:none;"></table>
 							<input name="addButton" type="button" class="btn"
 							style="cursor: hand; float:right;" onClick="insRow()" value="추가">
 						</td>
