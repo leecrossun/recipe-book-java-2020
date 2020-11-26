@@ -61,16 +61,18 @@ public class CreateRecipeController implements Controller{
 		
 		List<RecipeStep> rcpStepList = new ArrayList<RecipeStep>();
 		String[] stepList = request.getParameterValues("stepList");
-		int size = stepList.length;
 		
 		//recipeId를 아직 모르기 때문에 생성자에서 recipeId를 뺐습니다. 
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < stepList.length; i++) {
 			RecipeStep rcpStep = new RecipeStep(i+1, stepList[i]);
 			rcpStepList.add(rcpStep);
 		}
 		recipe.setStepList(rcpStepList);
-		recipeDAO.insertRecipe(recipe);
-		log.debug("Create recipe : {}", recipe.toString());
+		
+		//여기서 recipeingredient, recipetable에 저장됩니다.
+		int generatedKey = recipeDAO.insertRecipe(recipe);
+		recipeDAO.insertRecipeStep(String.valueOf(generatedKey), rcpStepList);
+		//log.debug("Create recipe : {}", recipe.toString());
 		request.setAttribute("recipe", recipe);
 		
 		return "/recipe/viewRecipe.jsp";
