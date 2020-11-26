@@ -72,15 +72,14 @@
 		var oCell3 = oRow.insertCell(2);
 		var oCell4 = oRow.insertCell(3);
 		var oCell5 = oRow.insertCell(4);
-		var oCell6 = oRow.insertCell(5);
+	
 		
-		//삽입될 Form Tag
+		//삽입될 Form Tag type="date" id="currentDate"
 		oCell1.innerHTML = "<input class=form type=text name=stepList style=width:60px; height:20px;> ";
-		oCell2.innerHTML =  "<input class=form type=text name=stepList style=width:60px; height:20px;> ";
-		oCell3.innerHTML =  "<input class=form type=text name=stepList style=width:60px; height:20px;> ";
-		oCell4.innerHTML =  "<input class=form type=text name=stepList style=width:60px; height:20px;> ";
-		oCell5.innerHTML =  "<input class=form type=text name=stepList style=width:60px; height:20px;> ";
-		oCell6.innerHTML =  "<input type=button value='삭제' class='btn' onClick='removeRow()' style='cursor:hand'>";
+		oCell2.innerHTML =  "<input placeholder=ex)300 class=form type=text name=stepList style=width:60px; height:20px;> ";
+		oCell3.innerHTML =  "<input placeholder=ex)g class=form type=text name=stepList style=width:60px; height:20px;> ";
+		oCell4.innerHTML =  "<input class=form type=date id=currentDate name=stepList style=width:60px; height:20px;> ";
+		oCell5.innerHTML =  "<input type=button value='삭제' class='btn' onClick='removeRow()' style='cursor:hand'>";
 	}
 	//Row 삭제
 	function removeRow() {
@@ -119,9 +118,10 @@
 	<div class="container" style="border: none;">
 		<div class="table" style="width: 800px;">
 			<p class="title">정보 입력</p>
+			<input type="text" placeholder="검색버튼 클릭" id="selectName"><button class="searchBtn" onClick="javascript:openWin()">검색</button>
 			<table name="addTable">
 				<thead>
-					<th>재료명</th><th>양</th><th>단위</th><th>유통기한</th><th>레시피아이디</th><th>해당행삭제</th>
+					<th>재료명</th><th>양</th><th>단위</th><th>유통기한</th><th>해당행삭제</th>
 				</thead>
 				<tbody id="addTableBody"></tbody>
 			</table>
