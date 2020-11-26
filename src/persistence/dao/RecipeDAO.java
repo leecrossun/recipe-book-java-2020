@@ -19,7 +19,7 @@ public class RecipeDAO {
 
 	public int insertRecipe(Recipe rcp) {
 
-		int result = 0;
+		int generatedKey = 0;
 		String sql = "INSERT INTO RECIPE (recipeId, recipeName, summary, nation, difficulty, userId, image, report, published) "
 				+ "VALUES (recipeId_seq.nextval, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
 		Object[] param = new Object[] { rcp.getRecipeName(), rcp.getSummary(), rcp.getNation(),
@@ -31,12 +31,13 @@ public class RecipeDAO {
 			jdbcUtil.executeUpdate(key);
 			ResultSet rs = jdbcUtil.getGeneratedKeys();
 			if(rs.next()) {
-				int generatedKey = rs.getInt(1);
+				generatedKey = rs.getInt(1);
 				rcp.setRecipeId(String.valueOf(generatedKey));
 				System.out.println("insert recipe success");
 //				insertRecipeIngredient(rcp.getIngList()); //ingredient해결되면 주석 풀면 될 것 같습니다. 
 //				if(rcp.getStepList().size()!=insertRecipeStep(String.valueOf(generatedKey), rcp.getStepList()))
 //					throw new Exception("레시피 저장에 실패했습니다. ");
+				
 			}
 			
 		} catch (Exception ex) {
@@ -46,15 +47,15 @@ public class RecipeDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
-		return result;
+		return generatedKey;
 	}
 
 	public int insertRecipeStep(String rcpId, List<RecipeStep> rcpStepList) throws Exception {
 		int result = 0;
-		String sql = "INSERT INTO RECIPESTEP(recipeId, stepNum, content) " + "VALUES (rcpId, ?, ?)";
+		String sql = "INSERT INTO RECIPESTEP(recipeId, stepNum, content) " + "VALUES (?, ?, ?)";
 		try {
 			for (int i = 0; i < rcpStepList.size(); i++) {
-				Object[] param = new Object[] { rcpStepList.get(i).getStepNum(),
+				Object[] param = new Object[] { rcpId, rcpStepList.get(i).getStepNum(),
 						rcpStepList.get(i).getContent() };
 				jdbcUtil.setSqlAndParameters(sql, param);
 				result += jdbcUtil.executeUpdate();

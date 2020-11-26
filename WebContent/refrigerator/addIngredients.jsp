@@ -57,6 +57,36 @@
 	}
 	
 	document.getElementById("currentDate").value = new Date().toISOString().substring(0, 10);;
+	
+	var oTbl;
+	//Row 추가
+	function insRow() {
+		oTbl = document.getElementById("addTableBody");
+		var oRow = oTbl.insertRow();
+		oRow.onmouseover = function() {
+			oTbl.clickedRowIndex = this.rowIndex
+		}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
+		
+		var oCell1 = oRow.insertCell(0);
+		var oCell2 = oRow.insertCell(1);
+		var oCell3 = oRow.insertCell(2);
+		var oCell4 = oRow.insertCell(3);
+		var oCell5 = oRow.insertCell(4);
+		var oCell6 = oRow.insertCell(5);
+		
+		//삽입될 Form Tag
+		oCell1.innerHTML = "<input class=form type=text name=stepList style=width:60px; height:20px;> ";
+		oCell2.innerHTML =  "<input class=form type=text name=stepList style=width:60px; height:20px;> ";
+		oCell3.innerHTML =  "<input class=form type=text name=stepList style=width:60px; height:20px;> ";
+		oCell4.innerHTML =  "<input class=form type=text name=stepList style=width:60px; height:20px;> ";
+		oCell5.innerHTML =  "<input class=form type=text name=stepList style=width:60px; height:20px;> ";
+		oCell6.innerHTML =  "<input type=button value='삭제' class='btn' onClick='removeRow()' style='cursor:hand'>";
+	}
+	//Row 삭제
+	function removeRow() {
+		oTbl.deleteRow(oTbl.clickedRowIndex);
+	}
+	
 	</script>
 </head>
 
@@ -88,7 +118,15 @@
 	</div>
 	<div class="container" style="border: none;">
 		<div class="table" style="width: 800px;">
-			<table>
+			<p class="title">정보 입력</p>
+			<table name="addTable">
+				<thead>
+					<th>재료명</th><th>양</th><th>단위</th><th>유통기한</th><th>레시피아이디</th><th>해당행삭제</th>
+				</thead>
+				<tbody id="addTableBody"></tbody>
+			</table>
+			<input name="addButton" type="button" class="btn" style="cursor: hand; float:right;" onClick="insRow()" value="추가">
+			<!-- <table>
 				<p class="title">정보 입력</p>
 				<th width="100px">재료명</th>
 				<th>양</th>
@@ -102,11 +140,11 @@
 					<td><input type="date" id="currentDate"></td>
 					<td>
 						<div style="border: none;">
-							<a class="btn"> ADD </a>
+							<a name="addButton" class="btn"> ADD </a>
 						</div>
 					</td>
 				</tr>
-			</table>
+			</table>  -->
 		</div>
 	</div>
 </body>

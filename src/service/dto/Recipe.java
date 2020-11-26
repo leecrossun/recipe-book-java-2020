@@ -10,7 +10,7 @@ public class Recipe {
 	private String nation;
 	private String difficulty;
 	private String image;
-	private List<RecipeIngredient> ingList;
+	private List<RecipeIngredient> ingList = null;
 	private List<RecipeStep> stepList;
 	private int report;
 
