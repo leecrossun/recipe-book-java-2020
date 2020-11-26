@@ -135,14 +135,15 @@ tr, td {
 			<table>
 				<th>재료명</th>
 				<th width="150px">개수</th>
-			<%-- 			
-			<c:forEach var="ingredient" items="${recipe.ingList}">
+						
+			<c:forEach var="ingredient" items="${rcpIng}">
 				<tr>
 					<td>${ingredient.ingredientName}</td>
 					<td>${ingredient.amount} ${ingredient.unit}</td>
 				<tr>
 			</c:forEach> 
-			--%>		
+			
+			<%-- 			
 				<tr>
 					<td>사과</td>
 					<td>1 개</td>
@@ -155,6 +156,7 @@ tr, td {
 					<td>당근</td>
 					<td>1 개</td>
 				</tr>
+			--%>
 			</table>
 		</div>
 		<br>
@@ -163,7 +165,7 @@ tr, td {
 			<p class="title">🥕 요리방법</p>
 			<br>
 			<table>
- 			<c:forEach var="recipeStep" items="${recipe.stepList}" varStatus="st">
+ 			<c:forEach var="recipeStep" items="${rcpStep}" varStatus="st">
 				<tr>
 					<td width="150px">${st.count }번</td>
 					<td>${recipeStep.content}</td>
@@ -174,9 +176,8 @@ tr, td {
 		<br>
 		<br>
 		<div class="button-box">
- 			<a class="btn" href="<c:url value='recipe/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a> 
- 			<a class="btn" href="<c:url value='recipe/delete'> <c:param name='recipeId' value='&{recipe.recipeId}'/> </c:url>">삭제</a>
-			<a class="btn">수정</a> <a class="btn">삭제</a>
+ 			<a class="btn" href="<c:url value='/recipe/update'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">수정</a> 
+ 			<a class="btn" href="<c:url value='/recipe/delete'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">삭제</a>
 		</div>
 		<br>
 		<br>

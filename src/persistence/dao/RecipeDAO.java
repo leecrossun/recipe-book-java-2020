@@ -243,6 +243,36 @@ public class RecipeDAO {
 		}
 	}
 
+	public List<Recipe> getMyRecipeList(String userId){
+		List<Recipe> myRecipeList = null;
+		String sql = "SELECT recipeId, recipeName, userId, summary, nation, difficulty, image, report " + "FROM RECIPE "
+				+ "WHERE userId = ? ";
+		Object[] param = {userId};
+		jdbcUtil.setSqlAndParameters(sql, param);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			myRecipeList = new ArrayList<Recipe>();
+
+			while(rs.next()) {
+				Recipe rcp = new Recipe();
+				rcp.setRecipeId(rs.getString("recipeId"));
+				rcp.setRecipeName(rs.getString("recipeName"));
+				rcp.setUserId(rs.getString("userId"));
+				rcp.setSummary(rs.getString("summary"));
+				rcp.setNation(rs.getString("nation"));
+				rcp.setDifficulty(rs.getString("difficulty"));
+				rcp.setImage(rs.getString("image"));
+				rcp.setReport(rs.getInt("report"));
+				myRecipeList.add(rcp);
+			}
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();	
+		}
+		return myRecipeList;
+	}
 	public List<Recipe> getRecipeListByIngredient(List<Ingredient> ingredientList) {
 		int size = ingredientList.size();
 
@@ -314,7 +344,7 @@ public class RecipeDAO {
 	}
 
 	public Recipe findRecipeById(String recipeId) {
-		String sql = "SELECT recipeName, userId, summary, image " + "FROM RECIPE "
+		String sql = "SELECT recipeId, recipeName, userId, summary, nation, difficulty, image, report " + "FROM RECIPE "
 				+ "WHERE recipeId=? ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});
 
@@ -323,10 +353,14 @@ public class RecipeDAO {
 			ResultSet rs = jdbcUtil.executeQuery();
 			if (rs.next()) {
 				rcp = new Recipe();
+				rcp.setRecipeId(rs.getString("recipeId"));
 				rcp.setRecipeName(rs.getString("recipeName"));
 				rcp.setUserId(rs.getString("userId"));
 				rcp.setSummary(rs.getString("summary"));
+				rcp.setNation(rs.getString("nation"));
+				rcp.setDifficulty(rs.getString("difficulty"));
 				rcp.setImage(rs.getString("image"));
+				rcp.setReport(rs.getInt("report"));
 			}
 			rcp.setIngList(findRcpIngById(recipeId));
 			rcp.setStepList(findRcpStepById(recipeId));
@@ -370,7 +404,7 @@ public class RecipeDAO {
 			List<RecipeStep> rcpStepList = new ArrayList<RecipeStep>();
 			while (rs.next()) {
 				rcpStep = new RecipeStep();
-				rcpStep.setStepNum(Integer.parseInt(rs.getString("amount")));
+				rcpStep.setStepNum(rs.getInt("stepNum"));
 				rcpStep.setContent(rs.getString("content"));
 				rcpStepList.add(rcpStep);
 			}
