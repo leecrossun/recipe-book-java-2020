@@ -75,6 +75,13 @@ tr, td {
 
 </style>
 <script language="javascript">
+
+$(document).ready(function(){
+    $('#selectDiff').change(function(){
+        var selectedText = $("#selectDiff option:selected").val();
+        $("#difficulty").val(selectedText);
+    })
+});
 	var oTbl;
 	//Row 추가
 	function insRow() {
@@ -113,7 +120,7 @@ tr, td {
 			frm.nation.focus();
 			return false;
 		}
-		if(frm.difficulty.value=""){
+		if(frm.difficulty.value==""){
 			alert("해당하는 난이도를 선택해주십시오");
 			frm.difficulty.focus();
 			return false;
@@ -130,13 +137,6 @@ tr, td {
 		frm.submit();
 	}
 	
-	 
-	$(document).ready(function(){
-	    $('#selectDiff').change(function(){
-	        var selectedText = $("#selectDiff option:selected").val();
-	        $("#difficulty").val(selectedText);
-	    })
-	});
 	
 </script>
 </head>
@@ -196,7 +196,7 @@ tr, td {
 					<tr>
 						<td>요리난이도</td>
 						<td>
-						<input name="difficulty" id="difficulty" type="text" class="form-control"> 
+						<input name="difficulty" id="difficulty" type="text"> 
 						<select id="selectDiff">
 							<option value="">직접 입력</option>
 							<option value="상">상</option>

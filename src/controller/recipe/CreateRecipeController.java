@@ -33,7 +33,6 @@ public class CreateRecipeController implements Controller{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();	
 		String userId = UserSessionUtils.getLoginUserId(session);
-		
 		// CreateRecipe
 		Recipe recipe = new Recipe(
 				request.getParameter("recipeName"),
@@ -43,7 +42,7 @@ public class CreateRecipeController implements Controller{
 				request.getParameter("difficulty"),
 				request.getParameter(request.getParameter("image")), 0); //처음 레시피를 삽입할때는 report를 0을 기본값으로 교체했습니다.  
 		
-		log.debug("Create User : {}", recipe.toString());
+		log.debug("Create recipe : {}", recipe.toString());
 		// https://jeanette.tistory.com/62 (writeRecipeJSP 수정필요. 참고)
 		//ingredient를 추가할 때 ingredientId를 가져오는 방법에 대해 고민을 해보아야 할 것 같습니다. 
 		
@@ -71,7 +70,7 @@ public class CreateRecipeController implements Controller{
 		}
 		recipe.setStepList(rcpStepList);
 		recipeDAO.insertRecipe(recipe);
-		log.debug("Create User : {}", recipe.toString());
+		log.debug("Create recipe : {}", recipe.toString());
 		request.setAttribute("recipe", recipe);
 		
 		return "/recipe/viewRecipe.jsp";
