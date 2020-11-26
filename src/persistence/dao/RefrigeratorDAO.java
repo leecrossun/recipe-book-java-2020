@@ -18,7 +18,7 @@ public class RefrigeratorDAO {
 	public List<UserIngredient> getIngredientList(String userId) {
 		String sql = "SELECT INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION "
 				+ "FROM INGREDIENT i JOIN USER_INGREDIENT ug USING (INGREDIENTID) "
-				+ "WHERE USERID = ? ";
+				+ "WHERE ug.USERID = ? ";
 		Object[] param = new Object[] { userId };
 		
 		jdbcUtil.setSqlAndParameters(sql, param);
@@ -29,7 +29,7 @@ public class RefrigeratorDAO {
 			
 			while (rs.next()) {
 				UserIngredient uIng = new UserIngredient(rs.getString("INGREDIENTNAME"), rs.getInt("AMOUNT"),
-						rs.getString("UNIT"), rs.getDate("EXPIRATION"));
+						rs.getString("UNIT"), rs.getString("EXPIRATION"));
 				list.add(uIng);
 			}
 			if (list.isEmpty())
@@ -115,8 +115,8 @@ public class RefrigeratorDAO {
 	public List<UserIngredient> f (String userId, String ingName) {
 		String sql = "SELECT INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION "
 				+ "FROM INGREDIENT i JOIN USER_INGREDIENT ug USING (INGREDIENTID) "
-				+ "WHERE USERID = ? AND INGREDIENTNAME LIKE ? ";
-		Object[] param = new Object[] { userId, "'%"+ingName+"%'" };
+				+ "WHERE USERID = ? AND INGREDIENTNAME LIKE '%' || ? || '%'";
+		Object[] param = new Object[] { userId, ingName };
 		
 		jdbcUtil.setSqlAndParameters(sql, param);
 		
@@ -126,7 +126,7 @@ public class RefrigeratorDAO {
 			
 			while (rs.next()) {
 				UserIngredient uIng = new UserIngredient(rs.getString("INGREDIENTNAME"), rs.getInt("AMOUNT"),
-						rs.getString("UNIT"), rs.getDate("EXPIRATION"));
+						rs.getString("UNIT"), rs.getString("EXPIRATION"));
 				list.add(uIng);
 			}
 			if (list.isEmpty())
