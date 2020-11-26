@@ -5,9 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+	<link rel="stylesheet" href="<c:url value='/css/find.css' />" type="text/css">
+	<link rel="stylesheet" href="<c:url value='/css/style.css' />" type="text/css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-
+	<!-- Navigation Bar -->
+	<%@include file="../static/nav.jsp"%>
+	
+	<!-- List Area -->
 	<table>
 		<tr>
 			<th>레시피이름</th><th>레시피요약</th>

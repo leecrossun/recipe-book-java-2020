@@ -9,23 +9,8 @@
 	<title>Recipe Book</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css' />" />
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	
 	<style>
-		/* Ingredients Area */
-		.ingredients {}
-
-		.ingredients>* {}
-
-		.expired {}
-
-		.mine {}
-
-		/* Recipe Area */
-		.recipe {}
-
-		.favorite {}
-
-		.review {}
-
 		/* List */
 		.list {
 			border-radius: 1em;
@@ -44,32 +29,9 @@
 </head>
 
 <body>
-	<div class="container nav">
-		<!-- <div class="hamburger">
-			<div id="wrapper">
-				<div id="line-top" class="line"></div>
-				<div id="line-mid" class="line"></div>
-				<div id="line-bot" class="line"></div>
-			</div>
-		</div> -->
-		<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none; border-radius: 0px;" id="mySidebar">
-			<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
-			<a href="#" class="w3-bar-item w3-button">Link 1</a>
-			<a href="#" class="w3-bar-item w3-button">Link 2</a>
-			<a href="#" class="w3-bar-item w3-button">Link 3</a>
-		</div>
-		<div style="width: 70px; float: left; background-color: rgb(226, 226, 226); border: none; border-radius: 10px;">
-			<button class="w3-button w3-xlarge" onclick="w3_open()">☰</button>
-		</div>
-		<p class="logo">Recipe Book</p>
-		<div class="searchContainer" style="border: none;">
-			<input class="searchBar" type="text" placeholder="검색어 입력">
-			<button class="searchBtn">검색</button>
-		</div>
-		<p class="menu">${userId}님</p>
-		<p class="menu">🛒Refrigerator</p>
-		<p class="menu">⚙ Settings</p>
-	</div>
+	<!-- Navigation Bar -->
+	<%@include file="../static/nav.jsp"%>
+
 	<!-- TitleArea -->
 	<div class="container">
 		<p class="mainTitle">💜 Somvengers 님의 냉장고 입니다 💜</p>

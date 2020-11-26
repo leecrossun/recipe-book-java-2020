@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -8,10 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Insert title here</title>
-<!-- Bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="<c:url value='/css/find.css' />" type="text/css">
+	<link rel="stylesheet" href="<c:url value='/css/style.css' />" type="text/css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <script type="text/javascript">   
             
 function userUpdate() {
@@ -44,6 +45,10 @@ function userUpdate() {
 </script>
 </head>
 <body>
+	<!-- Navigation Bar -->
+	<%@include file="../static/nav.jsp"%>
+	
+	<!-- Form -->
 	<div class="container">
 		<div class="panel panel-default">
 			<div class="panel-heading">회원수정</div>
@@ -59,7 +64,7 @@ function userUpdate() {
 					</div>
 					<div class="form-group form-inline">
 						<label for="password">비밀번호 </label> <input type="password"
-							name="password" class="form-control" placeholder="비빌번호를 입력해주세요" value="${user.password }">
+							name="password" class="form-control" placeholder="비밀번호를 입력해주세요" value="${user.password }">
 					</div>
 					
 					<div class="form-group form-inline"><label>전화번호</label> : 

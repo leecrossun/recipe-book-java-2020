@@ -8,6 +8,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css' />" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	
 	<style>
 		/* Table Area */
 		.table {
@@ -26,6 +28,10 @@
 			border-collapse: collapse;
 		}
 
+		th {
+			background-color: rgb(233, 233, 233);
+		}
+
 		tr {
 			border-bottom: 1px solid black;
 		}
@@ -42,9 +48,11 @@
 
 		td>input {
 			width: 100px;
-			border: 1.5px solid rgb(255, 67, 192);
+			/* border: 1.5px solid rgb(255, 67, 192); */
+			border: 1px solid black;
 			box-shadow: 3px 3px rgb(115, 28, 214);
 		}
+
 	</style>
 	
 	<script type="text/javascript">
@@ -75,10 +83,10 @@
 	
 		
 		//삽입될 Form Tag type="date" id="currentDate"
-		oCell1.innerHTML = "<input class=form type=text placeholder=검색버튼 클릭 id=selectName name=ingredientName style=width:80px height:20px;> <input type=button class=searchBtn value='검색' onClick=javascript:openWin()>";
+		oCell1.innerHTML = "<input class=form type=text placeholder=검색버튼클릭 id=selectName name=ingredientName style=width:200px height:20px;>&nbsp;&nbsp; <input type=button class=searchBtn value='검색' onClick=javascript:openWin()>";
 		oCell2.innerHTML =  "<input placeholder=ex)300 class=form type=text name=amount style=width:60px; height:20px;> ";
 		oCell3.innerHTML =  "<input placeholder=ex)g class=form type=text name=unit style=width:60px; height:20px;> ";
-		oCell4.innerHTML =  "<input class=form type=date id=currentDate name=expiredDate style=width:60px; height:20px;> ";
+		oCell4.innerHTML =  "<input class=form type=date id=currentDate name=expiredDate style=width:200px; height:20px;> ";
 		oCell5.innerHTML =  "<input type=button value='삭제' class='btn' onClick='removeRow()' style='cursor:hand'>";
 	}
 	//Row 삭제
@@ -120,23 +128,8 @@
 
 <body>
 	<!-- Navigation Bar -->
-	<div class="container nav">
-		<div class="hamburger">
-			<div id="wrapper">
-				<div id="line-top" class="line"></div>
-				<div id="line-mid" class="line"></div>
-				<div id="line-bot" class="line"></div>
-			</div>
-		</div>
-		<p class="logo">Recipe Book</p>
-		<div class="searchContainer" style="border: none;">
-			<input class="searchBar" type="text" placeholder="검색어 입력">
-			<button class="searchBtn">검색</button>
-		</div>
-		<p class="menu">${userId} 님</p>
-		<p class="menu">🛒Refrigerator</p>
-		<p class="menu">⚙ Settings</p>
-	</div>
+ 	<%@include file="../static/nav.jsp"%>
+
 	<!-- TItle Area -->
 	<div class="container">
 		<p class="mainTitle">💜 Add Ingredients 💜</p>
@@ -144,21 +137,26 @@
 		<p class="mainTitle">Please Select Ingredients to Add</p>
 		<br>
 	</div>
-	<div class="container" style="border: none;">
-		<div class="table" style="width: 800px;">
-			<p class="title">정보 입력</p>
+	<div class="container" style=" width:100%;">
+		<div class="table" style="width:100%; border: none; margin: 0px auto;">
+			<p class="title">추가할 재료 입력</p>
 			<form name="form"
 				action="<c:url value='/refrigerator/addIngredient' />">
 			<table name="addTable">
 				<thead>
-					<th>재료명</th><th>양</th><th>단위</th><th>유통기한</th><th>해당행삭제</th><th>추가</th>
+					<th width="300px">재료명</th>
+					<th width="100px">양</th>
+					<th width="100px">단위</th>
+					<th width="300px">유통기한</th>
+					<th width="100px">해당행삭제</th>
+					<th width="0px">추가</th>
 				</thead>
 				
 				<tbody id="addTableBody"></tbody>
 			</table>
-			<input name="addButton" type="button" class="btn" style="cursor: hand; float:right;" onClick="insRow()" value="추가">
+			<input name="addButton" type="button" class="btn" style="cursor: hand; float:right;" onClick="insRow()" value="행추가">
 			<div style="border: none;">
-								<a class="btn" onClick="frmCheck()"> ADD </a>
+								<a class="btn" onClick="frmCheck()"> 재료저장 </a>
 			</div>
 			</form>
 			<!-- <table>

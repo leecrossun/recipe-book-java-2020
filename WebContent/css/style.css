@@ -1,10 +1,13 @@
 /* Font */
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap');
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300&display=swap');
 
 * {
 	margin: 5px;
 	padding: 5px;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Roboto', 'Gothic A1', sans-serif;
 }
 
 .container {
@@ -62,35 +65,36 @@
 	left: 50px;
 }
 
-.nav>.logo {
+.logo {
 	display: inline;
 	position: relative;
 	top: 15px;
 	left: 0px;
 	font-size: 3em;
 	font-family: 'Lobster', cursive;
+	text-decoration: none;
 }
 
 /* Hamburger Menu*/
-.hamburger {
-	width: 60px;
-	height: 60px;
-	background: rgb(199, 199, 199);
-	text-align: center;
+/* .hamburger {
+	width: 60px !important;
+	height: 60px !important;
+	background: rgb(199, 199, 199) !important;
+	text-align: center !important;
 }
 
 .line {
-	margin: 3px auto;
-	background: #ffffff;
-	width: 30px;
-	height: 1px;
-	border-radius: 2px;
+	margin: 3px auto !important;
+	background: #ffffff !important;
+	width: 40px !important;
+	height: 1px !important;
+	border-radius: 2px !important;
 }
 
 #wrapper {
-	margin: auto auto;
-	border: none;
-}
+	margin: auto auto !important;
+	border: none !important;
+} */
 
 /* Search Bar */
 .searchBar {
