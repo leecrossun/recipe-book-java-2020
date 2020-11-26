@@ -141,6 +141,9 @@
 		</div> -->
 		<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none; border-radius: 0px;" id="mySidebar">
 			<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+			<c:if test="${sessionScope.userId eq null}">
+              <a href="<c:url value='/user/login/form' />">로그인</a>
+            </c:if>
 			<a href="#" class="w3-bar-item w3-button">Link 1</a>
 			<a href="#" class="w3-bar-item w3-button">Link 2</a>
 			<a href="#" class="w3-bar-item w3-button">Link 3</a>
