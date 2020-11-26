@@ -5,118 +5,100 @@
 <html lang="en">
 
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="<c:url value='/css/find.css' />"
-	type="text/css">
-<link rel="stylesheet" href="<c:url value='/css/style.css' />"
-	type="text/css">
-<link rel="stylesheet" href="<c:url value='/css/viewRecipe.css' />"
-	type="text/css">
-<title>레시피 상세페이지</title>
-<style>
-.container {
-	align-items: center !important;
-}
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="<c:url value='/css/find.css' />" type="text/css">
+	<link rel="stylesheet" href="<c:url value='/css/style.css' />" type="text/css">
+	<link rel="stylesheet" href="<c:url value='/css/viewRecipe.css' />" type="text/css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-.sub-container {
-	border: none !important;
-	display: flex;
-	flex-direction: column;
-	align-items: center !important;
-	width: 90%;
-}
+	<title>레시피 상세페이지</title>
+	<style>
+		.container {
+			align-items: center !important;
+		}
 
-/* Recipe  */
-img {
-	border-radius: 20px;
-}
+		.sub-container {
+			border: none !important;
+			display: flex;
+			flex-direction: column;
+			align-items: center !important;
+			width: 90%;
+		}
 
-.recipe {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
+		/* Recipe  */
+		img {
+			border-radius: 20px;
+		}
 
-/* Table */
-table {
-	border-collapse: collapse;
-	border: 1px solid black;
-	width: 40%;
-}
+		.recipe {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
 
-tr, td {
-	padding: 10px;
-	text-align: center;
-	border-bottom: 1px solid black;
-}
+		/* Table */
+		table {
+			border-collapse: collapse;
+			border: 1px solid black;
+			width: 40%;
+		}
 
-/* Button  */
-.button-box {
-	display: inline !important;
-	border: none !important;
-	text-align: center;
-	width: 200px;
-}
+		tr,
+		td {
+			padding: 10px;
+			text-align: center;
+			border-bottom: 1px solid black;
+		}
 
-.btn {
-	padding: 5px 15px;
-	font-size: 0.7em;
-}
+		/* Button  */
+		.button-box {
+			display: inline !important;
+			border: none !important;
+			text-align: center;
+			width: 200px;
+		}
 
-/* Form Area */
-.form {
-	border-radius: 10px;
-}
+		.btn {
+			padding: 5px 15px;
+			font-size: 0.7em;
+		}
 
-/* Comment */
-.comment {
-	display: flex;
-	flex-direction: column;
-	margin: 10px auto;
-	background-color: rgb(241, 241, 241);
-	border: none !important;
-}
-</style>
+		/* Form Area */
+		.form {
+			border-radius: 10px;
+		}
+
+		/* Comment */
+		.comment {
+			display: flex;
+			flex-direction: column;
+			margin: 10px auto;
+			background-color: rgb(241, 241, 241);
+			border: none !important;
+		}
+	</style>
 </head>
 
 <body>
 	<!-- Navigation Bar -->
-	<div class="container nav">
-		<div class="hamburger">
-			<div id="wrapper">
-				<div id="line-top" class="line"></div>
-				<div id="line-mid" class="line"></div>
-				<div id="line-bot" class="line"></div>
-			</div>
-		</div>
-		<p class="logo">Recipe Book</p>
-		<div class="searchContainer" style="border: none;">
-			<input class="searchBar" type="text" placeholder="검색어 입력">
-			<button class="searchBtn">검색</button>
-		</div>
-		<p class="menu">${sessionScope.userId } 님</p>
-		<p class="menu">🛒Refrigerator</p>
-		<p class="menu">⚙ Settings</p>
-	</div>
+	<%@include file="../static/nav.jsp"%>
 
 	<!-- recipe Area -->
 	<div class="container">
 		<p class="mainTitle">💜 레시피 이름 💜</p>
-	<p class="mainTitle">💜 ${recipe.recipeName} 💜</p> 
+		<p class="mainTitle">💜 ${recipe.recipeName} 💜</p>
 	</div>
 	<div class="container recipe">
 		<br>
 		<p class="mainTitle">🍧 레시피 요약 -------------------------- 한 레시피 🍧</p>
-		<p class="mainTitle">🍧 ${recipe.summary} 🍧</p> 
+		<p class="mainTitle">🍧 ${recipe.summary} 🍧</p>
 		<br>
 		<div class="image sub-container">
 			<img style="width: 600px; height: auto"
-				src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
-				alt="사진" />
+				src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E" alt="사진" />
 		</div>
 		<br>
 		<br>
@@ -135,15 +117,15 @@ tr, td {
 			<table>
 				<th>재료명</th>
 				<th width="150px">개수</th>
-						
-			<c:forEach var="ingredient" items="${rcpIng}">
-				<tr>
-					<td>${ingredient.ingredientName}</td>
-					<td>${ingredient.amount} ${ingredient.unit}</td>
-				<tr>
-			</c:forEach> 
-			
-			<%-- 			
+
+				<c:forEach var="ingredient" items="${rcpIng}">
+					<tr>
+						<td>${ingredient.ingredientName}</td>
+						<td>${ingredient.amount} ${ingredient.unit}</td>
+					<tr>
+				</c:forEach>
+
+				<%-- 			
 				<tr>
 					<td>사과</td>
 					<td>1 개</td>
@@ -165,19 +147,21 @@ tr, td {
 			<p class="title">🥕 요리방법</p>
 			<br>
 			<table>
- 			<c:forEach var="recipeStep" items="${rcpStep}" varStatus="st">
-				<tr>
-					<td width="150px">${st.count }번</td>
-					<td>${recipeStep.content}</td>
-				</tr>
-			</c:forEach>
+				<c:forEach var="recipeStep" items="${rcpStep}" varStatus="st">
+					<tr>
+						<td width="150px">${st.count }번</td>
+						<td>${recipeStep.content}</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 		<br>
 		<br>
 		<div class="button-box">
- 			<a class="btn" href="<c:url value='/recipe/update'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">수정</a> 
- 			<a class="btn" href="<c:url value='/recipe/delete'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">삭제</a>
+			<a class="btn"
+				href="<c:url value='/recipe/update'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">수정</a>
+			<a class="btn"
+				href="<c:url value='/recipe/delete'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">삭제</a>
 		</div>
 		<br>
 		<br>
@@ -198,9 +182,9 @@ tr, td {
 					<option value="3">⭐⭐⭐</option>
 					<option value="4">⭐⭐⭐⭐</option>
 					<option value="5">⭐⭐⭐⭐⭐</option>
-				</select> <br>
-				<textarea placeholder="후기를 작성해주세요"
-					style="width: 700px; height: 70px;" class="form" name="review"></textarea>
+				</select><br><br>
+				<textarea placeholder="후기를 작성해주세요" style="width: 700px; height: 70px;" class="form"
+					name="review"></textarea>
 				<br>
 				<div class="button-box">
 					<input class="btn" type="submit" value="등록">
@@ -222,7 +206,7 @@ tr, td {
 			<p>0000.00.00 작성</p>
 			<p><a class="btn">수정</a><a class="btn">삭제</a></p>
 		</div>
-<%-- 		<c:forEach var="review" items="${review}">
+		<%-- 		<c:forEach var="review" items="${review}">
 			<div class="comment">
 				<p>작성자 : ${review.userId} </p>
 				<p>별점 : ⭐⭐⭐⭐⭐</p>

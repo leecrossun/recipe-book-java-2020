@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -10,10 +10,7 @@
 	<title>Insert title here</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css' />" />
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('#selectEmail2').change(function () {
@@ -70,7 +67,7 @@
 			border: 1px solid black;
 			box-shadow: 2px 2px black;
 			background-color: #d8d8d8;
-			color:  #F5740A;
+			color: #F5740A;
 			text-align: center;
 			margin: 0px 10px;
 			height: 30px;
@@ -97,7 +94,7 @@
 		}
 
 		input::placeholder {
-			color:  #F5740A;
+			color: #F5740A;
 			font-style: italic;
 			font-size: 0.9em;
 		}
@@ -131,35 +128,9 @@
 
 <body>
 	<!-- Navigation Bar -->
-	<div class="container nav" style="width: 100%;">
-		<!-- <div class="hamburger">
-			<div id="wrapper">
-				<div id="line-top" class="line"></div>
-				<div id="line-mid" class="line"></div>
-				<div id="line-bot" class="line"></div>
-			</div>
-		</div> -->
-		<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none; border-radius: 0px;" id="mySidebar">
-			<button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
-			<c:if test="${sessionScope.userId eq null}">
-              <a href="<c:url value='/user/login/form' />">로그인</a>
-            </c:if>
-			<a href="#" class="w3-bar-item w3-button">Link 1</a>
-			<a href="#" class="w3-bar-item w3-button">Link 2</a>
-			<a href="#" class="w3-bar-item w3-button">Link 3</a>
-		</div>
-		<div style="width: 70px; float: left; background-color: rgb(226, 226, 226); border: none; border-radius: 10px;">
-			<button class="w3-button w3-xlarge" onclick="w3_open()">☰</button>
-		</div>
-		<p class="logo">Recipe Book</p>
-		<div class="searchContainer" style="border: none;">
-			<input class="searchBar" type="text" placeholder="검색어 입력">
-			<button class="searchBtn">검색</button>
-		</div>
-		<p class="menu">Somvengers 님</p>
-		<p class="menu">🛒Refrigerator</p>
-		<p class="menu">⚙ Settings</p>
-	</div>
+	<%@include file="../static/nav.jsp"%>
+
+	<!-- Register Area -->
 	<form name="form" class="container" style="width: 100%;" method="POST" action="<c:url value='/user/register' />">
 		<br><br>
 		<div style=" display: flex; flex-direction: column; margin: 0px auto;">
@@ -263,7 +234,7 @@
 
 
 	</div> -->
-	<script>
+<!-- 	<script>
 		function w3_open() {
 			document.getElementById("mySidebar").style.display = "block";
 		}
@@ -271,7 +242,7 @@
 		function w3_close() {
 			document.getElementById("mySidebar").style.display = "none";
 		}
-	</script>
+	</script> -->
 </body>
 
 </html>
