@@ -36,13 +36,13 @@ public class RefrigeratorController implements Controller{
 		String userId = UserSessionUtils.getLoginUserId(session);
 		
 		List<UserIngredient> userIngredient = refrigeratorDAO.getIngredientList(userId);
-		List<String> remainingTime = refrigeratorDAO.calRemainingTime(userId);
+		List<UserIngredient> expiredIngredient = refrigeratorDAO.calExpiredIngredients(userId);
 		List<Recipe> favorite = refrigeratorDAO.getFavoriteRecipetList(userId);
 		List<Recipe> myRecipe = refrigeratorDAO.getMyRecipetList(userId);
 		List<Review> myReview = reviewDAO.findReviewByUserID(userId);
 		
 		request.setAttribute("userIngredient", userIngredient);
-		request.setAttribute("remainingTimes", remainingTime);
+		request.setAttribute("expiredIngredients", expiredIngredient);
 		request.setAttribute("favorites", favorite);
 		request.setAttribute("myRecipes", myRecipe);
 		request.setAttribute("myReviews", myReview);

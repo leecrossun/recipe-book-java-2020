@@ -4,32 +4,33 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Recipe Book</title>
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css' />" />
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recipe Book</title>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/style.css' />" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/> -->
-    
-	<style>
-		/* List */
-		.list {
-			border-radius: 1em;
-			padding: 7px;
-		}
 
-		.list:hover {
-			background-color: lightgray;
-		}
+<style>
+/* List */
+.list {
+	border-radius: 1em;
+	padding: 7px;
+}
 
-		.ingredients>.list {
-			border: 1px solid black;
-			text-align: center;
-		}
-	</style>
+.list:hover {
+	background-color: lightgray;
+}
+
+.ingredients>.list {
+	border: 1px solid black;
+	text-align: center;
+}
+</style>
 </head>
 
 <body>
@@ -48,24 +49,30 @@
 			</p>
 			<div class="expired">
 				<p class="title">⏰ Expired Ingredients</p>
-				<p class="list">
-					🤍 우유 >> 500ml &#40; 2020/12/15 &#41; <a class="btn">Delete</a> 🤍
-				</p>
-				<p class="list">
-					🤍 두부 >> 150g &#40; 2020/12/15 &#41; <a class="btn">Delete</a> 🤍
-				</p>
+				<c:forEach var="ingredient" items="${expiredIngredients}">
+					<p class="list">
+						🤍 ${ingredient.ingredientName} >> &#40; ${ingredient.remainingTime}일 남음 &#41; <a
+							class="btn"
+							href="<c:url value='/refrigerator/deleteIngredient'>
+												<c:param name='ingId' value='${ingredient.ingredientId}'/>
+												</c:url>">Delete</a>
+						🤍
+					</p>
+				</c:forEach>
 			</div>
 			<div class="mine">
 				<p class="title">🥕 My Ingredients</p>
 				<c:forEach var="ingredient" items="${userIngredient}">
 					<p class="list">
-						🤍 ${ingredient.ingredientName} >> ${ingredient.amount}${ingredient.unit} &#40;
-						${ingredient.expireDate} &#41;
-						<a class="btn" href="<c:url value='/refrigerator/deleteIngredient'>
+						🤍 ${ingredient.ingredientName} >>
+						${ingredient.amount}${ingredient.unit} &#40;
+						${ingredient.expireDate} &#41; <a class="btn"
+							href="<c:url value='/refrigerator/deleteIngredient'>
 												<c:param name='ingId' value='${ingredient.ingredientId}'/>
-												</c:url>">Delete</a> 🤍
+												</c:url>">Delete</a>
+						🤍
 					</p>
-			 	</c:forEach>
+				</c:forEach>
 				<br>
 				<p class="list" style="text-align: center; border: 1px solid black;">
 					<a
@@ -82,9 +89,13 @@
 				<p class="title">📌 Favorite Recipe</p>
 
 				<c:forEach var="favorite" items="${favorites}">
-					<a class="list" href="<c:url value='/recipe/view'>
+					<a class="list"
+						href="<c:url value='/recipe/view'>
 											<c:param name='recipeId' value='${favorite.recipeId}'/>
-											</c:url>" >🤍 ${favorite.recipeName} >> ${favorite.summary} 🤍</a><br><br>
+											</c:url>">🤍
+						${favorite.recipeName} >> ${favorite.summary} 🤍</a>
+					<br>
+					<br>
 				</c:forEach>
 				<!-- <p class="list">🤍 Recipe Name >> Description 🤍</p>
 				<p class="list">🤍 Recipe Name >> Description 🤍</p>
@@ -93,13 +104,18 @@
 			</div>
 			<div class="mine">
 				<p class="title">📜 My Recipe</p>
-				<a href="<c:url value='/recipe/myList'>
+				<a
+					href="<c:url value='/recipe/myList'>
                <c:param name='userId' value='${sessionScope.userId }'/>
                </c:url>">더보기</a>
 				<c:forEach var="myRecipe" items="${myRecipes}">
-				<a class="list" href="<c:url value='/recipe/view'>
+					<a class="list"
+						href="<c:url value='/recipe/view'>
                			<c:param name='recipeId' value='${myRecipe.recipeId}'/>
-               			</c:url>">🤍 ${myRecipe.recipeName} >> ${myRecipe.summary} 🤍</a><br><br>
+               			</c:url>">🤍
+						${myRecipe.recipeName} >> ${myRecipe.summary} 🤍</a>
+					<br>
+					<br>
 				</c:forEach>
 				<!-- <p class="list">🤍 Recipe Name >> Description 🤍</p>
 				<p class="list">🤍 Recipe Name >> Description 🤍</p> -->
@@ -108,7 +124,8 @@
 
 				<p class="title">✍ My Review</p>
 				<c:forEach var="myReview" items="${myReviews}">
-					<a class="list">🤍 ${myReview.recipeName} >> ${myRecipe.rating} 🤍</a>
+					<a class="list">🤍 ${myReview.recipeName} >> ${myRecipe.rating}
+						🤍</a>
 				</c:forEach>
 
 				<!-- <p class="list">🤍 Recipe Name >> ⭐⭐⭐ 🤍</p>

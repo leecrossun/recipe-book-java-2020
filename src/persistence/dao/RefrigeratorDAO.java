@@ -66,8 +66,8 @@ public class RefrigeratorDAO {
 	}
 	
 	//재료 유효기간 얼마 남았는지 계산
-	public List<String> calRemainingTime(String userId) {
-		String sql = "SELECT ROUND(expiration - SYSDATE) - 1 AS REMAINING " 
+	public List<UserIngredient> calExpiredIngredients(String userId) {
+		String sql = "SELECT ROUND(expiration - SYSDATE) + 1 AS REMAINING, INGREDIENTID, INGREDIENTNAME " 
 				+ "FROM USER_INGREDIENT "
 				+ "WHERE USERID = ? ";
 		Object[] param = new Object[] { userId };
@@ -75,11 +75,21 @@ public class RefrigeratorDAO {
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			List<String> list = new ArrayList<String>();
+			List<UserIngredient> list = new ArrayList<UserIngredient>();
 			
 			while (rs.next()) {
-				String rTime = rs.getString("REMAINING");
-				list.add(rTime);
+				int rTime = Integer.parseInt(rs.getString("REMAINING"));
+				
+				if (rTime <= 7) {
+					UserIngredient uIng = new UserIngredient (
+						userId, 
+						rs.getString("INGREDIENTNAME"), 
+						rs.getString("INGREDIENTID"), 
+						rs.getString("REMAINING")
+					);
+		
+					list.add(uIng);
+				}
 			}
 			return list;
 		} catch(Exception ex) {
