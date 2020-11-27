@@ -33,6 +33,13 @@
 </style>
 </head>
 
+<script type="text/javascript">
+
+function ingredientRemove() {
+	return confirm("정말 삭제하시겠습니까?");		
+}
+</script>
+
 <body>
 	<!-- Navigation Bar -->
 	<%@include file="../static/nav.jsp"%>
@@ -53,9 +60,9 @@
 					<p class="list">
 						🤍 ${exIngredient.ingredientName} >> &#40; ${exIngredient.remainingTime}일 남음 &#41; <a
 							class="btn"
-							href="<c:url value='/refrigerator/deleteIngredient'>
+							href="<c:url value='/refrigerator/delete'>
 												<c:param name='ingId' value='${exIngredient.ingredientId}'/>
-												</c:url>">Delete</a>
+												</c:url>" onClick="return ingredientRemove()">Delete</a>
 						🤍
 					</p>
 				</c:forEach>
@@ -66,16 +73,17 @@
 					<p class="list">
 						🤍 ${ingredient.ingredientName} >>
 						${ingredient.amount}${ingredient.unit} &#40;
-						${ingredient.expireDate} &#41; <a class="btn"
-							href="<c:url value='/refrigerator/deleteIngredient'>
+						${ingredient.expireDate} &#41; 
+						<a class="btn"
+							href="<c:url value='/refrigerator/delete'>
 												<c:param name='ingId' value='${ingredient.ingredientId}'/>
-												</c:url>">Delete</a>
+												</c:url>" onClick="return ingredientRemove()">Delete</a>
 						🤍
 					</p>
 				</c:forEach>
 				<br>
 				<p class="list" style="text-align: center; border: 1px solid black;">
-					<a href="<c:url value='/refrigerator/selectIngredient'>
+					<a href="<c:url value='/refrigerator/select'>
 								<c:param name='userId' value='${user.userId}'/>
 								</c:url>">
 						➕ </a>
