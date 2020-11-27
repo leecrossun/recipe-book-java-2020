@@ -10,6 +10,10 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css' />" />
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/> -->
+    
 	<style>
 		/* List */
 		.list {
@@ -78,7 +82,9 @@
 				<p class="title">📌 Favorite Recipe</p>
 
 				<c:forEach var="favorite" items="${favorites}">
-					<p class="list">🤍 ${favorite.recipeName} >> ${favorite.summary} 🤍</p>
+					<a class="list" href="<c:url value='/recipe/view'>
+											<c:param name='recipeId' value='${favorite.recipeId}'/>
+											</c:url>" >🤍 ${favorite.recipeName} >> ${favorite.summary} 🤍</a><br><br>
 				</c:forEach>
 				<!-- <p class="list">🤍 Recipe Name >> Description 🤍</p>
 				<p class="list">🤍 Recipe Name >> Description 🤍</p>
@@ -87,9 +93,13 @@
 			</div>
 			<div class="mine">
 				<p class="title">📜 My Recipe</p>
-
+				<a href="<c:url value='/recipe/myList'>
+               <c:param name='userId' value='${sessionScope.userId }'/>
+               </c:url>">더보기</a>
 				<c:forEach var="myRecipe" items="${myRecipes}">
-					<p class="list">🤍 ${myRecipe.recipeName} >> ${myRecipe.summary} 🤍</p>
+				<a class="list" href="<c:url value='/recipe/view'>
+               			<c:param name='recipeId' value='${myRecipe.recipeId}'/>
+               			</c:url>">🤍 ${myRecipe.recipeName} >> ${myRecipe.summary} 🤍</a><br><br>
 				</c:forEach>
 				<!-- <p class="list">🤍 Recipe Name >> Description 🤍</p>
 				<p class="list">🤍 Recipe Name >> Description 🤍</p> -->
@@ -98,7 +108,7 @@
 
 				<p class="title">✍ My Review</p>
 				<c:forEach var="myReview" items="${myReviews}">
-					<p class="list">🤍 ${myReview.recipeName} >> ${myRecipe.rating} 🤍</p>
+					<a class="list">🤍 ${myReview.recipeName} >> ${myRecipe.rating} 🤍</a>
 				</c:forEach>
 
 				<!-- <p class="list">🤍 Recipe Name >> ⭐⭐⭐ 🤍</p>
