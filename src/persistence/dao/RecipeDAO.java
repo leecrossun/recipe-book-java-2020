@@ -21,9 +21,9 @@ public class RecipeDAO {
 
 		int generatedKey = 0;
 		String sql = "INSERT INTO RECIPE (recipeId, recipeName, summary, nation, difficulty, userId, image, report, published) "
-				+ "VALUES (recipeId_seq.nextval, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
+				+ "VALUES (recipeId_seq.nextval, ?, ?, ?, ?, ?, ?, ?,SYSDATE )";
 		Object[] param = new Object[] { rcp.getRecipeName(), rcp.getSummary(), rcp.getNation(),
-				rcp.getDifficulty(), rcp.getUserId(), rcp.getImage(), rcp.getReport()};
+				rcp.getDifficulty(), rcp.getUserId(), rcp.getImage(), 0};
 		jdbcUtil.setSqlAndParameters(sql, param);
 		String key[] = {"recipeId"};
 		
@@ -34,9 +34,10 @@ public class RecipeDAO {
 				generatedKey = rs.getInt(1);
 				rcp.setRecipeId(String.valueOf(generatedKey));
 				System.out.println("insert recipe success");
-//				insertRecipeIngredient(rcp.getIngList()); //ingredient해결되면 주석 풀면 될 것 같습니다. 
-//				if(rcp.getStepList().size()!=insertRecipeStep(String.valueOf(generatedKey), rcp.getStepList()))
-//					throw new Exception("레시피 저장에 실패했습니다. ");
+				if(rcp.getIngList().size()!=insertRecipeIngredient(String.valueOf(generatedKey), rcp.getIngList()))
+					throw new Exception("레시피 재료 저장에 실패했습니다. "); //ingredient해결되면 주석 풀면 될 것 같습니다. 
+				if(rcp.getStepList().size()!=insertRecipeStep(String.valueOf(generatedKey), rcp.getStepList()))
+					throw new Exception("레시피 순서 저장에 실패했습니다. ");
 				
 			}
 			
@@ -74,14 +75,14 @@ public class RecipeDAO {
 		return result;
 	}
 
-	public int insertRecipeIngredient(List<RecipeIngredient> rcpIngList) throws Exception {
+	public int insertRecipeIngredient(String rcpId, List<RecipeIngredient> rcpIngList) throws Exception {
 		int result = 0;
 		String sql = "INSERT INTO RECIPESTEP (recipeId, ingredientId, ingredientName, amount, unit) "
-				+ "VALUES (?, ?, ?, ?, ?)";
+				+ "VALUES (rcpId, ?, ?, ?, ?)";
 
 		try {
 			for (int i = 0; i < rcpIngList.size(); i++) {
-				Object[] param = new Object[] { rcpIngList.get(i).getRecipeId(), rcpIngList.get(i).getIngredientId(),
+				Object[] param = new Object[] { rcpIngList.get(i).getIngredientId(),
 						rcpIngList.get(i).getIngredientName(), rcpIngList.get(i).getAmount(),
 						rcpIngList.get(i).getUnit() };
 				jdbcUtil.setSqlAndParameters(sql, param);
