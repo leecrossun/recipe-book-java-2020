@@ -56,6 +56,8 @@
 	</style>
 	
 	<script type="text/javascript">
+	var oTbl;
+	var index;
 	function openWin(){
 		window.open("/RecipeBook/ingredient/find.jsp", "재료검색", "width=500, height=600");
 		
@@ -66,13 +68,14 @@
 	
 	document.getElementById("currentDate").value = new Date().toISOString().substring(0, 10);;
 	
-	var oTbl;
 	//Row 추가
 	function insRow() {
 		oTbl = document.getElementById("addTableBody");
 		var oRow = oTbl.insertRow();
+		
 		oRow.onmouseover = function() {
 			oTbl.clickedRowIndex = this.rowIndex
+			index = this.rowIndex;
 		}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
 		
 		var oCell1 = oRow.insertCell(0);
@@ -83,12 +86,13 @@
 	
 		
 		//삽입될 Form Tag type="date" id="currentDate"
-		oCell1.innerHTML = "<input class=form type=text placeholder=검색버튼클릭 id=selectName name=ingredientName style=width:200px height:20px;>&nbsp;&nbsp; <input type=button class=searchBtn value='검색' onClick=javascript:openWin()>";
+		oCell1.innerHTML = "<input class=form type=text placeholder=검색버튼클릭 id=selectName name=ingredientName style=width:200px height:20px;>&nbsp;&nbsp; <input type=button class=searchBtn value='검색' onClick=openWin();>";
 		oCell2.innerHTML =  "<input placeholder=ex)300 class=form type=text name=amount style=width:60px; height:20px;> ";
 		oCell3.innerHTML =  "<input placeholder=ex)g class=form type=text name=unit style=width:60px; height:20px;> ";
 		oCell4.innerHTML =  "<input class=form type=date id=currentDate name=expiredDate style=width:200px; height:20px;> ";
 		oCell5.innerHTML =  "<input type=button value='삭제' class='btn' onClick='removeRow()' style='cursor:hand'>";
 	}
+	
 	//Row 삭제
 	function removeRow() {
 		oTbl.deleteRow(oTbl.clickedRowIndex);
@@ -152,8 +156,10 @@
 					<th width="0px">추가</th>
 				</thead>
 				
-				<tbody id="addTableBody"></tbody>
+				<tbody id="addTableBody">
+				</tbody>
 			</table>
+			<input name="searchedName" id = "searchedName" type="text" >
 			<input name="addButton" type="button" class="btn" style="cursor: hand; float:right;" onClick="insRow()" value="행추가">
 			<div style="border: none;">
 								<a class="btn" onClick="frmCheck()"> 재료저장 </a>
