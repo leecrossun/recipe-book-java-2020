@@ -37,25 +37,29 @@
                        <th width="300px">재료명</th>
 						<th width="100px">양</th>
 						<th width="100px">단위</th>
-						<th width="300px">유통기한</th>
+						<th width="300px">유통</th>
+						
                     </tr>
                     <tr>
-                        <td>재료11</td>
-                        <td>11</td>
-                        <td>g</td>
-                        <td>2020-10-12</td>
+                      	<td><input class=form type=text placeholder=검색버튼클릭 id=selectName name=ingredientName value=재료1 ></td>
+                     	<td><input placeholder=ex)300 class=form type=text name=amount value=10 ></td>
+                     	<td><input placeholder=ex)g class=form type=text name=unit value=kg > </td>
+                     	<td><input class=form type=date id=currentDate name=expiredDate value=2020-10-17 > </td>
+                     	
                     </tr>
                     <tr>
-                        <td>재료12</td>
-                        <td>12</td>
-                        <td>개</td>
-                         <td>2020-10-12</td>
+                        <td><input class=form type=text placeholder=검색버튼클릭 id=selectName name=ingredientName value=재료2 ></td>
+                     	<td><input placeholder=ex)300 class=form type=text name=amount value=100 ></td>
+                     	<td><input placeholder=ex)g class=form type=text name=unit value=g ></td>
+                     	<td><input class=form type=date id=currentDate name=expiredDate value=2020-10-18 ></td>
+                     	
                     </tr>
                     <tr>
-                         <td>재료13</td>
-                        <td>13</td>
-                        <td>kg</td>
-                        <td>2020-10-12</td>
+                        <td><input class=form type=text placeholder=검색버튼클릭 id=selectName name=ingredientName value=재료3 ></td>
+                     	<td><input placeholder=ex)300 class=form type=text name=amount value=5 ></td>
+                     	<td><input placeholder=ex)g class=form type=text name=unit value=개></td>
+                     	<td><input class=form type=date id=currentDate name=expiredDate value=2020-10-18 ></td>
+                     	
                     </tr>
                 </table>
             </div>
@@ -112,26 +116,41 @@
                 // set the values into row cell's
                 if(!checkEmptyInput()){
                 var newRow = table.insertRow(),
+               
                     cell1 = newRow.insertCell(0),
                     cell2 = newRow.insertCell(1),
                     cell3 = newRow.insertCell(2),
                     cell4 = newRow.insertCell(3),
+           
                     fIngredientName = document.getElementById("fIngredientName").value,
                     fAmount = document.getElementById("fAmount").value,
                     fUnit = document.getElementById("fUnit").value;
                 	fExpireDate = document.getElementById("fExpireDate").value;
             
-                cell1.innerHTML = fIngredientName;
-                cell2.innerHTML = fAmount;
-                cell3.innerHTML = fUnit;
-                cell4.innerHTML = fExpireDate;
+            		
+                	newRow.onmouseover = function() {
+            			table.clickedRowIndex = this.rowIndex;
+            		}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
+            		
+                //cell1.innerHTML = fIngredientName;
+                //cell2.innerHTML = fAmount;
+                //cell3.innerHTML = fUnit;
+                //cell4.innerHTML = fExpireDate;
                 
- 
+                cell1.innerHTML = "<input class=form type=text placeholder=검색버튼클릭 id=selectName name=ingredientName value='"+fIngredientName+"' style=width:200px height:20px;>";
+                cell2.innerHTML =  "<input placeholder=ex)300 class=form type=text name=amount value='"+fAmount+"' style=width:60px; height:20px;> ";
+                cell3.innerHTML =  "<input placeholder=ex)g class=form type=text name=unit value='"+fUnit+"' style=width:60px; height:20px;> ";
+                cell4.innerHTML =  "<input class=form type=date id=currentDate name=expiredDate value='"+fExpireDate+"' style=width:200px; height:20px;> ";
+               
                 // call the function to set the event to the new row
                 selectedRowToInput();
             }
             }
-            
+          //Row 삭제
+        	function removeRow() {
+        		table.deleteRow(table.clickedRowIndex);
+        	}
+        	
             // display selected row data into input text
             function selectedRowToInput()
             {
@@ -142,10 +161,10 @@
                     {
                       // get the seected row index
                       rIndex = this.rowIndex;
-                      document.getElementById("fIngredientName").value = this.cells[0].innerHTML;
-                      document.getElementById("fAmount").value = this.cells[1].innerHTML;
-                      document.getElementById("fUnit").value = this.cells[2].innerHTML;
-                      document.getElementById("fExpireDate").value = this.cells[3].innerHTML;
+                      //document.getElementById("fIngredientName").value = this.cells[0].value;
+                      //document.getElementById("fAmount").value = this.cells[1].innerHTML;
+                      //document.getElementById("fUnit").value = this.cells[2].innerHTML;
+                      //document.getElementById("fExpireDate").value = this.cells[3].innerHTML;
                     };
                 }
             }
