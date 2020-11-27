@@ -14,23 +14,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/> -->
 
-	<style>
-		/* List */
-		.list {
+<style>
+	/* List */
+.list {
 			border-radius: 1em;
 			padding: 7px;
 			text-decoration: none !important;
 		}
 
-		.list:hover {
-			background-color: lightgray;
-		}
+.list:hover {
+	background-color: lightgray;
+}
 
-		.ingredients>.list {
-			border: 1px solid black;
-			text-align: center;
-		}
-	</style>
+.ingredients>.list {
+	border: 1px solid black;
+	text-align: center;
+}
+</style>
 </head>
 
 <body>
@@ -49,22 +49,28 @@
 			</p>
 			<div class="expired" style="overflow: auto; height: 250px;">
 				<p class="title">⏰ Expired Ingredients</p>
-				<p class="list">
-					🤍 우유 >> 500ml &#40; 2020/12/15 &#41; <a class="btn">Delete</a> 🤍
-				</p>
-				<p class="list">
-					🤍 두부 >> 150g &#40; 2020/12/15 &#41; <a class="btn">Delete</a> 🤍
-				</p>
+				<c:forEach var="ingredient" items="${expiredIngredients}">
+					<p class="list">
+						🤍 ${ingredient.ingredientName} >> &#40; ${ingredient.remainingTime}일 남음 &#41; <a
+							class="btn"
+							href="<c:url value='/refrigerator/deleteIngredient'>
+												<c:param name='ingId' value='${ingredient.ingredientId}'/>
+												</c:url>">Delete</a>
+						🤍
+					</p>
+				</c:forEach>
 			</div>
 			<div class="mine" style="overflow: auto; height: 250px;">
 				<p class="title">🥕 My Ingredients</p>
 				<c:forEach var="ingredient" items="${userIngredient}">
 					<p class="list">
-						🤍 ${ingredient.ingredientName} >> ${ingredient.amount}${ingredient.unit} &#40;
-						${ingredient.expireDate} &#41;
-						<a class="btn" href="<c:url value='/refrigerator/deleteIngredient'>
+						🤍 ${ingredient.ingredientName} >>
+						${ingredient.amount}${ingredient.unit} &#40;
+						${ingredient.expireDate} &#41; <a class="btn"
+							href="<c:url value='/refrigerator/deleteIngredient'>
 												<c:param name='ingId' value='${ingredient.ingredientId}'/>
-												</c:url>">Delete</a> 🤍
+												</c:url>">Delete</a>
+						🤍
 					</p>
 				</c:forEach>
 				<br>
@@ -80,7 +86,6 @@
 		<div class="recipe">
 			<div class="favorite" style="overflow: auto; height: 250px;">
 				<p class="title">📌 Favorite Recipe</p>
-
 				<c:forEach var="favorite" items="${favorites}" begin="0" end="3">
 					<a class="list" href="<c:url value='/recipe/view'>
 											<c:param name='recipeId' value='${favorite.recipeId}'/>
@@ -104,7 +109,10 @@
 				<c:forEach var="myRecipe" items="${myRecipes}">
 					<a class="list" href="<c:url value='/recipe/view'>
                			<c:param name='recipeId' value='${myRecipe.recipeId}'/>
-               			</c:url>">🤍 ${myRecipe.recipeName} >> ${myRecipe.summary} 🤍</a><br><br>
+               			</c:url>">🤍
+						${myRecipe.recipeName} >> ${myRecipe.summary} 🤍</a>
+					<br>
+					<br>
 				</c:forEach>
 				<!-- <p class="list">🤍 Recipe Name >> Description 🤍</p>
 				<p class="list">🤍 Recipe Name >> Description 🤍</p> -->
@@ -113,7 +121,8 @@
 
 				<p class="title">✍ My Review</p>
 				<c:forEach var="myReview" items="${myReviews}">
-					<a class="list">🤍 ${myReview.recipeName} >> ${myRecipe.rating} 🤍</a>
+					<a class="list">🤍 ${myReview.recipeName} >> ${myRecipe.rating}
+						🤍</a>
 				</c:forEach>
 
 				<!-- <p class="list">🤍 Recipe Name >> ⭐⭐⭐ 🤍</p>
