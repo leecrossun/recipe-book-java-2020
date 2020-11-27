@@ -34,9 +34,9 @@ public class RecipeDAO {
 				generatedKey = rs.getInt(1);
 				rcp.setRecipeId(String.valueOf(generatedKey));
 				System.out.println("insert recipe success");
-				if(rcp.getIngList().size()!=insertRecipeIngredient(String.valueOf(generatedKey), rcp.getIngList()))
+				if(!insertRecipeIngredient(String.valueOf(generatedKey), rcp.getIngList()))
 					throw new Exception("레시피 재료 저장에 실패했습니다. "); //ingredient해결되면 주석 풀면 될 것 같습니다. 
-				if(rcp.getStepList().size()!=insertRecipeStep(String.valueOf(generatedKey), rcp.getStepList()))
+				if(!insertRecipeStep(String.valueOf(generatedKey), rcp.getStepList()))
 					throw new Exception("레시피 순서 저장에 실패했습니다. ");
 				
 			}
@@ -51,7 +51,7 @@ public class RecipeDAO {
 		return generatedKey;
 	}
 
-	public int insertRecipeStep(String rcpId, List<RecipeStep> rcpStepList) throws Exception {
+	public boolean insertRecipeStep(String rcpId, List<RecipeStep> rcpStepList) throws Exception {
 		int result = 0;
 		String sql = "INSERT INTO RECIPESTEP(recipeId, stepNum, content) " + "VALUES (?, ?, ?)";
 		try {
@@ -61,8 +61,10 @@ public class RecipeDAO {
 				jdbcUtil.setSqlAndParameters(sql, param);
 				result += jdbcUtil.executeUpdate();
 			}
-			if (result == rcpStepList.size())
+			if (result == rcpStepList.size()) {
 				System.out.println("insert recipeStep success");
+				return true;
+			}
 			else 
 				System.out.println("insert recipeStep failed");
 		} catch (Exception e) {
@@ -72,24 +74,25 @@ public class RecipeDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
-		return result;
+		return false;
 	}
 
-	public int insertRecipeIngredient(String rcpId, List<RecipeIngredient> rcpIngList) throws Exception {
+	public boolean insertRecipeIngredient(String rcpId, List<RecipeIngredient> rcpIngList) throws Exception {
 		int result = 0;
-		String sql = "INSERT INTO RECIPESTEP (recipeId, ingredientId, ingredientName, amount, unit) "
-				+ "VALUES (rcpId, ?, ?, ?, ?)";
-
+		String sql = "INSERT INTO RECIPE_INGREDIENT(recipeId, ingredientId, amount, unit) "
+				+ "VALUES (?, ?, ?, ?)";
 		try {
 			for (int i = 0; i < rcpIngList.size(); i++) {
-				Object[] param = new Object[] { rcpIngList.get(i).getIngredientId(),
-						rcpIngList.get(i).getIngredientName(), rcpIngList.get(i).getAmount(),
+				Object[] param = new Object[] { rcpId, rcpIngList.get(i).getIngredientId(),
+						 rcpIngList.get(i).getAmount(),
 						rcpIngList.get(i).getUnit() };
 				jdbcUtil.setSqlAndParameters(sql, param);
 				result += jdbcUtil.executeUpdate();
 			}
-			if (result == rcpIngList.size())
+			if (result == rcpIngList.size()) {
 				System.out.println("insert recipeIngredient success");
+				return true;
+			}
 			else 
 				System.out.println("insert recipeIngredient failed");
 		} catch (Exception e) {
@@ -99,7 +102,7 @@ public class RecipeDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
-		return result;
+		return false;
 	}
 
 	public int updateRecipe(Recipe rcp) {
