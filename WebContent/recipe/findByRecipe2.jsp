@@ -70,78 +70,32 @@
 		<p class="mainTitle">💜 검색 결과 💜</p>
 	</div>
 	<div id="columns">
+		<c:forEach var="recipe" items="${SearchedRcps }">
 		<div class="figure">
+			<img src="${recipe.image }" alt="${recipe.recipeName }">
+			<figcaption>${recipe.recipeName }</figcaption>
+			<p class="summary">${recipe.summary }</p>
+			<hr>
+			<div style="text-align: right;">
+				<a class="btn" href="<c:url value='/recipe/view'>
+											<c:param name='recipeId' value='${recipe.recipeId}'/>
+											</c:url>">MORE</a>
+				<br>
+			</div>
+		</div>
+		</c:forEach>
+		<!-- <div class="figure">
 			<img src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
 				alt="san francisco">
 			<figcaption>Recipe Name</figcaption>
 			<hr>
 			<div style="text-align: right;">
 				<a class="btn" href="#"> More </a>
-				<!-- <a class="btn" href="#"> Edit </a>
-					<a class="btn" href="#"> Delete </a> -->
+				<a class="btn" href="#"> Edit </a>
+					<a class="btn" href="#"> Delete </a>
 				<br>
 			</div>
-		</div>
-		<div class="figure">
-			<img src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
-				alt="san francisco">
-			<figcaption>Recipe Name</figcaption>
-			<hr>
-			<div style="text-align: right;">
-				<a class="btn" href="#"> More </a>
-				<!-- <a class="btn" href="#"> Edit </a>
-					<a class="btn" href="#"> Delete </a> -->
-				<br>
-			</div>
-		</div>
-		<div class="figure">
-			<img src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
-				alt="san francisco">
-			<figcaption>Recipe Name</figcaption>
-			<hr>
-			<div style="text-align: right;">
-				<a class="btn" href="#"> More </a>
-				<!-- <a class="btn" href="#"> Edit </a>
-					<a class="btn" href="#"> Delete </a> -->
-				<br>
-			</div>
-		</div>
-		<div class="figure">
-			<img src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
-				alt="san francisco">
-			<figcaption>Recipe Name</figcaption>
-			<hr>
-			<div style="text-align: right;">
-				<a class="btn" href="#"> More </a>
-				<!-- <a class="btn" href="#"> Edit </a>
-					<a class="btn" href="#"> Delete </a> -->
-				<br>
-			</div>
-		</div>
-		<div class="figure">
-			<img src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
-				alt="san francisco">
-			<figcaption>Recipe Name</figcaption>
-			<hr>
-			<div style="text-align: right;">
-				<a class="btn" href="#"> More </a>
-				<!-- <a class="btn" href="#"> Edit </a>
-					<a class="btn" href="#"> Delete </a> -->
-				<br>
-			</div>
-		</div>
-		<div class="figure">
-			<img src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E"
-				alt="san francisco">
-			<figcaption>Recipe Name</figcaption>
-			<hr>
-			<div style="text-align: right;">
-				<a class="btn" href="#"> More </a>
-				<!-- <a class="btn" href="#"> Edit </a>
-					<a class="btn" href="#"> Delete </a> -->
-				<br>
-			</div>
-		</div>
+		</div> -->
 	</div>
 	<!-- 검색 -->
 	<!-- <div class="container mx-auto">

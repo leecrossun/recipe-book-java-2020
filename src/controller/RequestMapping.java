@@ -48,6 +48,7 @@ public class RequestMapping {
         mappings.put("/recipe/delete", new DeleteRecipeController());
         mappings.put("/recipe/view", new ViewRecipeController());
         mappings.put("/recipe/myList", new ViewMyRecipeController());
+        mappings.put("/recipe/findByRcpName", new FindByRcpNameController());
         //ingredient
        
         mappings.put("/ingredient/find", new FindIngredientController());
