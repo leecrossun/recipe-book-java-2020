@@ -389,6 +389,7 @@ public class RecipeDAO {
 			return rcpIngList;
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			System.out.println("failed");
 		} finally {
 			jdbcUtil.close();
 		}

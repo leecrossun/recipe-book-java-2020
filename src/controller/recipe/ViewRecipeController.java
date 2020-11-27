@@ -1,5 +1,6 @@
 package controller.recipe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,9 +42,10 @@ public class ViewRecipeController implements Controller{
 		request.setAttribute("recipe", recipe);
 		request.setAttribute("rcpIng", rcpIng);
 		request.setAttribute("rcpStep", rcpStep);
-		request.setAttribute("review", review);
+		request.setAttribute("reviews", review);
 		
 		return "/recipe/viewRecipe.jsp";
 	}
+	
 
 }

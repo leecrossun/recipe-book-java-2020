@@ -121,8 +121,8 @@
 
 				<p class="title">✍ My Review</p>
 				<c:forEach var="myReview" items="${myReviews}">
-					<a class="list">🤍 ${myReview.recipeName} >> ${myRecipe.rating}
-						🤍</a>
+					<a class="list">🤍 ${myReview.content} >> ${myRecipe.rating} 🤍</a><br>
+					<br>
 				</c:forEach>
 
 				<!-- <p class="list">🤍 Recipe Name >> ⭐⭐⭐ 🤍</p>

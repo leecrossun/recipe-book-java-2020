@@ -1,7 +1,8 @@
 package persistence.dao;
 import java.sql.*;
 import java.util.*;
-
+import java.sql.ResultSet;
+import service.dto.RecipeIngredient;
 import service.dto.Review;
 
 public class ReviewDAO {
@@ -14,47 +15,54 @@ public class ReviewDAO {
 	
 	// UserId와 일치하는 Review return
 	public List<Review> findReviewByUserID(String userId) {
-		String sql = "SELECT RECIPENAME, RATING FROM REVIEW WHERE USERID = ?";
-		Object[] param = new Object[] {userId};
-		List<Review> list = null;
+		String sql = "SELECT CONTENT, RATING "
+				+ "FROM REVIEW "
+				+ "WHERE USERID = ? ";
 		
-		jdbcUtil.setSqlAndParameters(sql,  param);
+		Object[] param = new Object[] { userId };
+		
+		jdbcUtil.setSqlAndParameters(sql, param);
+
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			list = new ArrayList<Review>();
+			List<Review> list = new ArrayList<Review>();
 			
 			while (rs.next()) {
-				Review myReview = new Review(rs.getString("RECIPENAME"), rs.getInt("RATING"));
+				Review myReview = new Review();
+				myReview.setContent(rs.getString("CONTENT"));
+				myReview.setRating(rs.getInt("RATING"));
 				list.add(myReview);
 			}
 			
 			if (list.isEmpty())
-				System.out.println("findReviewByUserID failed");
+				System.out.println("findReviewByUserID empty");
 			else
 				System.out.println("findReviewByUserID success");
 				
-			
+//			System.out.println(list.get(0));
 			return list;
 			
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
+			System.out.println("findReviewByUserID failed");
 		} finally {
-			jdbcUtil.commit();
 			jdbcUtil.close();
+			System.out.println("findReviewByUserID success");
+			
 		}
-		return list;
+		return null;
 	}
 	
 	// 리뷰 작성
 	public void writeMyReview(Review review) {
-		String sql = "INSERT INTO REVIEW(REVIEWID, CONTENT, RATING, USERID, RECIPEID, PUBLISHED) VALUES(?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO REVIEW (REVIEWID, CONTENT, RATING, USERID, RECIPEID, PUBLISHED) VALUES(reviewId_seq.nextval, ?, ?, ?, ?, SYSDATE)";
 //		현재시간 구하기 (이걸 DAO에 포함시키는게 맞는지 고민 ... 이후에 SELECT할 떄  담을게 필요해서 published 추가했습니다.
 //		Calendar cal = new GregorianCalendar();
 //		Timestamp now = new Timestamp(cal.getTimeInMillis());
 		
-		Object[] param = new Object[] { review.getReviewId(), review.getContent(), review.getRating(), review.getUserId(), review.getRecipeId(), review.getPublished()};
+		Object[] param = new Object[] {review.getContent(), review.getRating(), review.getUserId(), review.getRecipeId(), review.getPublished()};
 		jdbcUtil.setSqlAndParameters(sql, param);
 		try {
 			int result = jdbcUtil.executeUpdate();
@@ -116,23 +124,31 @@ public class ReviewDAO {
 	
 	// 레시피 별로 리뷰 검색
 	public List<Review> findReviewByRecipeId(String recipeId) {
-		String sql = "SELECT * FROM REVIEW WHERE RECIPEID = ?";
+		String sql = "SELECT REVIEWID, CONTENT, RATING, USERID, RECIPEID, PUBLISHED "
+				+ "FROM REVIEW " 
+				+ "WHERE RECIPEID=?";
 		Object[] param = new Object[] {recipeId};
-		List<Review> list = null;
 		
-		jdbcUtil.setSqlAndParameters(sql,  param);
+		List<Review> list = new ArrayList<Review>();
+		
+		jdbcUtil.setSqlAndParameters(sql, param);
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			list = new ArrayList<Review>();
-
+			
 			while (rs.next()) {
-				Review myReview = new Review(rs.getString("REVIEWID"), rs.getString("USERID"), rs.getString("RECIPEID"), rs.getString("CONTENT"), rs.getInt("RATING"), rs.getString("PUBLISHED"));
-				list.add(myReview);
+				Review review = new Review();
+				review.setReviewId(rs.getString("REVIEWID"));
+				review.setContent(rs.getString("CONTENT"));
+				review.setRating(rs.getInt("RATING"));
+				review.setUserId(rs.getString("USERID"));
+				review.setRecipeId(rs.getString("RECIPEID"));
+				review.setPublished(rs.getString("PUBLISHED"));
+				list.add(review);
 			}
 			
 			if (list.isEmpty())
-				System.out.println("findReviewByRecipeID failed");
+				System.out.println("findReviewByRecipeID empty");
 			else
 				System.out.println("findReviewByRecipeId success");
 			
@@ -141,8 +157,9 @@ public class ReviewDAO {
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
+			System.out.println("findReviewByRecipeID error");
 		} finally {
-			jdbcUtil.commit();
+			System.out.println("findReviewByRecipeId success");
 			jdbcUtil.close();
 		}
 		return list;
