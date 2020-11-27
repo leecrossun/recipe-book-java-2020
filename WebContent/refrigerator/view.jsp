@@ -99,7 +99,10 @@
 					<a href="<c:url value='/recipe/myList'>
                <c:param name='userId' value='${sessionScope.userId }'/>
                </c:url>">
-						전체보기 </a>
+						전체보기 </a> 
+						<a href="<c:url value='/recipe/createForm'>
+               <c:param name='userId' value='${sessionScope.userId }'/>
+               </c:url>">레시피쓰기</a>
 				</p>
 				<c:forEach var="myRecipe" items="${myRecipes}">
 					<a class="list" href="<c:url value='/recipe/view'>

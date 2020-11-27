@@ -44,4 +44,25 @@ private static JDBCUtil jdbcUtil = null;
 		}
 		return null;
 	}
+	public String findIngredientID(String ingredientName) {
+		String sql = "SELECT INGREDIENTID FROM INGREDIENT WHERE INGREDIENTNAME =?";
+		Object[] param = new Object[] { ingredientName };
+		
+		jdbcUtil.setSqlAndParameters(sql, param);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+
+			if (rs.next()) {
+				String ingId = rs.getString("INGREDIENTID");
+				return ingId;
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
 }

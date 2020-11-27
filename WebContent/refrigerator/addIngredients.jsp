@@ -88,7 +88,6 @@
 						<th width="100px">양</th>
 						<th width="100px">단위</th>
 						<th width="300px">유통</th>
-						
                     </tr>
                 </table>
 			
