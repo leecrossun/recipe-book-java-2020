@@ -1,5 +1,4 @@
 package service.dto;
-import java.util.Date;
 
 public class UserIngredient {
 	private String userId;
@@ -8,6 +7,7 @@ public class UserIngredient {
 	private int amount;
 	private String unit;
 	private String expireDate;
+	private String remainingTime;
 	
 	public UserIngredient(String userId, String ingredientId, int amount, String unit,
 			String expireDate) {
@@ -18,15 +18,21 @@ public class UserIngredient {
 		this.unit = unit;
 		this.expireDate = expireDate;
 	}
-	
-	public UserIngredient(String ingredientName, int amount, String unit,
-			String expireDate) {
+
+	public UserIngredient(String userId, String ingredientName, String ingredientId, int amount, String unit,
+			String expireDate, String remainingTime) {
 		super();
+		this.userId = userId;
 		this.ingredientName = ingredientName;
+		this.ingredientId = ingredientId;
 		this.amount = amount;
 		this.unit = unit;
 		this.expireDate = expireDate;
+		this.remainingTime = remainingTime;
 	}
+
+
+
 	public String getIngredientName() {
 		return ingredientName;
 	}
@@ -63,6 +69,15 @@ public class UserIngredient {
 	public void setExpireDate(String expireDate) {
 		this.expireDate = expireDate;
 	}
+
+	public String getRemainingTime() {
+		return remainingTime;
+	}
+
+	public void setRemainingTime(String remainingTime) {
+		this.remainingTime = remainingTime;
+	}
+	
 	
 	
 }
