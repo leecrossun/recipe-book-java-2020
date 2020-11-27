@@ -28,7 +28,7 @@ public class RefrigeratorDAO {
 			List<UserIngredient> list = new ArrayList<UserIngredient>();
 			
 			while (rs.next()) {
-				UserIngredient uIng = new UserIngredient(userId, rs.getString("INGREDIENTNAME"), rs.getString("INGREDIENTNAME"), rs.getInt("AMOUNT"),
+				UserIngredient uIng = new UserIngredient(userId, rs.getString("INGREDIENTNAME"), rs.getString("INGREDIENTID"), rs.getInt("AMOUNT"),
 						rs.getString("UNIT"), rs.getString("EXPIRATION"), rs.getString("REMAINING"));
 				list.add(uIng);
 			}
@@ -67,7 +67,7 @@ public class RefrigeratorDAO {
 	
 	//냉장고 재료 삭제
 	public void deleteUserIngredient(String userId, String ingId) {
-		String sql = "DELETE FROM USER_INGREDIENT WHERE USERID = ? AND INGFREDIENTID = ? ";
+		String sql = "DELETE FROM USER_INGREDIENT WHERE USERID = ? AND INGREDIENTID = ? ";
 		Object[] param = new Object[] { userId, ingId };
 		jdbcUtil.setSqlAndParameters(sql, param);
 		
