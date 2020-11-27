@@ -16,7 +16,7 @@ public class RefrigeratorDAO {
 	
 	//냉장고에 저장한 재료 표시
 	public List<UserIngredient> getIngredientList(String userId) {
-		String sql = "SELECT INGREDIENTID, INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION "
+		String sql = "SELECT INGREDIENTID, INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION, ROUND(expiration - SYSDATE) + 1 AS REMAINING "
 				+ "FROM INGREDIENT i JOIN USER_INGREDIENT ug USING (INGREDIENTID) "
 				+ "WHERE ug.USERID = ? ";
 		Object[] param = new Object[] { userId };
@@ -29,7 +29,7 @@ public class RefrigeratorDAO {
 			
 			while (rs.next()) {
 				UserIngredient uIng = new UserIngredient(userId, rs.getString("INGREDIENTNAME"), rs.getString("INGREDIENTNAME"), rs.getInt("AMOUNT"),
-						rs.getString("UNIT"), rs.getString("EXPIRATION"));
+						rs.getString("UNIT"), rs.getString("EXPIRATION"), rs.getString("REMAINING"));
 				list.add(uIng);
 			}
 			if (list.isEmpty())
@@ -65,38 +65,6 @@ public class RefrigeratorDAO {
 		}
 	}
 	
-	//재료 유효기간 얼마 남았는지 계산
-	public List<String> calExpiredIngredients(String userId) {
-		String sql = "SELECT ROUND(expiration - SYSDATE) + 1 AS REMAINING " 
-				+ "FROM USER_INGREDIENT "
-				+ "WHERE USERID = ? ";
-		Object[] param = new Object[] { userId };
-		jdbcUtil.setSqlAndParameters(sql, param);
-		
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();
-			List<String> list = new ArrayList<String>();
-			
-			while (rs.next()) {
-				int rTime = Integer.parseInt(rs.getString("REMAINING"));
-				
-				if (rTime <= 7) {
-					
-					list.add(rs.getString("REMAINING"));
-				}
-				
-				if (list.isEmpty())
-					System.out.println("calculation expiration failed");
-			}
-			return list;
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();
-		}
-		return null;
-	}
-	
 	//냉장고 재료 삭제
 	public void deleteUserIngredient(String userId, String ingId) {
 		String sql = "DELETE FROM USER_INGREDIENT WHERE USERID = ? AND INGFREDIENTID = ? ";
@@ -119,7 +87,7 @@ public class RefrigeratorDAO {
 	}
 	
 	//냉장고 재료 검색
-	public List<UserIngredient> f (String userId, String ingName) {
+	public List<UserIngredient> findUserIngredient (String userId, String ingName) {
 		String sql = "SELECT INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION "
 				+ "FROM INGREDIENT i JOIN USER_INGREDIENT ug USING (INGREDIENTID) "
 				+ "WHERE USERID = ? AND INGREDIENTNAME LIKE '%' || ? || '%'";

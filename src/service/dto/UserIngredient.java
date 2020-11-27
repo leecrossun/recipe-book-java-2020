@@ -18,11 +18,9 @@ public class UserIngredient {
 		this.unit = unit;
 		this.expireDate = expireDate;
 	}
-	
 
-	
 	public UserIngredient(String userId, String ingredientName, String ingredientId, int amount, String unit,
-			String expireDate) {
+			String expireDate, String remainingTime) {
 		super();
 		this.userId = userId;
 		this.ingredientName = ingredientName;
@@ -30,14 +28,6 @@ public class UserIngredient {
 		this.amount = amount;
 		this.unit = unit;
 		this.expireDate = expireDate;
-	}
-
-	
-	public UserIngredient(String userId, String ingredientName, String ingredientId, String remainingTime) {
-		super();
-		this.userId = userId;
-		this.ingredientName = ingredientName;
-		this.ingredientId = ingredientId;
 		this.remainingTime = remainingTime;
 	}
 

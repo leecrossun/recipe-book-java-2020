@@ -49,9 +49,9 @@
 			</p>
 			<div class="expired" style="overflow: auto; height: 250px;">
 				<p class="title">⏰ Expired Ingredients</p>
-				<c:forEach var="rtime" items="${remainingTime}">
+				<c:forEach var="exIngredient" items="${expiredIngredients}">
 					<p class="list">
-						🤍 ${exIngredient.ingredientName} >> &#40; ${rtime}일 남음 &#41; <a
+						🤍 ${exIngredient.ingredientName} >> &#40; ${exIngredient.remainingTime}일 남음 &#41; <a
 							class="btn"
 							href="<c:url value='/refrigerator/deleteIngredient'>
 												<c:param name='ingId' value='${exIngredient.ingredientId}'/>
