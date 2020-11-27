@@ -86,7 +86,8 @@
 	
 		
 		//삽입될 Form Tag type="date" id="currentDate"
-		oCell1.innerHTML = "<input class=form type=text placeholder=검색버튼클릭 id=selectName name=ingredientName style=width:200px height:20px;>&nbsp;&nbsp; <input type=button class=searchBtn value='검색' onClick=openWin();>";
+		oCell1.innerHTML = "<input class=form disabled type=text placeholder=검색버튼클릭 id=selectName name=ingredientName style=width:200px height:20px;>&nbsp;&nbsp; <input type=button class=searchBtn value='검색' onClick=javascript:openWin()>";
+
 		oCell2.innerHTML =  "<input placeholder=ex)300 class=form type=text name=amount style=width:60px; height:20px;> ";
 		oCell3.innerHTML =  "<input placeholder=ex)g class=form type=text name=unit style=width:60px; height:20px;> ";
 		oCell4.innerHTML =  "<input class=form type=date id=currentDate name=expiredDate style=width:200px; height:20px;> ";
@@ -95,7 +96,7 @@
 	
 	//Row 삭제
 	function removeRow() {
-		oTbl.deleteRow(oTbl.clickedRowIndex);
+		oTbl.deleteRow(oTbl.clickedRowIndex-1);
 	}
 	
 	function frmCheck() {
