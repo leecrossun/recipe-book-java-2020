@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.Controller;
 import controller.user.UserSessionUtils;
 import persistence.dao.RefrigeratorDAO;
@@ -18,6 +21,8 @@ public class RefrigeratorController implements Controller{
 
 	private RefrigeratorDAO refrigeratorDAO;
 	private ReviewDAO reviewDAO;
+	
+	private static final Logger logger = LoggerFactory.getLogger(RefrigeratorController.class);
 	
 	public RefrigeratorController() {
 		try {
@@ -36,13 +41,16 @@ public class RefrigeratorController implements Controller{
 		String userId = UserSessionUtils.getLoginUserId(session);
 		
 		List<UserIngredient> userIngredient = refrigeratorDAO.getIngredientList(userId);
-		List<UserIngredient> expiredIngredient = refrigeratorDAO.calExpiredIngredients(userId);
+		List<String> remainingTime = refrigeratorDAO.calExpiredIngredients(userId);
 		List<Recipe> favorite = refrigeratorDAO.getFavoriteRecipetList(userId);
 		List<Recipe> myRecipe = refrigeratorDAO.getMyRecipetList(userId);
 		List<Review> myReview = reviewDAO.findReviewByUserID(userId);
 		
+		logger.debug("userId : {}, expiredDate : {}", 
+				userId, remainingTime.get(0));
+		
 		request.setAttribute("userIngredient", userIngredient);
-		request.setAttribute("expiredIngredients", expiredIngredient);
+		request.setAttribute("remainingTime", remainingTime);
 		request.setAttribute("favorites", favorite);
 		request.setAttribute("myRecipes", myRecipe);
 		request.setAttribute("myReviews", myReview);

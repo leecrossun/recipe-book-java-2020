@@ -16,7 +16,7 @@ public class RefrigeratorDAO {
 	
 	//냉장고에 저장한 재료 표시
 	public List<UserIngredient> getIngredientList(String userId) {
-		String sql = "SELECT INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION "
+		String sql = "SELECT INGREDIENTID, INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION "
 				+ "FROM INGREDIENT i JOIN USER_INGREDIENT ug USING (INGREDIENTID) "
 				+ "WHERE ug.USERID = ? ";
 		Object[] param = new Object[] { userId };
@@ -28,7 +28,7 @@ public class RefrigeratorDAO {
 			List<UserIngredient> list = new ArrayList<UserIngredient>();
 			
 			while (rs.next()) {
-				UserIngredient uIng = new UserIngredient(rs.getString("INGREDIENTNAME"), rs.getInt("AMOUNT"),
+				UserIngredient uIng = new UserIngredient(userId, rs.getString("INGREDIENTNAME"), rs.getString("INGREDIENTNAME"), rs.getInt("AMOUNT"),
 						rs.getString("UNIT"), rs.getString("EXPIRATION"));
 				list.add(uIng);
 			}
@@ -66,8 +66,8 @@ public class RefrigeratorDAO {
 	}
 	
 	//재료 유효기간 얼마 남았는지 계산
-	public List<UserIngredient> calExpiredIngredients(String userId) {
-		String sql = "SELECT ROUND(expiration - SYSDATE) + 1 AS REMAINING, INGREDIENTID, INGREDIENTNAME " 
+	public List<String> calExpiredIngredients(String userId) {
+		String sql = "SELECT ROUND(expiration - SYSDATE) + 1 AS REMAINING " 
 				+ "FROM USER_INGREDIENT "
 				+ "WHERE USERID = ? ";
 		Object[] param = new Object[] { userId };
@@ -75,21 +75,18 @@ public class RefrigeratorDAO {
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			List<UserIngredient> list = new ArrayList<UserIngredient>();
+			List<String> list = new ArrayList<String>();
 			
 			while (rs.next()) {
 				int rTime = Integer.parseInt(rs.getString("REMAINING"));
 				
 				if (rTime <= 7) {
-					UserIngredient uIng = new UserIngredient (
-						userId, 
-						rs.getString("INGREDIENTNAME"), 
-						rs.getString("INGREDIENTID"), 
-						rs.getString("REMAINING")
-					);
-		
-					list.add(uIng);
+					
+					list.add(rs.getString("REMAINING"));
 				}
+				
+				if (list.isEmpty())
+					System.out.println("calculation expiration failed");
 			}
 			return list;
 		} catch(Exception ex) {
@@ -135,7 +132,7 @@ public class RefrigeratorDAO {
 			List<UserIngredient> list = new ArrayList<UserIngredient>();
 			
 			while (rs.next()) {
-				UserIngredient uIng = new UserIngredient(rs.getString("INGREDIENTNAME"), rs.getInt("AMOUNT"),
+				UserIngredient uIng = new UserIngredient(userId, rs.getString("INGREDIENTNAME"), rs.getInt("AMOUNT"),
 						rs.getString("UNIT"), rs.getString("EXPIRATION"));
 				list.add(uIng);
 			}
