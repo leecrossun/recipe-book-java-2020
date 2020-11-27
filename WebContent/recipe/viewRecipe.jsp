@@ -93,7 +93,7 @@
 	</div>
 	<div class="container recipe">
 		<br>
-		<p class="mainTitle">🍧 레시피 요약 -------------------------- 한 레시피 🍧</p>
+		<!-- <p class="mainTitle">🍧 레시피 요약 -------------------------- 한 레시피 🍧</p> -->
 		<p class="mainTitle">🍧 ${recipe.summary} 🍧</p>
 		<br>
 		<div class="image sub-container">
@@ -174,7 +174,7 @@
 			<br>
 			<p class="title">🍰 후기 작성</p>
 			<br>
-			<form method="POST" action="<c:url value='/review/create' />">
+			<form name="form" method="POST" action="<c:url value='/review/create' />">
 				⭐ 별점 <select class="form" name="rating">
 					<option selected>별점</option>
 					<option value="1">⭐</option>
@@ -206,7 +206,7 @@
 			<p>0000.00.00 작성</p>
 			<p><a class="btn">수정</a><a class="btn">삭제</a></p>
 		</div>
-		<%-- 		<c:forEach var="review" items="${review}">
+		<c:forEach var="review" items="${review}">
 			<div class="comment">
 				<p>작성자 : ${review.userId} </p>
 				<p>별점 : ⭐⭐⭐⭐⭐</p>
@@ -217,7 +217,7 @@
 				<a class="btn" href="<c:url value='review/delete'> <c:param name='recipeId' value='&{recipe.recipeId}'/> </c:url>">삭제</a>
 				</p>
 			</div>
-		</c:forEach> --%>
+		</c:forEach>
 	</div>
 </body>
 

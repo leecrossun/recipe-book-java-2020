@@ -67,7 +67,7 @@
 	document.getElementById("currentDate").value = new Date().toISOString().substring(0, 10);;
 	
 	var oTbl;
-	//Row 추가
+
 	function insRow() {
 		oTbl = document.getElementById("addTableBody");
 		var oRow = oTbl.insertRow();
