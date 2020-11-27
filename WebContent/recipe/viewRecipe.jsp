@@ -191,7 +191,8 @@
 				</div>
 			</form>
 		</div>
-
+	
+	<c:if test=${review ne null }>
 		<div class="comment">
 			<p>작성자 : USER1</p>
 			<p>별점 : ⭐⭐⭐⭐⭐</p>
@@ -218,6 +219,7 @@
 				</p>
 			</div>
 		</c:forEach>
+		</c:if>
 	</div>
 </body>
 

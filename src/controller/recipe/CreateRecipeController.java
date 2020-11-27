@@ -76,15 +76,19 @@ public class CreateRecipeController implements Controller{
 		
 		recipe.setStepList(rcpStepList);
 		//여기서 recipeingredient, recipetable에 저장됩니다.
+		
+		
 		int generatedKey = recipeDAO.insertRecipe(recipe);
 		recipe.setRecipeId(String.valueOf(generatedKey));
 		//recipeDAO.insertRecipeStep(String.valueOf(generatedKey), rcpStepList);
-		//log.debug("Create recipe : {}", recipe.toString());
+		
+		log.debug("Create recipe : {}", recipe.toString());
 		request.setAttribute("recipe", recipe);
 		request.setAttribute("recipeId", String.valueOf(generatedKey));
 		request.setAttribute("rcpStep", rcpStepList);
 		request.setAttribute("rcpIng", rcpIngList); //
 		request.setAttribute("review", null);
+		
 		return "/recipe/viewRecipe.jsp";
 	}
 }
