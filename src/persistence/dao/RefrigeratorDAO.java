@@ -119,7 +119,7 @@ public class RefrigeratorDAO {
 	}
 	
 	//냉장고 재료 검색
-	public List<UserIngredient> f (String userId, String ingName) {
+	public List<UserIngredient> findUserIngredient (String userId, String ingName) {
 		String sql = "SELECT INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION "
 				+ "FROM INGREDIENT i JOIN USER_INGREDIENT ug USING (INGREDIENTID) "
 				+ "WHERE USERID = ? AND INGREDIENTNAME LIKE '%' || ? || '%'";
