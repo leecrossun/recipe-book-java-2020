@@ -142,7 +142,7 @@ public class RefrigeratorDAO {
 	
 	//즐겨찾기 레시피 표시
 	public List<Recipe> getFavoriteRecipetList(String userId) {
-		String sql = "SELECT RECIPENAME, SUMMARY "
+		String sql = "SELECT RECIPEID, RECIPENAME, SUMMARY "
 				+ "FROM FAVORITE f JOIN RECIPE r USING (RECIPEID) "
 				+ "WHERE f.USERID = ? ";
 		Object[] param = new Object[] { userId };
@@ -154,7 +154,7 @@ public class RefrigeratorDAO {
 			List<Recipe> list = new ArrayList<Recipe>();
 			
 			while (rs.next()) {
-				Recipe recipe = new Recipe(rs.getString("RECIPENAME"), rs.getString("SUMMARY"));
+				Recipe recipe = new Recipe(rs.getString("RECIPEID"), rs.getString("RECIPENAME"), rs.getString("SUMMARY"));
 				list.add(recipe);
 			}
 			if (list.isEmpty())
@@ -191,7 +191,7 @@ public class RefrigeratorDAO {
 	
 	// 내가 작성한 레시피 표시
 	public List<Recipe> getMyRecipetList(String userId) {
-		String sql = "SELECT RECIPENAME, SUMMARY "
+		String sql = "SELECT RECIPEID, RECIPENAME, SUMMARY "
 				+ "FROM RECIPE "
 				+ "WHERE USERID = ? ";
 		Object[] param = new Object[] { userId };
@@ -203,9 +203,10 @@ public class RefrigeratorDAO {
 			List<Recipe> list = new ArrayList<Recipe>();
 			
 			while (rs.next()) {
-				Recipe recipe = new Recipe(rs.getString("RECIPENAME"), rs.getString("SUMMARY"));
+				Recipe recipe = new Recipe(rs.getString("RECIPEID"), rs.getString("RECIPENAME"), rs.getString("SUMMARY"));
 				list.add(recipe);
 			}
+			
 			if (list.isEmpty())
 				System.out.println("empty my recipe");
 			return list;
