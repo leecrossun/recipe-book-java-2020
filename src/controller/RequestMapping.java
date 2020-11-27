@@ -38,9 +38,9 @@ public class RequestMapping {
         mappings.put("/review/update", new UpdateReviewController());
         //refrigerator
         mappings.put("/refrigerator/view", new RefrigeratorController());
-        mappings.put("/refrigerator/selectIngredient", new ForwardController("/refrigerator/addIngredients.jsp"));
-        mappings.put("/refrigerator/addIngredient", new AddUserIngredientController());
-        mappings.put("/refrigerator/deleteIngredient", new DeleteIngredientController());
+        mappings.put("/refrigerator/select", new ForwardController("/refrigerator/addIngredients.jsp"));
+        mappings.put("/refrigerator/add", new AddUserIngredientController());
+        mappings.put("/refrigerator/delete", new DeleteIngredientController());
         // Recipe
         mappings.put("/recipe/createForm", new ForwardController("/recipe/writeRecipe.jsp"));
         mappings.put("/recipe/create", new CreateRecipeController());
@@ -48,6 +48,7 @@ public class RequestMapping {
         mappings.put("/recipe/delete", new DeleteRecipeController());
         mappings.put("/recipe/view", new ViewRecipeController());
         mappings.put("/recipe/myList", new ViewMyRecipeController());
+        mappings.put("/recipe/findByRcpName", new FindByRcpNameController());
         //ingredient
        
         mappings.put("/ingredient/find", new FindIngredientController());

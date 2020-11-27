@@ -207,7 +207,7 @@
 			<p>0000.00.00 작성</p>
 			<p><a class="btn">수정</a><a class="btn">삭제</a></p>
 		</div>
-		<c:forEach var="review" items="${review}">
+		<c:forEach var="review" items="${reviews}">
 			<div class="comment">
 				<p>작성자 : ${review.userId} </p>
 				<p>별점 : ⭐⭐⭐⭐⭐</p>

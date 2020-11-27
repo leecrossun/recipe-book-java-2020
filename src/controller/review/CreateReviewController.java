@@ -35,15 +35,15 @@ public class CreateReviewController implements Controller{
 		String recipeName = request.getParameter("recipeName");
 		int rating = Integer.parseInt(request.getParameter("rating"));
 		
-		Date date_now = new Date(System.currentTimeMillis());
-		SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyy/MM/dd"); 
-		String published = fourteen_format.format(date_now);
+//		Date date_now = new Date(System.currentTimeMillis());
+//		SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyy/MM/dd"); 
+//		String published = fourteen_format.format(date_now);
 		
 		Review review = new Review(
 				reviewId, userId, recipeId, recipeName,
 				request.getParameter("content"),
 				rating,
-				published
+				null
 				);
 		
 		try {

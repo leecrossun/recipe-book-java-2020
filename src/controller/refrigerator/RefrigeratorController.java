@@ -23,8 +23,6 @@ public class RefrigeratorController implements Controller{
 	private RefrigeratorDAO refrigeratorDAO;
 	private ReviewDAO reviewDAO;
 	
-	private static final Logger logger = LoggerFactory.getLogger(RefrigeratorController.class);
-	
 	public RefrigeratorController() {
 		try {
 			refrigeratorDAO = new RefrigeratorDAO();
@@ -46,9 +44,6 @@ public class RefrigeratorController implements Controller{
 		List<Recipe> favorite = refrigeratorDAO.getFavoriteRecipetList(userId);
 		List<Recipe> myRecipe = refrigeratorDAO.getMyRecipetList(userId);
 		List<Review> myReview = reviewDAO.findReviewByUserID(userId);
-		
-		logger.debug("userId : {}, expiredDate : {}", 
-				userId, userIngredient.get(0).getRemainingTime());
 		
 		for (int i = 0; i < userIngredient.size(); i++) {
 			if (Integer.parseInt(userIngredient.get(i).getRemainingTime()) <= 7) {
