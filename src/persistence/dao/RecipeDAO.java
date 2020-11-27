@@ -317,8 +317,8 @@ public class RecipeDAO {
 	}
 
 	public List<Recipe> getRecipeListByName(String recipeName) {
-		String sql = "SELECT recipeId, recipeName, userId, summary, image " + "FROM RECIPE "
-				+ "WHERE recipeName LIKE ? ";
+		String sql = "SELECT recipeId, recipeName, summary, image " + "FROM RECIPE "
+				+ "WHERE recipeName LIKE '%' || ? || '%'";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {  "%"+recipeName+"%" });
 
 		try {
@@ -328,7 +328,6 @@ public class RecipeDAO {
 				Recipe rcp = new Recipe();
 				rcp.setRecipeId(rs.getString("recipeId"));
 				rcp.setRecipeName(rs.getString("recipeName"));
-				rcp.setUserId(rs.getString("userId"));
 				rcp.setSummary(rs.getString("summary"));
 				rcp.setImage(rs.getString("image"));
 				rcpList.add(rcp);
