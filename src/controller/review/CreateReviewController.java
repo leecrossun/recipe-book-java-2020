@@ -53,7 +53,7 @@ public class CreateReviewController implements Controller{
 			return "/recipe/view";
 		}
 		
-		return "redirect:/recipe/view";
+		return "/recipe/view.jsp";
 	}
 
 }

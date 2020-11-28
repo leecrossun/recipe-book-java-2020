@@ -115,17 +115,16 @@
 				<button type="submit" class="btn">적용</button>
 			</form>
 			<table>
-				<th>재료명</th>
-				<th width="150px">개수</th>
-
+				<tr>
+					<th>재료명</th>
+					<th width="150px">개수</th>
+				</tr>
 				<c:forEach var="ingredient" items="${rcpIng}">
 					<tr>
 						<td>${ingredient.ingredientName}</td>
 						<td>${ingredient.amount} ${ingredient.unit}</td>
-					<tr>
+					</tr>
 				</c:forEach>
-
-				<%-- 			
 				<tr>
 					<td>사과</td>
 					<td>1 개</td>
@@ -138,7 +137,6 @@
 					<td>당근</td>
 					<td>1 개</td>
 				</tr>
-			--%>
 			</table>
 		</div>
 		<br>
@@ -166,7 +164,7 @@
 		<br>
 		<br>
 	</div>
-	</div>
+
 	<!-- Review Area -->
 	<div class="container" style="align-items: center; text-align: center;">
 		<div class="sub-container" style="margin: 0px auto;">
@@ -191,9 +189,9 @@
 				</div>
 			</form>
 		</div>
-	
-	<c:if test=${review ne null }>
-		<div class="comment">
+
+		<c:if test='${reviews ne null }'>
+			<!-- 		<div class="comment">
 			<p>작성자 : USER1</p>
 			<p>별점 : ⭐⭐⭐⭐⭐</p>
 			<p>TESTTESTTESTTESTTEST</p>
@@ -206,19 +204,21 @@
 			<p>TESTTESTTESTTESTTESTSTTEST</p>
 			<p>0000.00.00 작성</p>
 			<p><a class="btn">수정</a><a class="btn">삭제</a></p>
-		</div>
-		<c:forEach var="review" items="${reviews}">
-			<div class="comment">
-				<p>작성자 : ${review.userId} </p>
-				<p>별점 :${review.rating}</p>
-				<p>${review.content}</p>
-				<p>${review.published} 작성</p>
-				<p>
-				<a class="btn" href="<c:url value='review/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a>
-				<a class="btn" href="<c:url value='review/delete'> <c:param name='recipeId' value='&{recipe.recipeId}'/> </c:url>">삭제</a>
-				</p>
-			</div>
-		</c:forEach>
+		</div> -->
+			<c:forEach var="review" items="${reviews}">
+				<div class="comment">
+					<p>작성자 : ${review.userId} </p>
+					<p>별점 :${review.rating}</p>
+					<p>${review.content}</p>
+					<p>${review.published} 작성</p>
+					<p>
+						<a class="btn"
+							href="<c:url value='review/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a>
+						<a class="btn"
+							href="<c:url value='review/delete'> <c:param name='recipeId' value='&{recipe.recipeId}'/> </c:url>">삭제</a>
+					</p>
+				</div>
+			</c:forEach>
 		</c:if>
 	</div>
 </body>
