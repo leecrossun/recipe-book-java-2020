@@ -30,7 +30,7 @@ public class DeleteReviewController implements Controller{
 			e.printStackTrace();
 			return "/recipe/view";
 		}
-			
+
 		return "redirect:/recipe/view";  // 리뷰가 원래 있던 recipe 로 리다이렉트 (url 확인 후 수정할 것)
 	}
 

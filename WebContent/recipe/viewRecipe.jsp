@@ -80,6 +80,13 @@
 			border: none !important;
 		}
 	</style>
+	<script type="text/javascript">
+
+function removeMsg() {
+	return confirm("정말 삭제하시겠습니까?");		
+}
+</script>
+	
 </head>
 
 <body>
@@ -170,9 +177,11 @@
 		<div class="sub-container" style="margin: 0px auto;">
 			<br>
 			<br>
+			
+												
+												
 			<p class="title">🍰 후기 작성</p>
-			<br>
-			<form name="form" method="POST" action="<c:url value='/review/create' />">
+			<form name="form" method="POST" action="<c:url value='/review/create'><c:param name='recipeId' value='${recipe.recipeId}'/></c:url>">
 				⭐ 별점 <select class="form" name="rating">
 					<option selected>별점</option>
 					<option value="1">⭐</option>
@@ -182,14 +191,14 @@
 					<option value="5">⭐⭐⭐⭐⭐</option>
 				</select><br><br>
 				<textarea placeholder="후기를 작성해주세요" style="width: 700px; height: 70px;" class="form"
-					name="review"></textarea>
+					name="content"></textarea>
 				<br>
 				<div class="button-box">
-					<input class="btn" type="submit" value="등록">
+					<input class="btn" type="submit" onClick="frmCheck()" value="등록">
 				</div>
 			</form>
 		</div>
-		<div class="comment">
+<!-- 		<div class="comment">
 			<p>작성자 : USER1</p>
 			<p>별점 : ⭐⭐⭐⭐⭐</p>
 			<p>TESTTESTTESTTESTTEST</p>
@@ -202,7 +211,7 @@
 			<p>TESTTESTTESTTESTTESTSTTEST</p>
 			<p>0000.00.00 작성</p>
 			<p><a class="btn">수정</a><a class="btn">삭제</a></p>
-		</div>
+		</div> -->
 		<c:forEach var="review" items="${reviews}">
 			<div class="comment">
 				<p>작성자 : ${review.userId} </p>
@@ -211,11 +220,31 @@
 				<p>${review.published} 작성</p>
 				<p>
 				<a class="btn" href="<c:url value='review/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a>
-				<a class="btn" href="<c:url value='review/delete'> <c:param name='recipeId' value='&{recipe.recipeId}'/> </c:url>">삭제</a>
+				<a class="btn" href="<c:url value='/review/delete'>
+												<c:param name='reviewId' value='${review.reviewId}'/>
+												</c:url>" onClick="return removeMsg()">삭제</a>
 				</p>
 			</div>
 		</c:forEach>
 	</div>
+	<script type="text/javascript">
+		function frmCheck() {
+			var frm = document.form;
+
+			if (frm.rating.value == "") {
+				alert("별점을 입력하십시오.");
+				frm.recipeName.focus();
+				return false;
+			}
+			if (frm.content.value == "") {
+				alert("내용을 입력하십시오.");
+				frm.summary.focus();
+				return false;
+			}
+
+			frm.submit();
+		}
+		</script>
 </body>
 
 </html>

@@ -46,6 +46,7 @@ public class ViewRecipeController implements Controller{
 		List<Review> review = reviewDAO.findReviewByRecipeId(recipeId);
 		
 		request.setAttribute("recipe", recipe);
+		request.setAttribute("recipeId", recipeId);
 		request.setAttribute("rcpIng", rcpIng);
 		request.setAttribute("rcpStep", rcpStep);
 		request.setAttribute("reviews", review);
