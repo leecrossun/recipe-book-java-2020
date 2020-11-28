@@ -189,9 +189,7 @@
 				</div>
 			</form>
 		</div>
-
-		<c:if test='${reviews ne null }'>
-			<!-- 		<div class="comment">
+		<div class="comment">
 			<p>작성자 : USER1</p>
 			<p>별점 : ⭐⭐⭐⭐⭐</p>
 			<p>TESTTESTTESTTESTTEST</p>
@@ -204,22 +202,19 @@
 			<p>TESTTESTTESTTESTTESTSTTEST</p>
 			<p>0000.00.00 작성</p>
 			<p><a class="btn">수정</a><a class="btn">삭제</a></p>
-		</div> -->
-			<c:forEach var="review" items="${reviews}">
-				<div class="comment">
-					<p>작성자 : ${review.userId} </p>
-					<p>별점 :${review.rating}</p>
-					<p>${review.content}</p>
-					<p>${review.published} 작성</p>
-					<p>
-						<a class="btn"
-							href="<c:url value='review/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a>
-						<a class="btn"
-							href="<c:url value='review/delete'> <c:param name='recipeId' value='&{recipe.recipeId}'/> </c:url>">삭제</a>
-					</p>
-				</div>
-			</c:forEach>
-		</c:if>
+		</div>
+		<c:forEach var="review" items="${reviews}">
+			<div class="comment">
+				<p>작성자 : ${review.userId} </p>
+				<p>별점 :${review.rating}</p>
+				<p>${review.content}</p>
+				<p>${review.published} 작성</p>
+				<p>
+				<a class="btn" href="<c:url value='review/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a>
+				<a class="btn" href="<c:url value='review/delete'> <c:param name='recipeId' value='&{recipe.recipeId}'/> </c:url>">삭제</a>
+				</p>
+			</div>
+		</c:forEach>
 	</div>
 </body>
 
