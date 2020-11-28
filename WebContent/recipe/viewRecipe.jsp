@@ -115,17 +115,16 @@
 				<button type="submit" class="btn">적용</button>
 			</form>
 			<table>
-				<th>재료명</th>
-				<th width="150px">개수</th>
-
+				<tr>
+					<th>재료명</th>
+					<th width="150px">개수</th>
+				</tr>
 				<c:forEach var="ingredient" items="${rcpIng}">
 					<tr>
 						<td>${ingredient.ingredientName}</td>
 						<td>${ingredient.amount} ${ingredient.unit}</td>
-					<tr>
+					</tr>
 				</c:forEach>
-
-				<%-- 			
 				<tr>
 					<td>사과</td>
 					<td>1 개</td>
@@ -138,7 +137,6 @@
 					<td>당근</td>
 					<td>1 개</td>
 				</tr>
-			--%>
 			</table>
 		</div>
 		<br>
@@ -166,7 +164,7 @@
 		<br>
 		<br>
 	</div>
-	
+
 	<!-- Review Area -->
 	<div class="container" style="align-items: center; text-align: center;">
 		<div class="sub-container" style="margin: 0px auto;">
@@ -191,7 +189,6 @@
 				</div>
 			</form>
 		</div>
-	
 		<div class="comment">
 			<p>작성자 : USER1</p>
 			<p>별점 : ⭐⭐⭐⭐⭐</p>
@@ -218,7 +215,6 @@
 				</p>
 			</div>
 		</c:forEach>
-		
 	</div>
 </body>
 
