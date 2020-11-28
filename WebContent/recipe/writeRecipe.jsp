@@ -108,6 +108,42 @@
 	function removeRow() {
 		oTbl.deleteRow(oTbl.clickedRowIndex);
 	}
+	function frmCheck() {
+		var frm = document.form;
+
+		if (frm.recipeName.value == "") {
+			alert("레시피명을 입력하십시오.");
+			frm.recipeName.focus();
+			return false;
+		}
+		if (frm.summary.value == "") {
+			alert("summary를 입력하십시오.");
+			frm.summary.focus();
+			return false;
+		}
+		if (frm.nation.value == "") {
+			alert("해당되는 나라를 입력하십시오.");
+			frm.nation.focus();
+			return false;
+		}
+		if (frm.difficulty.value == "") {
+
+			alert("해당하는 난이도를 선택해주십시오");
+			frm.difficulty.focus();
+			return false;
+		}
+		for (var i = 0; i <= frm.elements.length - 1; i++) {
+			if (frm.elements[i].name == "stepList") {
+				if (!frm.elements[i].value) {
+					alert("조리과정 텍스트박스에 값을 입력하세요!");
+					frm.elements[i].focus();
+					return false;
+				}
+			}
+		}
+		
+		frm.submit();
+	}
 	</script>
 </head>
 
@@ -197,6 +233,7 @@
 						<td colspan="2">
 							<div class="button-box">
 								<input type="button" class="btn" onClick="frmCheck()" value="레시피등록">
+								<input type="submit" class="btn" value="레시피 등록">
 							</div>
 						</td>
 					</tr>
@@ -207,42 +244,7 @@
 	</div>
 	<script type="text/javascript">
 	
-	function frmCheck() {
-		var frm = document.form;
-
-		if (frm.recipeName.value == "") {
-			alert("레시피명을 입력하십시오.");
-			frm.recipeName.focus();
-			return false;
-		}
-		if (frm.summary.value == "") {
-			alert("summary를 입력하십시오.");
-			frm.summary.focus();
-			return false;
-		}
-		if (frm.nation.value == "") {
-			alert("해당되는 나라를 입력하십시오.");
-			frm.nation.focus();
-			return false;
-		}
-		if (frm.difficulty.value == "") {
-
-			alert("해당하는 난이도를 선택해주십시오");
-			frm.difficulty.focus();
-			return false;
-		}
-		for (var i = 0; i <= frm.elements.length - 1; i++) {
-			if (frm.elements[i].name == "stepList") {
-				if (!frm.elements[i].value) {
-					alert("조리과정 텍스트박스에 값을 입력하세요!");
-					frm.elements[i].focus();
-					return false;
-				}
-			}
-		}
-		
-		frm.submit();
-	}
+	
             var rIndex,
                 table = document.getElementById("table");
             // check the empty input

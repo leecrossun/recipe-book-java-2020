@@ -166,7 +166,7 @@
 		<br>
 		<br>
 	</div>
-	</div>
+	
 	<!-- Review Area -->
 	<div class="container" style="align-items: center; text-align: center;">
 		<div class="sub-container" style="margin: 0px auto;">
@@ -192,7 +192,6 @@
 			</form>
 		</div>
 	
-	<c:if test=${review ne null }>
 		<div class="comment">
 			<p>작성자 : USER1</p>
 			<p>별점 : ⭐⭐⭐⭐⭐</p>
@@ -219,7 +218,7 @@
 				</p>
 			</div>
 		</c:forEach>
-		</c:if>
+		
 	</div>
 </body>
 
