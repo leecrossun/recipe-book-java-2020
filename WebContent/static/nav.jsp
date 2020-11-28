@@ -74,7 +74,6 @@
 	<p class="logo">Recipe Book</p>
 	<form name="form" class="searchContainer" style="border: none;" method="GET" 
 		action="<c:url value='/recipe/findByRcpName'/>">
-		<br>
 		<div class="search" style="border:none;">
 			<input type="text" class="searchBar" name="recipeName" placeholder="레시피명 입력">
 			<input type="button" class="searchBtn" value="검색" onClick="search()">
