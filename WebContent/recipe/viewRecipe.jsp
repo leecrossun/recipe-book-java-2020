@@ -209,7 +209,7 @@
 		<c:forEach var="review" items="${reviews}">
 			<div class="comment">
 				<p>작성자 : ${review.userId} </p>
-				<p>별점 : ⭐⭐⭐⭐⭐</p>
+				<p>별점 :${review.rating}</p>
 				<p>${review.content}</p>
 				<p>${review.published} 작성</p>
 				<p>
