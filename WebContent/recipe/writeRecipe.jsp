@@ -76,80 +76,46 @@
 		}
 	</style>
 	<script type="text/javascript">
-	$(document).ready(function () {
-		$('#selectDiff').change(function () {
-			var selectedText = $("#selectDiff option:selected").val();
-			$("#difficulty").val(selectedText);
-		})
-	});
-	function openWin(){
-		window.open("/RecipeBook/ingredient/find.jsp", "재료검색", "width=500, height=600");
-	}
-	function setChildValue(name) {
-		document.getElementById("fIngredientName").value = name;
-	}
-	
-	var oTbl;
-	
-	function insRow() {
-		oTbl = document.getElementById("addTable");
-		var oRow = oTbl.insertRow();
-		oRow.onmouseover = function () {
-			oTbl.clickedRowIndex = this.rowIndex
-		}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
-		var oCell = oRow.insertCell();
+		$(document).ready(function () {
+			$('#selectDiff').change(function () {
+				var selectedText = $("#selectDiff option:selected").val();
+				$("#difficulty").val(selectedText);
+			})
+		});
 
-		//삽입될 Form Tag
-		var frmTag = "<input class=form type=text name=stepList style=width:350px; height:20px;> ";
-		frmTag += "<input type=button value='삭제' class='btn' onClick='removeRow()' style='cursor:hand'>";
-		oCell.innerHTML = frmTag;
-	}
-	//Row 삭제
-	function removeRow() {
-		oTbl.deleteRow(oTbl.clickedRowIndex);
-	}
-	function frmCheck() {
-		var frm = document.form;
+		function openWin() {
+			window.open("/RecipeBook/ingredient/find.jsp", "재료검색", "width=500, height=600");
+		}
 
-		if (frm.recipeName.value == "") {
-			alert("레시피명을 입력하십시오.");
-			frm.recipeName.focus();
-			return false;
+		function setChildValue(name) {
+			document.getElementById("fIngredientName").value = name;
 		}
-		if (frm.summary.value == "") {
-			alert("summary를 입력하십시오.");
-			frm.summary.focus();
-			return false;
-		}
-		if (frm.nation.value == "") {
-			alert("해당되는 나라를 입력하십시오.");
-			frm.nation.focus();
-			return false;
-		}
-		if (frm.difficulty.value == "") {
 
-			alert("해당하는 난이도를 선택해주십시오");
-			frm.difficulty.focus();
-			return false;
+		var oTbl;
+
+		function insRow() {
+			oTbl = document.getElementById("addTable");
+			var oRow = oTbl.insertRow();
+			oRow.onmouseover = function () {
+				oTbl.clickedRowIndex = this.rowIndex
+			}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
+			var oCell = oRow.insertCell();
+
+			//삽입될 Form Tag
+			var frmTag = "<input class=form type=text name=stepList style=width:350px; height:20px;> ";
+			frmTag += "<input type=button value='삭제' class='btn' onClick='removeRow()' style='cursor:hand'>";
+			oCell.innerHTML = frmTag;
 		}
-		for (var i = 0; i <= frm.elements.length - 1; i++) {
-			if (frm.elements[i].name == "stepList") {
-				if (!frm.elements[i].value) {
-					alert("조리과정 텍스트박스에 값을 입력하세요!");
-					frm.elements[i].focus();
-					return false;
-				}
-			}
+		//Row 삭제
+		function removeRow() {
+			oTbl.deleteRow(oTbl.clickedRowIndex);
 		}
-		
-		frm.submit();
-	}
 	</script>
 </head>
 
 <body>
 	<!-- Navigation Bar -->
-	<%@include file="../static/nav.jsp"%>
+	 <%@include file="../static/nav.jsp"%>
 
 	<!-- Write Area -->
 	<div class="container">
@@ -160,7 +126,7 @@
 		<p class="mainTitle">🍧 나만의 레시피를 등록해보세요! 🍧</p>
 		<br>
 		<div class="sub-container" style="margin: 0px auto;">
-			<form name="form" method="POST" action="<c:url value='/recipe/create' />"> 
+			<form name="form" method="POST" action="<c:url value='/recipe/create' />">
 				<table>
 					<tr>
 						<td width="100px">레시피 이름</td>
@@ -180,26 +146,28 @@
 						<td>필요한 재료</td>
 						<!--  <td><input name="ingList" type="text" class="form" placeholder="재료명 입력"><a class="btn">검색</a><a
 								class="btn">등록</a></td>-->
-						<td>  <table id="table" border="1">
-                    <tr>
-                       <th width="300px">재료명</th>
-						<th width="100px">양</th>
-						<th width="100px">단위</th>
-						
-                    </tr>
-                </table>
-			
-				</div>
-				<div>
-                ingredientName :<input type="text" name="fIngredientName" id="fIngredientName">
-                <input type=button class=searchBtn value='검색' onClick=openWin();>
-                amount :<input placeholder="ex)300" class="form" type="number" id="fAmount"name="fAmount" style="width:60px; height:20px;">
-                unit :<input placeholder="ex)g" class="form" type="text" name="fUnit" id="fUnit" style="width:60px; height:20px;">
-               
-                <input type="button" onclick="addHtmlTableRow();" value="ADD">
-                <!-- <button onclick="editHtmlTbleSelectedRow();">Edit</button> -->
-                <input type="button" onclick="removeSelectedRow();" value="REMOVE">
-           		 </div>
+						<td>
+							<table id="table" border="1">
+								<tr>
+									<th width="300px">재료명</th>
+									<th width="100px">양</th>
+									<th width="100px">단위</th>
+
+								</tr>
+							</table>
+
+							<div>
+								ingredientName :<input type="text" name="fIngredientName" id="fIngredientName">
+								<input type=button class=searchBtn value='검색' onClick=openWin();>
+								amount :<input placeholder="ex)300" class="form" type="number" id="fAmount"
+									name="fAmount" style="width:60px; height:20px;">
+								unit :<input placeholder="ex)g" class="form" type="text" name="fUnit" id="fUnit"
+									style="width:60px; height:20px;">
+
+								<input type="button" onclick="addHtmlTableRow();" value="ADD">
+								<!-- <button onclick="editHtmlTbleSelectedRow();">Edit</button> -->
+								<input type="button" onclick="removeSelectedRow();" value="REMOVE">
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -210,8 +178,7 @@
 					<tr>
 						<td>요리난이도</td>
 						<td>
-							<input name="difficulty" id="difficulty" type="text">
-							<select id="selectDiff">
+							<select id="selectDiff" name="difficulty">
 								<option value="">직접 입력</option>
 								<option value="상">상</option>
 								<option value="중상">중상</option>
@@ -232,125 +199,153 @@
 					<tr>
 						<td colspan="2">
 							<div class="button-box">
-								<input type="button" class="btn" onClick="frmCheck()" value="레시피등록">
-								<input type="submit" class="btn" value="레시피 등록">
+								<!-- <input type="button" class="btn" onClick="frmCheck()" value="레시피등록"> -->
+								<input type="submit" class="btn" onClick="frmCheck()" value="레시피등록">
 							</div>
 						</td>
 					</tr>
 				</table>
-			  </form>
+			</form>
 		</div>
 
 	</div>
 	<script type="text/javascript">
-	
-	
-            var rIndex,
-                table = document.getElementById("table");
-            // check the empty input
-            function checkEmptyInput()
-            {
-                var isEmpty = false,
-               		fIngredientName = document.getElementById("fIngredientName").value,
-               		fAmount = document.getElementById("fAmount").value,
-               		fUnit = document.getElementById("fUnit").value;
-            
-                if(fIngredientName === ""){
-                    alert("fIngredientName Connot Be Empty");
-                    isEmpty = true;
-                }
-                else if(fAmount === ""){
-                    alert("fAmount Connot Be Empty");
-                    isEmpty = true;
-                }
-                else if(fUnit === ""){
-                    alert("fUnit Connot Be Empty");
-                    isEmpty = true;
-                }
-                return isEmpty;
-            }
-            
-            // add Row
-            function addHtmlTableRow()
-            {
-                // get the table by id
-                // create a new row and cells
-                // get value from input text
-                // set the values into row cell's
-                if(!checkEmptyInput()){
-                var newRow = table.insertRow(),
-               
-                    cell1 = newRow.insertCell(0),
-                    cell2 = newRow.insertCell(1),
-                    cell3 = newRow.insertCell(2),
-           
-                    fIngredientName = document.getElementById("fIngredientName").value,
-                    fAmount = document.getElementById("fAmount").value,
-                    fUnit = document.getElementById("fUnit").value;
-            		
-                	newRow.onmouseover = function() {
-            			table.clickedRowIndex = this.rowIndex;
-            		}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
-            		
-                
-                cell1.innerHTML = "<input class=form type=text placeholder=검색버튼클릭 id=selectName name=ingName value='"+fIngredientName+"' style=width:200px height:20px;>";
-                cell2.innerHTML =  "<input placeholder=ex)300 class=form type=number name=amount value='"+fAmount+"' style=width:60px; height:20px;> ";
-                cell3.innerHTML =  "<input placeholder=ex)g class=form type=text name=unit value='"+fUnit+"' style=width:60px; height:20px;> ";
-                
-               
-                // call the function to set the event to the new row
-                selectedRowToInput();
-            }
-            }
-          //Row 삭제
-        	function removeRow() {
-        		table.deleteRow(table.clickedRowIndex);
-        	}
-        	
-            // display selected row data into input text
-            function selectedRowToInput()
-            {
-                
-                for(var i = 1; i < table.rows.length; i++)
-                {
-                    table.rows[i].onclick = function()
-                    {
-                      // get the seected row index
-                      rIndex = this.rowIndex;
-                    
-                      //document.getElementById("fIngredientName").value = this.cells[0].innerHTML;
-                      //document.getElementById("fAmount").value = this.cells[1].innerHTML;
-                      //document.getElementById("fUnit").value = this.cells[2].innerHTML;
-                      //document.getElementById("fExpireDate").value = this.cells[3].innerHTML;
-                    };
-                }
-            }
-            selectedRowToInput();
-            
-            function editHtmlTbleSelectedRow()
-            {
-                var fIngredientName = document.getElementById("fIngredientName").value,
-                fAmount = document.getElementById("fAmount").value,
-                fUnit = document.getElementById("fUnit").value;
-               
-               if(!checkEmptyInput()){
-                table.rows[rIndex].cells[0].innerHTML = fIngredientName;
-                table.rows[rIndex].cells[1].innerHTML = fAmount;
-                table.rows[rIndex].cells[2].innerHTML = fUnit;
-           
-              }
-            }
-            
-            function removeSelectedRow()
-            {
-                table.deleteRow(rIndex);
-                // clear input text
-                document.getElementById("fIngredientName").value = "";
-                document.getElementById("fAmount").value = "";
-                document.getElementById("fUnit").value = "";
-               
-            }
-        </script>
+		function frmCheck() {
+			var frm = document.form;
+
+			if (frm.recipeName.value == "") {
+				alert("레시피명을 입력하십시오.");
+				frm.recipeName.focus();
+				return false;
+			}
+			if (frm.summary.value == "") {
+				alert("summary를 입력하십시오.");
+				frm.summary.focus();
+				return false;
+			}
+			if (frm.nation.value == "") {
+				alert("해당되는 나라를 입력하십시오.");
+				frm.nation.focus();
+				return false;
+			}
+			if (frm.difficulty.value == "") {
+
+				alert("해당하는 난이도를 선택해주십시오");
+				frm.difficulty.focus();
+				return false;
+			}
+			for (var i = 0; i <= frm.elements.length - 1; i++) {
+				if (frm.elements[i].name == "stepList") {
+					if (!frm.elements[i].value) {
+						alert("조리과정 텍스트박스에 값을 입력하세요!");
+						frm.elements[i].focus();
+						return false;
+					}
+				}
+			}
+
+			frm.submit();
+		}
+		var rIndex,
+			table = document.getElementById("table");
+		// check the empty input
+		function checkEmptyInput() {
+			var isEmpty = false,
+				fIngredientName = document.getElementById("fIngredientName").value,
+				fAmount = document.getElementById("fAmount").value,
+				fUnit = document.getElementById("fUnit").value;
+
+			if (fIngredientName === "") {
+				alert("fIngredientName Connot Be Empty");
+				isEmpty = true;
+			} else if (fAmount === "") {
+				alert("fAmount Connot Be Empty");
+				isEmpty = true;
+			} else if (fUnit === "") {
+				alert("fUnit Connot Be Empty");
+				isEmpty = true;
+			}
+			return isEmpty;
+		}
+
+		// add Row
+		function addHtmlTableRow() {
+			// get the table by id
+			// create a new row and cells
+			// get value from input text
+			// set the values into row cell's
+			if (!checkEmptyInput()) {
+				var newRow = table.insertRow(),
+
+					cell1 = newRow.insertCell(0),
+					cell2 = newRow.insertCell(1),
+					cell3 = newRow.insertCell(2),
+
+					fIngredientName = document.getElementById("fIngredientName").value,
+					fAmount = document.getElementById("fAmount").value,
+					fUnit = document.getElementById("fUnit").value;
+
+				newRow.onmouseover = function () {
+					table.clickedRowIndex = this.rowIndex;
+				}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
+
+
+				cell1.innerHTML = "<input class=form type=text placeholder=검색버튼클릭 id=selectName name=ingName value='" +
+					fIngredientName + "' style=width:200px height:20px;>";
+				cell2.innerHTML = "<input placeholder=ex)300 class=form type=number name=amount value='" + fAmount +
+					"' style=width:60px; height:20px;> ";
+				cell3.innerHTML = "<input placeholder=ex)g class=form type=text name=unit value='" + fUnit +
+					"' style=width:60px; height:20px;> ";
+
+
+				// call the function to set the event to the new row
+				selectedRowToInput();
+			}
+		}
+		//Row 삭제
+		function removeRow() {
+			table.deleteRow(table.clickedRowIndex);
+		}
+
+		// display selected row data into input text
+		function selectedRowToInput() {
+
+			for (var i = 1; i < table.rows.length; i++) {
+				table.rows[i].onclick = function () {
+					// get the seected row index
+					rIndex = this.rowIndex;
+
+					//document.getElementById("fIngredientName").value = this.cells[0].innerHTML;
+					//document.getElementById("fAmount").value = this.cells[1].innerHTML;
+					//document.getElementById("fUnit").value = this.cells[2].innerHTML;
+					//document.getElementById("fExpireDate").value = this.cells[3].innerHTML;
+				};
+			}
+		}
+		selectedRowToInput();
+
+		function editHtmlTbleSelectedRow() {
+			var fIngredientName = document.getElementById("fIngredientName").value,
+				fAmount = document.getElementById("fAmount").value,
+				fUnit = document.getElementById("fUnit").value;
+
+			if (!checkEmptyInput()) {
+				table.rows[rIndex].cells[0].innerHTML = fIngredientName;
+				table.rows[rIndex].cells[1].innerHTML = fAmount;
+				table.rows[rIndex].cells[2].innerHTML = fUnit;
+
+			}
+		}
+
+		function removeSelectedRow() {
+			table.deleteRow(rIndex);
+			// clear input text
+			document.getElementById("fIngredientName").value = "";
+			document.getElementById("fAmount").value = "";
+			document.getElementById("fUnit").value = "";
+
+		}
+	</script>
 	<!-- 
 	<form>
 		<div class="form-group">
