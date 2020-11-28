@@ -33,7 +33,13 @@ public class ViewRecipeController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		String recipeId = request.getParameter("recipeId");
+		String recipeId;
+		
+		if (request.getParameter("recipeId") != null)
+			recipeId = request.getParameter("recipeId");
+		else
+			recipeId = (String) request.getAttribute("recipeId");
+		
 		Recipe recipe = recipeDAO.findRecipeById(recipeId);
 		List<RecipeIngredient> rcpIng = recipeDAO.findRcpIngById(recipeId);
 		List<RecipeStep> rcpStep = recipeDAO.findRcpStepById(recipeId);
