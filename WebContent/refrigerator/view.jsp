@@ -46,7 +46,7 @@ function ingredientRemove() {
 
 	<!-- TitleArea -->
 	<div class="container">
-		<p class="mainTitle">💜 Somvengers 님의 냉장고 입니다 💜</p>
+		<p class="mainTitle">💜 ${sessionScope.userId } 님의 냉장고 입니다 💜</p>
 	</div>
 	<!-- Ingredients Area -->
 	<div class="container">
