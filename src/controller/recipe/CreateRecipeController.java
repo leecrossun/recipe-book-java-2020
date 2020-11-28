@@ -91,7 +91,8 @@ public class CreateRecipeController implements Controller{
 			
 			return "/recipe/viewRecipe.jsp";
 		}catch(Exception e){
-			return "/recipe/writeRecipe.jsp";
+			//return "/recipe/writeRecipe.jsp";
+			return "/refrigerator/view";
 		}
 	}
 }
