@@ -15,7 +15,7 @@ public class ReviewDAO {
 	
 	// UserId와 일치하는 Review return
 	public List<Review> findReviewByUserID(String userId) {
-		String sql = "SELECT R2.RECIPENAME, R1.CONTENT, R1.RATING "
+		String sql = "SELECT R2.RECIPENAME, R1.CONTENT, R1.RATING, R1.RECIPEID "
 				+ "FROM REVIEW R1, RECIPE R2 "
 				+ "WHERE R1.USERID = ? AND R1.RECIPEID = R2.RECIPEID";
 		
@@ -30,11 +30,13 @@ public class ReviewDAO {
 			
 			while (rs.next()) {
 				Review myReview = new Review();
+				myReview.setRecipeId(rs.getString("RECIPEID"));
 				myReview.setRecipeName(rs.getString("RECIPENAME"));
 				myReview.setContent(rs.getString("CONTENT"));
 				myReview.setRating(rs.getInt("RATING"));
 				list.add(myReview);
 			}
+			
 			
 			if (list.isEmpty())
 				System.out.println("findReviewByUserID empty");
