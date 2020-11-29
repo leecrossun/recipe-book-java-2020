@@ -104,8 +104,9 @@ function removeMsg() {
 		<p class="mainTitle">🍧 ${recipe.summary} 🍧</p>
 		<br>
 		<div class="image sub-container">
-			<img style="width: 600px; height: auto"
-				src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E" alt="사진" />
+			<!-- <img style="width: 600px; height: auto"
+				src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E" alt="사진" /> -->
+				<img style="width: 600px; height: auto" src="${recipe.image }" alt="${recipe.recipeName }">
 		</div>
 		<br>
 		<br>
