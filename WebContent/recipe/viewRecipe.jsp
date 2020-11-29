@@ -131,7 +131,12 @@ function removeMsg() {
 				<c:forEach var="ingredient" items="${rcpIng}">
 					<tr>
 						<td>${ingredient.ingredientName}</td>
-						<td>${ingredient.amount} ${ingredient.unit}</td>
+						<td>
+						<c:if test="${ingredient.amount ne 0}">
+							<c:out value="${ingredient.amount}" />
+						</c:if>
+						 ${ingredient.unit}
+						</td>
 					</tr>
 				</c:forEach>
 <!-- 				<tr>
@@ -226,7 +231,7 @@ function removeMsg() {
 				<p>${review.content}</p>
 				<p>${review.published} 작성</p>
 				<p>
-				<a class="btn" href="<c:url value='review/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a>
+				<%-- <a class="btn" href="<c:url value='review/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a> --%>
 				<a class="btn" href="<c:url value='/review/delete'>
 												<c:param name='reviewId' value='${review.reviewId}'/>
 												<c:param name='recipeId' value='${recipe.recipeId}'/>
