@@ -5,7 +5,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.Controller;
+import controller.DispatcherServlet;
 import persistence.dao.RecipeDAO;
 import persistence.dao.ReviewDAO;
 import service.dto.Recipe;
@@ -16,9 +20,10 @@ import service.dto.Review;
 public class ViewRecipeController implements Controller{
 	
 	private RecipeDAO recipeDAO;
-
 	private ReviewDAO reviewDAO;
 	
+	private static final Logger logger = LoggerFactory.getLogger(ViewRecipeController.class);
+	  
 	public ViewRecipeController() {
 		try {
 			recipeDAO = new RecipeDAO();
