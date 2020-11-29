@@ -25,13 +25,16 @@ public class DeleteReviewController implements Controller{
 		Review review = reviewDAO.findReviewByReviewId(reviewId);
 			
 		try {
+			//System.out.println(userId + recipeId +"(레시피아이디)" + content + rating); // 파라미터 확인
 			reviewDAO.deleteMyReview(review);
+			return "/recipe/view";
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "/recipe/view";
+			return "/refrigerator/view";
+
 		}
 
-		return "redirect:/recipe/view";  // 리뷰가 원래 있던 recipe 로 리다이렉트 (url 확인 후 수정할 것)
 	}
 
 

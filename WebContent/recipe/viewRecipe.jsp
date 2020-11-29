@@ -104,21 +104,23 @@ function removeMsg() {
 		<p class="mainTitle">🍧 ${recipe.summary} 🍧</p>
 		<br>
 		<div class="image sub-container">
-			<img style="width: 600px; height: auto"
-				src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E" alt="사진" />
+			<!-- <img style="width: 600px; height: auto"
+				src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E" alt="사진" /> -->
+				<img style="width: 600px; height: auto" src="${recipe.image }" alt="${recipe.recipeName }">
 		</div>
 		<br>
 		<br>
 		<div class="material sub-container">
 			<p class="title">🥕 준비물</p>
 			<br>
-			<form>
-				<select class="form">
+			<form name="form" method="POST" action="<c:url value='/recipe/view'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">
+<!-- 				<select class="form" name="serving">
 					<option selected>몇인분?</option>
-					<option value="1">1</option>
+					<option value="1" selected>1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
-				</select> <label>인분 조리</label>
+				</select>-->
+				<input type="text" name="serving" value="${servingString}"/> <label>인분 조리</label>
 				<button type="submit" class="btn">적용</button>
 			</form>
 			<table>
@@ -132,7 +134,7 @@ function removeMsg() {
 						<td>${ingredient.amount} ${ingredient.unit}</td>
 					</tr>
 				</c:forEach>
-				<tr>
+<!-- 				<tr>
 					<td>사과</td>
 					<td>1 개</td>
 				</tr>
@@ -143,7 +145,7 @@ function removeMsg() {
 				<tr>
 					<td>당근</td>
 					<td>1 개</td>
-				</tr>
+				</tr> -->
 			</table>
 		</div>
 		<br>
@@ -188,7 +190,7 @@ function removeMsg() {
 												
 												
 			<p class="title">🍰 후기 작성</p>
-			<form name="form" method="POST" action="<c:url value='/review/create'><c:param name='recipeId' value='${recipe.recipeId}'/></c:url>">
+			<form class="servingSelect" name="form" method="POST" action="<c:url value='/review/create'><c:param name='recipeId' value='${recipe.recipeId}'/></c:url>">
 				⭐ 별점 <select class="form" name="rating">
 					<option selected>별점</option>
 					<option value="1">⭐</option>
@@ -230,6 +232,7 @@ function removeMsg() {
 				<a class="btn" href="<c:url value='review/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a>
 				<a class="btn" href="<c:url value='/review/delete'>
 												<c:param name='reviewId' value='${review.reviewId}'/>
+												<c:param name='recipeId' value='${recipe.recipeId}'/>
 												</c:url>" onClick="return removeMsg()">삭제</a>
 				</p>
 			</div>
@@ -252,6 +255,10 @@ function removeMsg() {
 
 			frm.submit();
 		}
+		
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+			$('select[name="serving"]').val(request.getParameter("servingString"));
 		</script>
 </body>
 

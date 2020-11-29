@@ -96,6 +96,7 @@ public class ReviewDAO {
 		
 		String sql = "DELETE FROM REVIEW WHERE REVIEWID = ?";
 		Object[] param = new Object[] {review.getReviewId()};
+		System.out.println("리뷰아이디로그 : " + review.getReviewId());
 		jdbcUtil.setSqlAndParameters(sql, param);
 		try {				
 			int result = jdbcUtil.executeUpdate();

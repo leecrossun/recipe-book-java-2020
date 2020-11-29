@@ -42,15 +42,14 @@ public class CreateReviewController implements Controller{
 
 		try {
 			reviewDAO.writeMyReview(review);
-			
+			return "/recipe/view";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("recipeId", recipeId);
-			return "redirect:/recipe/view";
+
+			return "/refrigerator/view";
 		}
-		request.setAttribute("recipeId", recipeId);
-		return "redirect:/recipe/view";
+		
 	}
 
 }
