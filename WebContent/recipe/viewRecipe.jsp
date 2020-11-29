@@ -132,7 +132,7 @@ function removeMsg() {
 						<td>${ingredient.amount} ${ingredient.unit}</td>
 					</tr>
 				</c:forEach>
-				<tr>
+<!-- 				<tr>
 					<td>사과</td>
 					<td>1 개</td>
 				</tr>
@@ -143,7 +143,7 @@ function removeMsg() {
 				<tr>
 					<td>당근</td>
 					<td>1 개</td>
-				</tr>
+				</tr> -->
 			</table>
 		</div>
 		<br>
@@ -227,6 +227,7 @@ function removeMsg() {
 				<a class="btn" href="<c:url value='review/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a>
 				<a class="btn" href="<c:url value='/review/delete'>
 												<c:param name='reviewId' value='${review.reviewId}'/>
+												<c:param name='recipeId' value='${recipe.recipeId}'/>
 												</c:url>" onClick="return removeMsg()">삭제</a>
 				</p>
 			</div>
