@@ -4,10 +4,10 @@ public class RecipeIngredient {
 	private String recipeId;
 	private String ingredientId;
 	private String ingredientName;
-	private int amount;
+	private double amount;
 	private String unit;
 	
-	public RecipeIngredient(String recipeId, String ingredientId, String ingredientName, int amount, String unit) {
+	public RecipeIngredient(String recipeId, String ingredientId, String ingredientName, double amount, String unit) {
 		this.recipeId = recipeId;
 		this.ingredientId = ingredientId;
 		this.ingredientName = ingredientName;
@@ -35,10 +35,10 @@ public class RecipeIngredient {
 	public void setIngredientName(String ingredientName) {
 		this.ingredientName = ingredientName;
 	}
-	public int getAmount() {
+	public double getAmount() {
 		return amount;
 	}
-	public void setAmount(int amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 	public String getUnit() {
