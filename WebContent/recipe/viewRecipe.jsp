@@ -80,13 +80,30 @@
 			border: none !important;
 		}
 	</style>
-	<script type="text/javascript">
+<script type="text/javascript">
 
 function removeMsg() {
 	return confirm("정말 삭제하시겠습니까?");		
 }
-</script>
-	
+
+function frmCheck() {
+	var frm = document.form;
+
+	if (frm.rating.value == '별점') {
+		alert("별점을 입력하십시오.");
+		frm.recipeName.focus();
+		return false;
+	}
+	if (frm.content.value == "") {
+				alert("내용을 입력하십시오.");
+				frm.summary.focus();
+				return false;
+			}
+
+			frm.submit();
+		}
+		
+		</script>
 </head>
 
 <body>
@@ -169,16 +186,19 @@ function removeMsg() {
 		</div>
 		<br>
 		<br>
+		<c:if test="${recipe.userId eq sessionScope.userId}">
 		<div class="button-box">
+		
 			<a class="btn"
 				href="<c:url value='/recipe/update'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">수정</a>
 			<!-- <a class="btn"
 				href="<c:url value='/recipe/delete'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">삭제</a> -->
-			<a href="<c:url value='/recipe/delete'>
+			<a class="btn" href="<c:url value='/recipe/delete'>
                			<c:param name='recipeId' value='${recipe.recipeId }'/>
                			<c:param name='userId' value='${recipe.userId}'/>
-               			</c:url>">삭제하기</a>
+               			</c:url>">삭제하기</a>			
 		</div>
+		</c:if>
 		<br>
 		<br>
 	</div>
@@ -206,9 +226,9 @@ function removeMsg() {
 				<br>
 				<div class="button-box">
 					<input class="btn" type="submit" onClick="frmCheck()" value="등록">
-					
 				</div>
 			</form>
+			
 		</div>
 <!-- 		<div class="comment">
 			<p>작성자 : USER1</p>
@@ -232,36 +252,16 @@ function removeMsg() {
 				<p>${review.published} 작성</p>
 				<p>
 				<%-- <a class="btn" href="<c:url value='review/update'> <c:param name='recipe' value='&{recipe}'/> </c:url>">수정</a> --%>
-				<a class="btn" href="<c:url value='/review/delete'>
+				<c:if test="${review.userId eq sessionScope.userId}">
+							<a class="btn" href="<c:url value='/review/delete'>
 												<c:param name='reviewId' value='${review.reviewId}'/>
 												<c:param name='recipeId' value='${recipe.recipeId}'/>
 												</c:url>" onClick="return removeMsg()">삭제</a>
+				</c:if>
 				</p>
 			</div>
 		</c:forEach>
 	</div>
-	<script type="text/javascript">
-		function frmCheck() {
-			var frm = document.form;
-
-			if (frm.rating.value == "") {
-				alert("별점을 입력하십시오.");
-				frm.recipeName.focus();
-				return false;
-			}
-			if (frm.content.value == "") {
-				alert("내용을 입력하십시오.");
-				frm.summary.focus();
-				return false;
-			}
-
-			frm.submit();
-		}
-		
-		</script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-			$('select[name="serving"]').val(request.getParameter("servingString"));
-		</script>
 </body>
 
 </html>

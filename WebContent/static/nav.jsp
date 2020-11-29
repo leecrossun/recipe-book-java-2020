@@ -10,6 +10,10 @@
 		}
 		form.submit();
 	}
+
+function removeMsg() {
+	return confirm("정말 탈퇴하시겠습니까?");		
+}
 </script>
 <style>
 /* Hamburger Menu*/
@@ -65,7 +69,7 @@
 				class="w3-bar-item w3-button">레시피 쓰기</a>
 			<a
 				href="<c:url value='/user/delete'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>"
-				class="w3-bar-item w3-button">회원 탈퇴</a>
+				class="w3-bar-item w3-button" onClick="return removeMsg()">회원 탈퇴</a>
 		</c:if>
 	</div>
 	<!-- 		<div style="width: 70px; float: left; background-color: rgb(226, 226, 226); border: none; border-radius: 10px;">
