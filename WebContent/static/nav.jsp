@@ -66,13 +66,14 @@
 			<a
 				href="<c:url value='/user/delete'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>"
 				class="w3-bar-item w3-button">회원 탈퇴</a>
+				
 		</c:if>
 	</div>
 	<!-- 		<div style="width: 70px; float: left; background-color: rgb(226, 226, 226); border: none; border-radius: 10px;">
 			<button class="w3-button w3-xlarge" onclick="w3_open()">☰</button>
 		</div> -->
 	<p class="logo">Recipe Book</p>
-	<form name="form" class="searchContainer" style="border: none;" method="GET" 
+	<form class="searchContainer" style="border: none;" method="GET" 
 		action="<c:url value='/recipe/findByRcpName'/>">
 		<div class="search" style="border:none;">
 			<input type="text" class="searchBar" name="recipeName" placeholder="레시피명 입력">
