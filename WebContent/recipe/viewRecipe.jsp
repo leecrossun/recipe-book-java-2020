@@ -113,13 +113,14 @@ function removeMsg() {
 		<div class="material sub-container">
 			<p class="title">🥕 준비물</p>
 			<br>
-			<form>
-				<select class="form">
+			<form name="form" method="POST" action="<c:url value='/recipe/view'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">
+<!-- 				<select class="form" name="serving">
 					<option selected>몇인분?</option>
-					<option value="1">1</option>
+					<option value="1" selected>1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
-				</select> <label>인분 조리</label>
+				</select>-->
+				<input type="text" name="serving" value="${servingString}"/> <label>인분 조리</label>
 				<button type="submit" class="btn">적용</button>
 			</form>
 			<table>
@@ -186,7 +187,7 @@ function removeMsg() {
 												
 												
 			<p class="title">🍰 후기 작성</p>
-			<form name="form" method="POST" action="<c:url value='/review/create'><c:param name='recipeId' value='${recipe.recipeId}'/></c:url>">
+			<form class="servingSelect" name="form" method="POST" action="<c:url value='/review/create'><c:param name='recipeId' value='${recipe.recipeId}'/></c:url>">
 				⭐ 별점 <select class="form" name="rating">
 					<option selected>별점</option>
 					<option value="1">⭐</option>
@@ -251,6 +252,10 @@ function removeMsg() {
 
 			frm.submit();
 		}
+		
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+			$('select[name="serving"]').val(request.getParameter("servingString"));
 		</script>
 </body>
 
