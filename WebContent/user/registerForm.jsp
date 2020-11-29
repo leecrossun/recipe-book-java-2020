@@ -176,7 +176,7 @@
 				</c:if>
 			</div>
 			<div class="login">
-				<input type="button" class="registerBtn" value="회원가입" onClick="userCreate()">
+				<input type="submit" class="registerBtn" value="회원가입" onClick="userCreate()">
 			</div>
 			<br>
 		</div>
