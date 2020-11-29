@@ -15,9 +15,9 @@ public class ReviewDAO {
 	
 	// UserId와 일치하는 Review return
 	public List<Review> findReviewByUserID(String userId) {
-		String sql = "SELECT CONTENT, RATING "
-				+ "FROM REVIEW "
-				+ "WHERE USERID = ? ";
+		String sql = "SELECT R2.RECIPENAME, R1.CONTENT, R1.RATING "
+				+ "FROM REVIEW R1, RECIPE R2 "
+				+ "WHERE R1.USERID = ? AND R1.RECIPEID = R2.RECIPEID";
 		
 		Object[] param = new Object[] { userId };
 		
@@ -30,6 +30,7 @@ public class ReviewDAO {
 			
 			while (rs.next()) {
 				Review myReview = new Review();
+				myReview.setRecipeName(rs.getString("RECIPENAME"));
 				myReview.setContent(rs.getString("CONTENT"));
 				myReview.setRating(rs.getInt("RATING"));
 				list.add(myReview);
@@ -56,20 +57,30 @@ public class ReviewDAO {
 	}
 	
 	// 리뷰 작성
-	public void writeMyReview(Review review) {
+	public int writeMyReview(Review review) {
+		int generatedKey = 0;
 		String sql = "INSERT INTO REVIEW (REVIEWID, CONTENT, RATING, USERID, RECIPEID, PUBLISHED) VALUES(reviewId_seq.nextval, ?, ?, ?, ?, SYSDATE)";
 //		현재시간 구하기 (이걸 DAO에 포함시키는게 맞는지 고민 ... 이후에 SELECT할 떄  담을게 필요해서 published 추가했습니다.
 //		Calendar cal = new GregorianCalendar();
 //		Timestamp now = new Timestamp(cal.getTimeInMillis());
 		
-		Object[] param = new Object[] {review.getContent(), review.getRating(), review.getUserId(), review.getRecipeId(), review.getPublished()};
+		Object[] param = new Object[] {review.getContent(), review.getRating(), review.getUserId(), review.getRecipeId()};
 		jdbcUtil.setSqlAndParameters(sql, param);
+		
+		String key[] = {"reviewId"};
+		
+		
 		try {
-			int result = jdbcUtil.executeUpdate();
-			if (result > 0)
-				System.out.println("createReview success");
-			else
-				System.out.println("createReview failed");
+			jdbcUtil.executeUpdate(key);
+			ResultSet rs = jdbcUtil.getGeneratedKeys();
+			if (rs.next()) {
+			
+			generatedKey = rs.getInt(1);
+			}
+			/*
+			 * if (result > 0) System.out.println("createReview success"); else
+			 * System.out.println("createReview failed");
+			 */
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -77,6 +88,7 @@ public class ReviewDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close(); // resource 諛섑솚
 		}
+		return generatedKey;
 	}
 	
 	// 리뷰 삭제

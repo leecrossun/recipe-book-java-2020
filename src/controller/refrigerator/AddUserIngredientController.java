@@ -43,19 +43,42 @@ public class AddUserIngredientController implements Controller{
 			return "redirect:/user/login/form";
 		}
 		
-		String userId = UserSessionUtils.getLoginUserId(request.getSession());
+		/*String userId = UserSessionUtils.getLoginUserId(request.getSession());
 		String exDate = request.getParameter("expiredDate");
 		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date expiredDate = sdFormat.parse(exDate);
 		
 		String ingName = request.getParameter("ingredientName");
 		List<Ingredient> ingredientList = ingredientDAO.findIngredient(ingName);
-		Ingredient ingredient = ingredientList.get(0);
+		Ingredient ingredient = ingredientList.get(0);*/
 		
-		logger.debug("userId : {}, ingredientName : {}, amount : {}, expiredDate : {}", 
-				userId, ingredient.getIngredientName(), request.getParameter("amount"), expiredDate);
+		String userId = UserSessionUtils.getLoginUserId(request.getSession());
+		String[] ingredientName = request.getParameterValues("ingredientName");
+		String[] amount = request.getParameterValues("amount");
+		String[] unit = request.getParameterValues("unit");
+		String[] exDate = request.getParameterValues("expiredDate");
+		String[] ingredientId = new String[ingredientName.length];
+		logger.debug("userId : {}, ingredientName : {}, expiredDate : {}", 
+				userId, ingredientName[0],  exDate[0]);
+		for (int i = 0; i < ingredientName.length; i++) {
+			List<Ingredient> ingredientList = ingredientDAO.findIngredient(ingredientName[i]);
+			Ingredient ingredient = ingredientList.get(0);
+			ingredientId[i] = ingredient.getIngredientId();
+		}
 		
-	    UserIngredient uIng = new UserIngredient(
+		for (int i = 0; i < ingredientName.length; i++) {
+			UserIngredient uIng = new UserIngredient (
+				userId,
+				ingredientId[i],
+				Integer.parseInt(amount[i]),
+				unit[i],
+				exDate[i]
+					);
+			 refrigeratorDAO.addUserIngredient(uIng);
+		}
+		
+		
+	  /*  UserIngredient uIng = new UserIngredient(
 	    		userId,
 				ingredient.getIngredientId(),
 				Integer.parseInt(request.getParameter("amount")),
@@ -64,7 +87,7 @@ public class AddUserIngredientController implements Controller{
 	    
 	    refrigeratorDAO.addUserIngredient(uIng);
 	    
-	    request.setAttribute("userId", userId);
+	    request.setAttribute("userId", userId);*/
 	    
 		return "redirect:/refrigerator/view";
 	}

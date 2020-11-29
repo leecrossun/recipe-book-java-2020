@@ -81,7 +81,7 @@
 		<div class="table" style="width:100%; border: none; margin: 0px auto;">
 			<p class="title">추가할 재료 입력</p>
 			<form name="form"
-				action="<c:url value='/refrigerator/addIngredient' />">
+				action="<c:url value='/refrigerator/add' />">
 			  <table id="table" border="1">
                     <tr>
                        <th width="300px">재료명</th>
@@ -90,8 +90,7 @@
 						<th width="300px">유통</th>
                     </tr>
                 </table>
-			
-			</div>
+                <input type="submit" class="btn" value="재료 선택 완료">
 			</form>
 				<div>
                 ingredientName :<input type="text" name="fIngredientName" id="fIngredientName">
@@ -103,7 +102,6 @@
                 <button onclick="editHtmlTbleSelectedRow();">Edit</button>
                 <button onclick="removeSelectedRow();">Remove</button>
             </div>
-			<input type="submit" class="btn" value="재료 선택 완료">
 			<!-- <table>
 				<p class="title">정보 입력</p>
 				<th width="100px">재료명</th>
