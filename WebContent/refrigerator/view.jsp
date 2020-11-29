@@ -132,7 +132,9 @@ function ingredientRemove() {
 
 				<p class="title">✍ My Review</p>
 				<c:forEach var="myReview" items="${myReviews}">
-					<a class="list">🤍 ${myReview.recipeName} ${myReview.content} >> ${myReview.rating} 🤍</a><br>
+					<a class="list" href="<c:url value='/recipe/view'>
+               			<c:param name='recipeId' value='${myReview.recipeId}'/>
+               			</c:url>">🤍 ${myReview.recipeName} >> ${myReview.content}  ${myReview.rating} ${star}🤍</a><br>
 					<br>
 				</c:forEach>
 

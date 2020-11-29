@@ -10,6 +10,7 @@ public class Review {
 	private String content;
 	private int rating;
 	private String published;
+	private String star;
 	
 	public Review() {
 		
@@ -104,6 +105,16 @@ public class Review {
 	}
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+
+
+	public String getStar() {
+		return star;
+	}
+
+
+	public void setStar(String star) {
+		this.star = star;
 	}
 	
 	
