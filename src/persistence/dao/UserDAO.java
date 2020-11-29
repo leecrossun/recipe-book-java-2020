@@ -92,13 +92,13 @@ public class UserDAO {
 
 	public User findUser(String userId) {
 		// TODO Auto-generated method stub
-		String sql = "SELECT USERID, USERNAME, PASSWORD, PHONE, EMAIL FROM USERINFO WHERE USERID=?";
+		String sql = "SELECT USERID, USERNAME, PASSWORD, PHONE, EMAIL, AUTHORITY FROM USERINFO WHERE USERID=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});
 		User user = null;
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			if(rs.next()) {
-				user = new User(rs.getString("USERID"), rs.getString("PASSWORD"), rs.getString("USERNAME"), rs.getString("EMAIL"), rs.getString("PHONE"));
+				user = new User(rs.getString("USERID"), rs.getString("PASSWORD"), rs.getString("USERNAME"), rs.getString("EMAIL"), rs.getString("PHONE"), rs.getNString("AUTHORITY"));
 			}
 		}catch (Exception ex) {
 			ex.printStackTrace();

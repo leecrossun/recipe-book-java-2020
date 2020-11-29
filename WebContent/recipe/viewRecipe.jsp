@@ -165,8 +165,12 @@ function removeMsg() {
 		<div class="button-box">
 			<a class="btn"
 				href="<c:url value='/recipe/update'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">수정</a>
-			<a class="btn"
-				href="<c:url value='/recipe/delete'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">삭제</a>
+			<!-- <a class="btn"
+				href="<c:url value='/recipe/delete'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">삭제</a> -->
+			<a href="<c:url value='/recipe/delete'>
+               			<c:param name='recipeId' value='${recipe.recipeId }'/>
+               			<c:param name='userId' value='${recipe.userId}'/>
+               			</c:url>">삭제하기</a>
 		</div>
 		<br>
 		<br>
@@ -195,6 +199,7 @@ function removeMsg() {
 				<br>
 				<div class="button-box">
 					<input class="btn" type="submit" onClick="frmCheck()" value="등록">
+					
 				</div>
 			</form>
 		</div>

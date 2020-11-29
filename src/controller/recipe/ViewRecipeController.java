@@ -1,13 +1,11 @@
 package controller.recipe;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import persistence.dao.IngredientDAO;
 import persistence.dao.RecipeDAO;
 import persistence.dao.ReviewDAO;
 import service.dto.Recipe;

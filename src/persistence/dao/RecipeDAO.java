@@ -216,6 +216,9 @@ public class RecipeDAO {
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			jdbcUtil.close();
+		}finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();
 		}
 	}
 
@@ -377,7 +380,8 @@ public class RecipeDAO {
 	}
 
 	public List<RecipeIngredient> findRcpIngById (String recipeId) {
-		String sql = "SELECT ingredientName, amount, unit " + "FROM RECIPEINGREDIENT " + "WHERE recipeId=?";
+		String sql = "SELECT R1.recipeId, R2.ingredientId, ingredientName, amount, unit " + "FROM RECIPE R1, RECIPE_INGREDIENT R2, INGREDIENT I " 
+					+ "WHERE R2.ingredientId=I.ingredientId and R1.recipeId=R2.recipeId and R1.recipeId=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();

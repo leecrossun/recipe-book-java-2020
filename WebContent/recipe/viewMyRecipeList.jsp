@@ -33,6 +33,7 @@
 				<th width="150px">레시피이름</th>
 				<th width="500px">레시피요약</th>
 				<th></th>
+				<th></th>
 			</tr>
 			<c:forEach var="myRecipe" items="${myRecipeList}">
 				<tr>
@@ -44,6 +45,11 @@
 					<td width="100px"><a href="<c:url value='/recipe/update'>
                			<c:param name='recipeId' value='${myRecipe.recipeId }'/>
                			</c:url>">수정하기</a></td>
+               			
+               		<td width="100px"><a href="<c:url value='/recipe/delete'>
+               			<c:param name='recipeId' value='${myRecipe.recipeId }'/>
+               			<c:param name='userId' value='${myRecipe.userId}'/>
+               			</c:url>">삭제하기</a></td>
 				<tr>
 			</c:forEach>
 		</table>

@@ -36,7 +36,7 @@ public class UserSessionUtils {
         String loginUserId = getLoginUserId(session);
         
         if (loginUserId != null) {
-        	User user = usermanager.findUser(loginUserId); 
+        	
         	if(loginUserId.equals(userId)) //세션과 비교하는 userId가 같으면 OK
         		return true;
         }

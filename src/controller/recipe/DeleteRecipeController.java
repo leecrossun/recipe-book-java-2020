@@ -27,17 +27,18 @@ public class DeleteRecipeController implements Controller{
 		
 		HttpSession session = request.getSession();	
 		
-		if ((UserSessionUtils.isLoginUser("admin", session) && !userId.equals("admin")) 
+		if ((UserSessionUtils.isAdminUser(session)) 
 				|| 												// 또는 
-			(!UserSessionUtils.isLoginUser("admin", session) &&  UserSessionUtils.isLoginUser(userId, session))) { // 로그인한 사용자가 삭제 대상인 경우 (자기 자신을 삭제)
+			(UserSessionUtils.isLoginUser(userId, session))) { // 로그인한 사용자가 삭제 대상인 경우 (자기 자신을 삭제)
 			
 			recipeDAO.deleteRecipe(recipeId);
-			if (UserSessionUtils.isLoginUser("admin", session))
-				return "redirect:/recipe/findByRecipe2";
-			else
-				return "redirect:/refrigerator/view";
+//			if (UserSessionUtils.isAdminUser(session))
+//				return "redirect:/recipe/findByRecipe2";
+//			else
+			//return "redirect:/refrigerator/view.jsp";
+			return "redirect:/recipe/myList?userId="+userId;
 			
 		}
-		return "/recipe/findByRecipe1";
+		return "/recipe/findByRecipe1.jsp";
 	}
 }
