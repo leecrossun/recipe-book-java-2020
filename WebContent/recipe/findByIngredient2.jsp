@@ -59,7 +59,16 @@
 		}
 	</style>
 </head>
+<script type="text/javascript">
 
+		function openWin() {
+			window.open("/RecipeBook/ingredient/find.jsp", "재료검색", "width=500, height=600");
+		}
+
+		function setChildValue(name) {
+			document.getElementById("fIngredientName").value = name;
+		}
+	</script>
 <body>
 	<!-- Navigation Bar -->
 	<%@include file="../static/nav.jsp"%>
@@ -70,7 +79,7 @@
 			<div class="table" style="width:100%; border: none; margin: 0px auto;">
 				<p class="title">추가할 재료 입력</p>
 				<form name="form"
-					action="<c:url value='/refrigerator/add' />">
+					action="<c:url value='/recipe/findByIng' />">
 				  <table id="table" border="1">
 						<tr>
 						   <th width="300px">재료명</th>
@@ -109,5 +118,81 @@
 		</div>
 
 </body>
+
+<script type="text/javascript">
+		var rIndex,
+			table = document.getElementById("table");
+		// check the empty input
+		function checkEmptyInput() {
+			var isEmpty = false,
+				fIngredientName = document.getElementById("fIngredientName").value,
+				fAmount = document.getElementById("fAmount").value,
+				fUnit = document.getElementById("fUnit").value;
+
+			if (fIngredientName === "") {
+				alert("fIngredientName Connot Be Empty");
+				isEmpty = true;
+			}
+			return isEmpty;
+		}
+
+		// add Row
+		function addHtmlTableRow() {
+			// get the table by id
+			// create a new row and cellsg
+			// get value from input text
+			// set the values into row cell's
+			if (!checkEmptyInput()) {
+				var newRow = table.insertRow(),
+
+				cell1 = newRow.insertCell(0),
+
+				fIngredientName = document.getElementById("fIngredientName").value,
+
+				newRow.onmouseover = function () {
+					table.clickedRowIndex = this.rowIndex;
+				}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
+
+
+				cell1.innerHTML = "<input class=form type=text placeholder=검색버튼클릭 id=selectName name=ingName value='" +
+					fIngredientName + "' style=width:200px height:20px;>";
+
+				// call the function to set the event to the new row
+				selectedRowToInput();
+			}
+		}
+		//Row 삭제
+		function removeRow() {
+			table.deleteRow(table.clickedRowIndex);
+		}
+
+		// display selected row data into input text
+		function selectedRowToInput() {
+
+			for (var i = 1; i < table.rows.length; i++) {
+				table.rows[i].onclick = function () {
+					// get the seected row index
+					rIndex = this.rowIndex;
+
+					//document.getElementById("fIngredientName").value = this.cells[0].innerHTML;
+				};
+			}
+		}
+		selectedRowToInput();
+
+		function editHtmlTbleSelectedRow() {
+			var fIngredientName = document.getElementById("fIngredientName").value,
+
+			if (!checkEmptyInput()) {
+				table.rows[rIndex].cells[0].innerHTML = fIngredientName;
+			}
+		}
+
+		function removeSelectedRow() {
+			table.deleteRow(rIndex);
+			// clear input text
+			document.getElementById("fIngredientName").value = "";
+		}
+	</script>
 
 </html>
