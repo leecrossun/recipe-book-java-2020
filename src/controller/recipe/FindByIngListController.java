@@ -30,8 +30,7 @@ public class FindByIngListController implements Controller{
 		
 		request.setAttribute("SearchedRcps", recipeList);
 		
-		return "/recipe/findByIngredient2.jsp";
-		
+		return "redirect:/recipe/findByIngredient2.jsp";
 	}
 	
 	
