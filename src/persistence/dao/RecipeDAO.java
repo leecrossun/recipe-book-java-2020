@@ -348,6 +348,40 @@ public class RecipeDAO {
 		}
 		return null;
 	}
+	
+	public List<Recipe> getRecipeListByIng(String[] ingNames) {
+		String sql = "SELECT RECIPEID, COUNT(RECIPEID) AS CNT "
+				+ "FROM ( SELECT R.RECIPEID, I.INGREDIENTID " 
+				+ "FROM RECIPE R, RECIPE_INGREDIENT RI, INGREDIENT I "
+				+ "WHERE R.RECIPEID = RI.RECIPEID AND RI.INGREDIENTID = I.INGREDIENTID "
+				+ "AND I.INGREDIENTID IN ('%'? "
+				+ "GROUP BY RECIPEID ORDER BY CNT DESC ";
+		
+		Object[] params = new Object[ingNames.length];
+		
+		for (int i = 0; i < ingNames.length; i++) {
+			params[i] = ingNames[i] + "%', ";
+		}
+		jdbcUtil.setSqlAndParameters(sql, params);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<Recipe> rcpList = new ArrayList<Recipe>();
+			
+			while (rs.next()) {
+				Recipe rcp = findRecipeById(rs.getString("recipeid"));
+				rcpList.add(rcp);
+			}
+			if (rcpList.isEmpty())
+				System.out.println("findByIng failed");
+			return rcpList;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
 
 	public Recipe findRecipeById(String recipeId) {
 		String sql = "SELECT recipeId, recipeName, userId, summary, nation, difficulty, image, report " + "FROM RECIPE "
