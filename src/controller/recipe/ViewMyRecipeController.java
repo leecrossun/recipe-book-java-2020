@@ -27,6 +27,7 @@ private RecipeDAO recipeDAO = new RecipeDAO();
 		HttpSession session = request.getSession();	
 		String userId = UserSessionUtils.getLoginUserId(session);
 		
+		//String userId = request.getParameter("userId");
 		ArrayList<Recipe> myRecipeList = (ArrayList<Recipe>) recipeDAO.getMyRecipeList(userId);
 		request.setAttribute("myRecipeList", myRecipeList);
 		return "/recipe/viewMyRecipeList.jsp";
