@@ -38,14 +38,14 @@ public class RecipeDAO {
 					throw new Exception("레시피 재료 저장에 실패했습니다. "); //ingredient해결되면 주석 풀면 될 것 같습니다. 
 				if(!insertRecipeStep(String.valueOf(generatedKey), rcp.getStepList()))
 					throw new Exception("레시피 순서 저장에 실패했습니다. ");
-				
 			}
+			return generatedKey;
 			
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.commit();
+			//jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 		return generatedKey;
