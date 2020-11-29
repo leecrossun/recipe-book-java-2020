@@ -167,10 +167,13 @@ function removeMsg() {
 				href="<c:url value='/recipe/update'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">수정</a>
 			<!-- <a class="btn"
 				href="<c:url value='/recipe/delete'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">삭제</a> -->
+			
+			<c:if test="${recipe.userId eq sessionScope.userId }">
 			<a href="<c:url value='/recipe/delete'>
                			<c:param name='recipeId' value='${recipe.recipeId }'/>
                			<c:param name='userId' value='${recipe.userId}'/>
                			</c:url>">삭제하기</a>
+             </c:if>
 		</div>
 		<br>
 		<br>

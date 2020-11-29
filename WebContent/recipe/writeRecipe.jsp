@@ -110,6 +110,8 @@
 		function removeRow() {
 			oTbl.deleteRow(oTbl.clickedRowIndex);
 		}
+		
+		
 	</script>
 </head>
 
