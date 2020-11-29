@@ -32,6 +32,7 @@ public class ViewRecipeController implements Controller{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String recipeId;
+		String servingString = "1";
 		
 		if (request.getParameter("recipeId") != null)
 			recipeId = request.getParameter("recipeId");
@@ -43,6 +44,15 @@ public class ViewRecipeController implements Controller{
 		List<RecipeStep> rcpStep = recipeDAO.findRcpStepById(recipeId);
 		List<Review> review = reviewDAO.findReviewByRecipeId(recipeId);
 		
+		if ((request.getParameter("serving")) != null) {
+			servingString = request.getParameter("serving");
+			System.out.println(servingString);
+			int serving = Integer.parseInt(servingString);
+			for (RecipeIngredient r: rcpIng) {
+				  r.setAmount(r.getAmount() * serving);
+				}
+		}
+		request.setAttribute("servingString", servingString);
 		request.setAttribute("recipe", recipe);
 		request.setAttribute("recipeId", recipeId);
 		request.setAttribute("rcpIng", rcpIng);
