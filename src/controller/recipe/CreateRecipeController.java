@@ -64,7 +64,7 @@ public class CreateRecipeController implements Controller{
 
 		
 		for(int i = 0; i < ingId.length; i++) {
-			RecipeIngredient rcpIng = new RecipeIngredient(null, ingId[i], ingName[i], Integer.parseInt(amount[i]), unit[i]);
+			RecipeIngredient rcpIng = new RecipeIngredient(null, ingId[i], ingName[i], Double.parseDouble(amount[i]), unit[i]);
 			rcpIngList.add(rcpIng);
 		}
 		recipe.setIngList(rcpIngList);
