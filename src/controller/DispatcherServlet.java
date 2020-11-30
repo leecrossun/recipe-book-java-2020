@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,8 +28,6 @@ public class DispatcherServlet extends HttpServlet{
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) 
     	throws ServletException, IOException {
-    	
-    	ServletContext context = this.getServletContext();
     	logger.debug("Method : {}, Request URI : {}, ServletPath : {}", 
     			request.getMethod(), request.getRequestURI(), request.getServletPath());
     	String contextPath = request.getContextPath();
