@@ -32,6 +32,6 @@ public class FindByRcpNameController implements Controller{
 		
 		request.setAttribute("SearchedRcps", recipeList);
 		
-		return "/recipe/findByRecipe2.jsp";
+		return "/recipe/findByRecipe.jsp";
 	}
 }

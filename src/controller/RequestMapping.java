@@ -49,7 +49,7 @@ public class RequestMapping {
         mappings.put("/recipe/view", new ViewRecipeController());
         mappings.put("/recipe/myList", new ViewMyRecipeController());
         mappings.put("/recipe/findByRcpName", new FindByRcpNameController());
-        mappings.put("/recipe/findByIng/form", new ForwardController("/recipe/findByIngredient2.jsp"));
+        mappings.put("/recipe/findByIng/form", new ForwardController("/recipe/findByIngredient.jsp"));
         mappings.put("/recipe/findByIng", new FindByIngListController());
         //ingredient
        
