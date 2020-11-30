@@ -3,12 +3,12 @@
 <head>
 <script type="text/javascript">
 	function search() {
-		if (form.recipeName.value == "") {
+		if (searchForm.recipeName.value == "") {
 			alert("레시피명을 입력하십시오.");
 			form.recipeName.focus();
 			return false;
 		}
-		form.submit();
+		searchForm.submit();
 	}
 
 function removeMsg() {
@@ -87,7 +87,7 @@ function removeMsg() {
 			<button class="w3-button w3-xlarge" onclick="w3_open()">☰</button>
 		</div> -->
 	<p class="logo">Recipe Book</p>
-	<form class="searchContainer" style="border: none;" method="GET" 
+	<form name="searchForm" class="searchContainer" style="border: none;" method="GET" 
 		action="<c:url value='/recipe/findByRcpName'/>">
 		<div class="search" style="border:none;">
 			<input type="text" class="searchBar" name="recipeName" placeholder="레시피명 입력">
