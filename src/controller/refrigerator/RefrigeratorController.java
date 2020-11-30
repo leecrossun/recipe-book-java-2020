@@ -50,7 +50,10 @@ public class RefrigeratorController implements Controller{
 				expiredIngredient.add(userIngredient.get(i));
 			}
 		}
-		
+		/*
+		 * for (Review r : myReview) { for (int i = 0; i < r.getRating(); i++)
+		 * r.setStar(r.getStar() + "⭐"); }
+		 */
 		request.setAttribute("userIngredient", userIngredient);
 		request.setAttribute("expiredIngredients", expiredIngredient);
 		request.setAttribute("favorites", favorite);

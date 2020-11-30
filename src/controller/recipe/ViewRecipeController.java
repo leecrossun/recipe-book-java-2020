@@ -54,7 +54,7 @@ public class ViewRecipeController implements Controller{
 			System.out.println(servingString);
 			int serving = Integer.parseInt(servingString);
 			for (RecipeIngredient r: rcpIng) {
-				  r.setAmount(r.getAmount() * serving);
+					r.setAmount(r.getAmount() * serving);
 				}
 		}
 		request.setAttribute("servingString", servingString);

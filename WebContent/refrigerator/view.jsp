@@ -51,9 +51,12 @@ function ingredientRemove() {
 	<!-- Ingredients Area -->
 	<div class="container">
 		<div class="ingredients">
+
 			<p class="list">
-				<a>🔎 Searching by My Ingredients</a>
-			</p>
+				<a href="<c:url value='/recipe/findByIng'>
+				<c:param name='ingList' value='${ingredient.ingredientName}'/>
+				</c:url>">🔎 Searching by My Ingredients</a>
+				</p>
 			<div class="expired" style="overflow: auto; height: 250px;">
 				<p class="title">⏰ Expired Ingredients</p>
 				<c:forEach var="exIngredient" items="${expiredIngredients}">
@@ -132,7 +135,9 @@ function ingredientRemove() {
 
 				<p class="title">✍ My Review</p>
 				<c:forEach var="myReview" items="${myReviews}">
-					<a class="list">🤍 ${myReview.recipeName} ${myReview.content} >> ${myReview.rating} 🤍</a><br>
+					<a class="list" href="<c:url value='/recipe/view'>
+               			<c:param name='recipeId' value='${myReview.recipeId}'/>
+               			</c:url>">🤍 ${myReview.recipeName} >> ${myReview.content}  ${myReview.rating} ${star}🤍</a><br>
 					<br>
 				</c:forEach>
 
