@@ -143,8 +143,14 @@ tr, td {
 		<div class="image sub-container">
 			<!-- <img style="width: 600px; height: auto"
 				src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E" alt="사진" /> -->
-			<img style="width: 600px; height: auto" src="${recipe.image }"
-				alt="${recipe.recipeName }">
+				
+			<c:if test="${recipe.image eq null}">
+				<img style="width: 600px; height: auto"
+				src="https://images.otwojob.com/product/S/4/j/S4j16Sr3BY3cCiq.jpg/o2j/resize/852x622%3E" alt="사진" />
+			</c:if>
+			<c:if test="${recipe.image ne null}">
+				<img style="width: 600px; height: auto" src="${recipe.image }" alt="${recipe.recipeName }">
+			</c:if>
 		</div>
 		<br> <br>
 		<div class="material sub-container">
@@ -204,11 +210,10 @@ tr, td {
 		</div>
 		<br> <br>
 		<c:if test="${recipe.userId eq sessionScope.userId}">
-			<div class="button-box">
-
-				<a class="btn"
-					href="<c:url value='/recipe/update'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">수정</a>
-				<!-- <a class="btn"
+		<div class="button-box">
+			<%-- <a class="btn"
+				href="<c:url value='/recipe/update'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">수정</a> --%>
+			<!-- <a class="btn"
 				href="<c:url value='/recipe/delete'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">삭제</a> -->
 
 				<a class="btn"

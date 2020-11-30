@@ -87,13 +87,13 @@
                        <th width="300px">재료명</th>
 						<th width="100px">양</th>
 						<th width="100px">단위</th>
-						<th width="300px">유통</th>
+						<th width="300px">유통기</th>
                     </tr>
                 </table>
                 <input type="submit" class="btn" value="재료 선택 완료">
 			</form>
 				<div>
-                ingredientName :<input type="text" name="fIngredientName" id="fIngredientName">
+                ingredientName :<input type="text" name="fIngredientName" id="fIngredientName" placeholder="검색버튼 클릭" disabled>
                 <input type=button class=searchBtn value='검색' onClick=openWin();>
                 amount :<input placeholder="ex)300" class="form" type="number" id="fAmount"name="fAmount" style="width:60px; height:20px;">
                 unit :<input placeholder="ex)g" class="form" type="text" name="fUnit" id="fUnit" style="width:60px; height:20px;">
@@ -102,25 +102,6 @@
                 <button onclick="editHtmlTbleSelectedRow();">Edit</button>
                 <button onclick="removeSelectedRow();">Remove</button>
             </div>
-			<!-- <table>
-				<p class="title">정보 입력</p>
-				<th width="100px">재료명</th>
-				<th>양</th>
-				<th>단위</th>
-				<th>유통기한</th>
-				<th>추가</th>
-				<tr>
-					<td><input type="text" placeholder="검색버튼 클릭" id="selectName"><button class="searchBtn" onClick="javascript:openWin()">검색</button></td>
-					<td><input type="text" placeholder="ex) 300"></td>
-					<td><input type="text" placeholder="ex) g"></td>
-					<td><input type="date" id="currentDate"></td>
-					<td>
-						<div style="border: none;">
-							<a name="addButton" class="btn"> ADD </a>
-						</div>
-					</td>
-				</tr>
-			</table>  -->
 		</div>
 	</div>
 	<script>
