@@ -423,7 +423,7 @@ public class RecipeDAO {
 			while (rs.next()) {
 				RecipeIngredient rcpIng = new RecipeIngredient();
 				rcpIng.setIngredientName(rs.getString("ingredientName"));
-				rcpIng.setAmount(Double.parseDouble(rs.getString("amount")));
+				rcpIng.setAmount(rs.getDouble("amount"));
 				rcpIng.setUnit(rs.getString("unit"));
 				rcpIngList.add(rcpIng);
 			}

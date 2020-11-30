@@ -12,7 +12,8 @@
 	<link rel="stylesheet" href="<c:url value='/css/find.css' />" type="text/css">
 	<link rel="stylesheet" href="<c:url value='/css/style.css' />" type="text/css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<title>레시피 등록</title>
 	<style>
 		.container {
@@ -110,6 +111,8 @@
 		function removeRow() {
 			oTbl.deleteRow(oTbl.clickedRowIndex);
 		}
+		
+		
 	</script>
 </head>
 
