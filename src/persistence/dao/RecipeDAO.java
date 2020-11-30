@@ -202,10 +202,6 @@ public class RecipeDAO {
 	}
 
 	public void deleteRecipe (String rcpId) {
-
-		deleteRecipeStep(rcpId);
-		deleteRecipeIngredient(rcpId);
-
 		String sql = "DELETE FROM RECIPE WHERE recipeId = ?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {rcpId});
 

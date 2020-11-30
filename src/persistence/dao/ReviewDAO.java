@@ -115,7 +115,28 @@ public class ReviewDAO {
 			jdbcUtil.close();	// resource 諛섑솚
 		}	
 	}
-	
+	// 리뷰 삭제
+		public void deleteByRecipeId(String recipeId) {
+			
+			String sql = "DELETE FROM REVIEW WHERE RECIPEID = ?";
+			Object[] param = new Object[] {recipeId};
+			
+			jdbcUtil.setSqlAndParameters(sql, param);
+			try {				
+				int result = jdbcUtil.executeUpdate();
+				if (result > 0)
+					System.out.println("deleteReview by recipeID success");
+				else
+					System.out.println("deleteReview  by recipeID failed");
+			} catch (Exception ex) {
+				jdbcUtil.rollback();
+				ex.printStackTrace();
+			}
+			finally {
+				jdbcUtil.commit();
+				jdbcUtil.close();	// resource 諛섑솚
+			}	
+		}
 	// 리뷰 수정
 	public void updateMyReview(Review review) {
 		String sql = "UPDATE REVIEW SET CONTENT = ? , RATING = ?, PUBLISHED = ? WHERE REVIEWID = ?";
