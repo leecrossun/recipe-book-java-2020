@@ -1,16 +1,19 @@
-package controller.recipe;
+ package controller.recipe;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import controller.DispatcherServlet;
+import controller.user.UserSessionUtils;
 import persistence.dao.RecipeDAO;
+import persistence.dao.RefrigeratorDAO;
 import persistence.dao.ReviewDAO;
 import service.dto.Recipe;
 import service.dto.RecipeIngredient;
@@ -21,6 +24,7 @@ public class ViewRecipeController implements Controller{
 	
 	private RecipeDAO recipeDAO;
 	private ReviewDAO reviewDAO;
+	private RefrigeratorDAO refrigeratorDAO;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ViewRecipeController.class);
 	  
@@ -28,6 +32,7 @@ public class ViewRecipeController implements Controller{
 		try {
 			recipeDAO = new RecipeDAO();
 			reviewDAO = new ReviewDAO();
+			refrigeratorDAO = new RefrigeratorDAO();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -35,7 +40,8 @@ public class ViewRecipeController implements Controller{
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		HttpSession session = request.getSession();	
+		String userId = UserSessionUtils.getLoginUserId(session);
 		String recipeId;
 		String servingString = "1";
 		
@@ -48,6 +54,7 @@ public class ViewRecipeController implements Controller{
 		List<RecipeIngredient> rcpIng = recipeDAO.findRcpIngById(recipeId);
 		List<RecipeStep> rcpStep = recipeDAO.findRcpStepById(recipeId);
 		List<Review> review = reviewDAO.findReviewByRecipeId(recipeId);
+		List<Recipe> favorite = refrigeratorDAO.getFavoriteRecipetList(userId);
 		
 		if ((request.getParameter("serving")) != null) {
 			servingString = request.getParameter("serving");
@@ -56,6 +63,12 @@ public class ViewRecipeController implements Controller{
 			for (RecipeIngredient r: rcpIng) {
 					r.setAmount(r.getAmount() * serving);
 				}
+		}
+		request.setAttribute("favorite", false);
+		
+		for (int i = 0; i < favorite.size(); i++) {		
+			if (recipe.getRecipeId().equals(favorite.get(i).getRecipeId()))
+				request.setAttribute("favorite", true);
 		}
 		request.setAttribute("servingString", servingString);
 		request.setAttribute("recipe", recipe);

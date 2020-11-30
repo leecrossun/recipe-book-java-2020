@@ -52,8 +52,10 @@ public class RequestMapping {
         mappings.put("/recipe/findByIng/form", new ForwardController("/recipe/findByIngredient.jsp"));
         mappings.put("/recipe/findByIng", new FindByIngListController());
         //ingredient
-       
         mappings.put("/ingredient/find", new FindIngredientController());
+        //favorites
+        mappings.put("/favorite/delete", new DeleteFavoriteController());
+        mappings.put("/favorite/add", new AddFavoriteController());
         
         logger.info("Initialized Request Mapping!");
     }

@@ -86,35 +86,6 @@ public class RefrigeratorDAO {
 		}
 	}
 	
-	//냉장고 재료 검색
-	public List<UserIngredient> findUserIngredient (String userId, String ingName) {
-		String sql = "SELECT INGREDIENTNAME, AMOUNT, UNIT, EXPIRATION "
-				+ "FROM INGREDIENT i JOIN USER_INGREDIENT ug USING (INGREDIENTID) "
-				+ "WHERE USERID = ? AND INGREDIENTNAME LIKE '%' || ? || '%'";
-		Object[] param = new Object[] { userId, ingName };
-		
-		jdbcUtil.setSqlAndParameters(sql, param);
-		
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();
-			List<UserIngredient> list = new ArrayList<UserIngredient>();
-			
-			while (rs.next()) {
-				UserIngredient uIng = new UserIngredient(userId, rs.getString("INGREDIENTNAME"), rs.getInt("AMOUNT"),
-						rs.getString("UNIT"), rs.getString("EXPIRATION"));
-				list.add(uIng);
-			}
-			if (list.isEmpty())
-				System.out.println("not found ingredient");
-			return list;
-		} catch(Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();
-		}
-		return null;
-	}
-	
 	//즐겨찾기 레시피 표시
 	public List<Recipe> getFavoriteRecipetList(String userId) {
 		String sql = "SELECT RECIPEID, RECIPENAME, SUMMARY "
@@ -141,6 +112,27 @@ public class RefrigeratorDAO {
 			jdbcUtil.close();
 		}
 		return null;
+	}
+	
+	//즐겨찾기 레시피 추가
+	public void addFavoriteRecipe(String userId, String recipeId) {
+		String sql ="INSERT INTO FAVORITE VALUES (?, ?) ";
+		Object[] param = new Object[] { userId, recipeId };
+		jdbcUtil.setSqlAndParameters(sql, param);
+		
+		try {
+			int result = jdbcUtil.executeUpdate();
+			if (result > 0)
+				System.out.println("add favorite recipe success");
+			else
+				System.out.println("add favorite recipe failed");
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close(); // resource 반환
+		}
 	}
 
 	//즐겨찾기 레시피 삭제
