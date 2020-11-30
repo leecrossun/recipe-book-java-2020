@@ -113,16 +113,16 @@ tr, td {
 
 	<!-- recipe Area -->
 	<div class="container">
-		<p class="mainTitle">💜 레시피 이름 💜</p>
-		<p class="mainTitle">💜 ${recipe.recipeName} 💜</p>
+		<p class="mainTitle">💜 레시피 이름 :  ${recipe.recipeName} 💜</p>
+		<p class="mainTitle">💜 작성자 : ${recipe.userId} 💜</p>
 		<c:choose>
 		<c:when test="${favorite eq true}">
 			<p class="mainTitle">
-				<a
+				⭐ 즐겨찾기 ⭐<a
 					href="<c:url value='/favorite/delete'> 
 				<c:param name='recipeId' value='${recipe.recipeId}'/> 
 				</c:url>"
-				onclick="return removeMsgView()">🌝
+				onclick="return removeMsgView()"> 🌝
 				</a>
 			</p>
 		</c:when>
