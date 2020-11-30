@@ -42,9 +42,9 @@
                			</c:url>">${myRecipe.recipeName}</a></td>
 					<td>${myRecipe.summary}</td>
 
-					<td width="100px"><a href="<c:url value='/recipe/update'>
+					<%-- <td width="100px"><a href="<c:url value='/recipe/update'>
                			<c:param name='recipeId' value='${myRecipe.recipeId }'/>
-               			</c:url>">수정하기</a></td>
+               			</c:url>">수정하기</a></td> --%>
                			
                		<td width="100px"><a href="<c:url value='/recipe/delete'>
                			<c:param name='recipeId' value='${myRecipe.recipeId }'/>
