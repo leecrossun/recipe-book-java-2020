@@ -3,12 +3,12 @@
 <head>
 <script type="text/javascript">
 	function search() {
-		if (form.recipeName.value == "") {
+		if (searchForm.recipeName.value == "") {
 			alert("레시피명을 입력하십시오.");
 			form.recipeName.focus();
 			return false;
 		}
-		form.submit();
+		searchForm.submit();
 	}
 
 function removeMsg() {
@@ -61,13 +61,14 @@ function removeMsg() {
 				class="w3-bar-item w3-button">로그인</a>
 		</c:if>
 		<c:if test="${sessionScope.userId ne null }">
-			<p class="navTitle">💜 내활동 </p>
+			<p class="navTitle">💜 내 활동 </p>
 			<a
 				href="<c:url value='/refrigerator/view'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>"
 				class="w3-bar-item w3-button">냉장고</a>
 			<a
 				href="<c:url value='/recipe/createForm'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>"
 				class="w3-bar-item w3-button">레시피 쓰기</a>
+				
 				<hr>
 			<p class="navTitle">💜 내 정보 </p>
 			<a href="<c:url value='/user/logout' />"
@@ -77,14 +78,16 @@ function removeMsg() {
 				class="w3-bar-item w3-button">회원 수정</a>
 			<a
 				href="<c:url value='/user/delete'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>"
+
 				class="w3-bar-item w3-button" onClick="return removeMsg()">회원 탈퇴</a>
+
 		</c:if>
 	</div>
 	<!-- 		<div style="width: 70px; float: left; background-color: rgb(226, 226, 226); border: none; border-radius: 10px;">
 			<button class="w3-button w3-xlarge" onclick="w3_open()">☰</button>
 		</div> -->
 	<p class="logo">Recipe Book</p>
-	<form name="form" class="searchContainer" style="border: none;" method="GET" 
+	<form name="searchForm" class="searchContainer" style="border: none;" method="GET" 
 		action="<c:url value='/recipe/findByRcpName'/>">
 		<div class="search" style="border:none;">
 			<input type="text" class="searchBar" name="recipeName" placeholder="레시피명 입력">

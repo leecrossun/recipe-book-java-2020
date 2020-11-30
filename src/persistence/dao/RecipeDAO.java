@@ -280,48 +280,7 @@ public class RecipeDAO {
 		}
 		return myRecipeList;
 	}
-	public List<Recipe> getRecipeListByIngredient(List<Ingredient> ingredientList) {
-		int size = ingredientList.size();
-
-		String sql = "SELECT recipeId, recipeName, userId, summary, nation, difficulty, image, report "
-				+ "FROM RECIPE r, RECIPE_INGREDIENT ri "
-				+ "WHERE ingredientid = ? "; 
-
-		for (int i = 0; i < ingredientList.size(); i++)
-			sql += " or ingredientId = ? ";
-
-		Object[] param = new Object[size];
-		for (int i = 0; i < ingredientList.size(); i++)
-			param[i++] = ingredientList.get(i++).getIngredientId();
-
-		jdbcUtil.setSqlAndParameters(sql, param);
-
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();		
-			List<Recipe> rcpList = new ArrayList<Recipe>();
-			while (rs.next()) {	
-				Recipe rcp = new Recipe();
-				rcp.setRecipeId(rs.getString("recipeId"));
-				rcp.setRecipeName(rs.getString("recipeName"));
-				rcp.setUserId(rs.getString("userId"));
-				rcp.setSummary(rs.getString("summary"));
-				rcp.setNation(rs.getString("nation"));
-				rcp.setDifficulty(rs.getString("difficulty"));
-				rcp.setImage(rs.getString("image"));
-				rcp.setReport(rs.getInt("report"));
-				rcpList.add(rcp);
-			}
-			if (rcpList.isEmpty())
-				System.out.println("empty recipe");
-			return rcpList;				
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();	
-		}
-		return null;
-	}
-
+	
 	public List<Recipe> getRecipeListByName(String recipeName) {
 		String sql = "SELECT recipeId, recipeName, summary, image " + "FROM RECIPE "
 				+ "WHERE recipeName LIKE '%' || ? || '%'";
@@ -340,6 +299,47 @@ public class RecipeDAO {
 			}
 			if (rcpList.isEmpty())
 				System.out.println("empty refrigerator");
+			return rcpList;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
+	
+	public List<Recipe >getRecipeListByIng(String[] ingIds) {
+		String sql = "SELECT recipeId, recipeName, summary, image, COUNT(recipeId) AS cnt "
+				+ "FROM ( SELECT r.recipeId, i.ingredientId, r.recipeName, r.summary, r.image " 
+				+ "FROM recipe r, recipe_ingredient ri, ingredient i "
+				+ "WHERE r.recipeId = ri.recipeId AND ri.ingredientId = i.ingredientId "
+				+ "AND i.ingredientId IN (? ";
+		
+		Object[] params = new Object[ingIds.length];
+		for (int i = 0; i < ingIds.length; i++) {
+			params[i] = ingIds[i];
+		}
+		
+		for (int i = 0; i < ingIds.length-1; i++) {
+			sql += ", ? ";
+		}
+		
+		sql += ")) GROUP BY recipeId, recipeName, summary, image ORDER BY cnt DESC ";
+		
+		jdbcUtil.setSqlAndParameters(sql, params);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<Recipe> rcpList = new ArrayList<Recipe>();
+			
+			while (rs.next()) {
+				Recipe rcp = new Recipe();
+				rcp.setRecipeId(rs.getString("recipeId"));
+				rcp.setRecipeName(rs.getString("recipeName"));
+				rcp.setSummary(rs.getString("summary"));
+				rcp.setImage(rs.getString("image"));
+				rcpList.add(rcp);
+			}
 			return rcpList;
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -389,7 +389,7 @@ public class RecipeDAO {
 			while (rs.next()) {
 				RecipeIngredient rcpIng = new RecipeIngredient();
 				rcpIng.setIngredientName(rs.getString("ingredientName"));
-				rcpIng.setAmount(Double.parseDouble(rs.getString("amount")));
+				rcpIng.setAmount(rs.getDouble("amount"));
 				rcpIng.setUnit(rs.getString("unit"));
 				rcpIngList.add(rcpIng);
 			}

@@ -10,7 +10,9 @@
 	<title>Insert title here</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css' />" />
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('#selectEmail2').change(function () {
@@ -50,7 +52,7 @@
 				return false;
 			}
 			form.submit();
-		}
+		};
 	</script>
 	<style>
 		/* Login */
@@ -182,6 +184,7 @@
 		</div>
 		<br>
 	</form>
+	
 	<!-- <div class="container">
 		<div class="panel panel-default">
 			<div class="panel-heading">회원가입창</div>
