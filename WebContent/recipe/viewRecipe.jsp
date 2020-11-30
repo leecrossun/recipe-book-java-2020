@@ -189,8 +189,8 @@ function frmCheck() {
 		<c:if test="${recipe.userId eq sessionScope.userId}">
 		<div class="button-box">
 		
-			<a class="btn"
-				href="<c:url value='/recipe/update'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">수정</a>
+			<%-- <a class="btn"
+				href="<c:url value='/recipe/update'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">수정</a> --%>
 			<!-- <a class="btn"
 				href="<c:url value='/recipe/delete'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">삭제</a> -->
 			<a class="btn" href="<c:url value='/recipe/delete'>
