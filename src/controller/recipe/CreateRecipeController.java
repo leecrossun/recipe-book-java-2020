@@ -19,6 +19,12 @@ import service.dto.Ingredient;
 import service.dto.Recipe;
 import service.dto.RecipeIngredient;
 import service.dto.RecipeStep;
+//파일 업로드를 위한 API를 사용하기 위해...
+import org.apache.commons.fileupload.*;
+import org.apache.commons.fileupload.disk.*;
+import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
+//파일 용량 초과에 대한 Exception 클래스를 FileUploadBase 클래스의 Inner 클래스로 처리
+import org.apache.commons.fileupload.servlet.*;
 
 public class CreateRecipeController implements Controller{
 	private static final Logger log = LoggerFactory.getLogger(RegisterUserController.class);
