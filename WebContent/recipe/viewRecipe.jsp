@@ -181,18 +181,6 @@ tr, td {
 							</c:if> ${ingredient.unit}</td>
 					</tr>
 				</c:forEach>
-				<!-- 				<tr>
-					<td>사과</td>
-					<td>1 개</td>
-				</tr>
-				<tr>
-					<td>귤</td>
-					<td>5 개</td>
-				</tr>
-				<tr>
-					<td>당근</td>
-					<td>1 개</td>
-				</tr> -->
 			</table>
 		</div>
 		<br> <br>
@@ -211,11 +199,6 @@ tr, td {
 		<br> <br>
 		<c:if test="${recipe.userId eq sessionScope.userId}">
 		<div class="button-box">
-			<%-- <a class="btn"
-				href="<c:url value='/recipe/update'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">수정</a> --%>
-			<!-- <a class="btn"
-				href="<c:url value='/recipe/delete'> <c:param name='recipeId' value='${recipe.recipeId}'/> </c:url>">삭제</a> -->
-
 				<a class="btn"
 					href="<c:url value='/recipe/delete'>
                			<c:param name='recipeId' value='${recipe.recipeId }'/>
@@ -291,3 +274,4 @@ tr, td {
 </body>
 
 </html>
+
