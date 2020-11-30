@@ -44,7 +44,8 @@ private static JDBCUtil jdbcUtil = null;
 		}
 		return null;
 	}
-	public String findIngredientID(String ingredientName) {
+	
+	public String findIngredientId(String ingredientName) {
 		String sql = "SELECT INGREDIENTID FROM INGREDIENT WHERE INGREDIENTNAME =?";
 		Object[] param = new Object[] { ingredientName };
 		

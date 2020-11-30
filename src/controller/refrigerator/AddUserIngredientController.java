@@ -58,13 +58,9 @@ public class AddUserIngredientController implements Controller{
 		String[] unit = request.getParameterValues("unit");
 		String[] exDate = request.getParameterValues("expiredDate");
 		String[] ingredientId = new String[ingredientName.length];
-		logger.debug("userId : {}, ingredientName : {}, expiredDate : {}", 
-				userId, ingredientName[0],  exDate[0]);
-		for (int i = 0; i < ingredientName.length; i++) {
-			List<Ingredient> ingredientList = ingredientDAO.findIngredient(ingredientName[i]);
-			Ingredient ingredient = ingredientList.get(0);
-			ingredientId[i] = ingredient.getIngredientId();
-		}
+	
+		for (int i = 0; i < ingredientName.length; i++) 
+			ingredientId[i] = ingredientDAO.findIngredientId(ingredientName[i]);
 		
 		for (int i = 0; i < ingredientName.length; i++) {
 			UserIngredient uIng = new UserIngredient (
