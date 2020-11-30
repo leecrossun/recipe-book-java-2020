@@ -33,7 +33,6 @@
 				<th width="150px">레시피이름</th>
 				<th width="500px">레시피요약</th>
 				<th></th>
-				<th></th>
 			</tr>
 			<c:forEach var="myRecipe" items="${myRecipeList}">
 				<tr>
