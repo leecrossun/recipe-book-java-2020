@@ -126,7 +126,7 @@
 		<p class="mainTitle">🍧 나만의 레시피를 등록해보세요! 🍧</p>
 		<br>
 		<div class="sub-container" style="margin: 0px auto;">
-			<form name="form" method="POST" action="<c:url value='/recipe/create' />" enctype="multipart/form-data">
+			<form name="form" method="POST" action="<c:url value='/recipe/create' />">
 				<table>
 					<tr>
 						<td width="100px">레시피 이름</td>
@@ -141,7 +141,7 @@
 					<tr>
 						<td>음식 사진</td>
 						<td><!-- <input name="image" type="file" class="form"> -->
-							<input type="file" name="image" size="100">
+							<input type="file" name="image">
 						</td>
 					</tr>
 					<tr>
