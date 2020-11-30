@@ -87,7 +87,7 @@
                        <th width="300px">재료명</th>
 						<th width="100px">양</th>
 						<th width="100px">단위</th>
-						<th width="300px">유통</th>
+						<th width="300px">유통기</th>
                     </tr>
                 </table>
                 <input type="submit" class="btn" value="재료 선택 완료">
