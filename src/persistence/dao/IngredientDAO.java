@@ -7,7 +7,6 @@ import java.util.List;
 import service.dto.Ingredient;
 
 public class IngredientDAO {
-	
 private static JDBCUtil jdbcUtil = null;
 	
 	public IngredientDAO() {
