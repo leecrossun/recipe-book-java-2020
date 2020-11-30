@@ -55,7 +55,6 @@
 			<p class="list">
 				<a
 					href="<c:url value='/recipe/findByIng'>
-				<c:param name='userId' value='${sessionScope.userId}'/>
 				</c:url>">🔎
 					Searching by My Ingredients</a>
 			</p>
