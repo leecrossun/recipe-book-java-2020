@@ -162,7 +162,7 @@
 							</table>
 
 							<div>
-								ingredientName :<input type="text" name="fIngredientName" id="fIngredientName">
+								ingredientName :<input type="text" name="fIngredientName" id="fIngredientName" placeholder="검색버튼 클릭" disabled>
 								<input type=button class=searchBtn value='검색' onClick=openWin();>
 								amount :<input placeholder="ex)300" class="form" type="number" id="fAmount"
 									name="fAmount" style="width:60px; height:20px;">
