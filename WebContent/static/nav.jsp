@@ -68,9 +68,6 @@ function removeMsg() {
 			<a
 				href="<c:url value='/recipe/createForm'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>"
 				class="w3-bar-item w3-button">레시피 쓰기</a>
-			<a
-				href="<c:url value='/recipe/findByIng/form'> <c:param name='userId' value='${sessionScope.userId }'/> </c:url>"
-				class="w3-bar-item w3-button">재료로 레시피 검색</a>
 				<hr>
 			<p class="navTitle">💜 내 정보 </p>
 			<a href="<c:url value='/user/logout' />"

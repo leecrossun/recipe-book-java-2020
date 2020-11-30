@@ -54,7 +54,7 @@ function ingredientRemove() {
 
 			<p class="list">
 				<a href="<c:url value='/recipe/findByIng'>
-				<c:param name='ingList' value='${ingredient.ingredientName}'/>
+				<c:param name='userId' value='${sessionScope.userId}'/>
 				</c:url>">🔎 Searching by My Ingredients</a>
 				</p>
 			<div class="expired" style="overflow: auto; height: 250px;">

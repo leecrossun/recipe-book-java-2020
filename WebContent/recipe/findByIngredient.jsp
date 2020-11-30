@@ -77,23 +77,10 @@
 	<div class="container">
 		<div class="container" style=" width:100%;">
 			<div class="table" style="width:100%; border: none; margin: 0px auto;">
-				<p class="title">추가할 재료 입력</p>
-				<form name="form"
-					action="<c:url value='/recipe/findByIng' />">
-				  <table id="table" border="1">
-						<tr>
-						   <th width="300px">재료명</th>
-						</tr>
-					</table>
-					<input type="submit" class="btn" value="재료 선택 완료">
-				</form>
-					<div>
-					ingredientName :<input type="text" name="fIngredientName" id="fIngredientName">
-					<input type=button class=searchBtn value='검색' onClick=openWin();>
-					<button onclick="addHtmlTableRow();">Add</button>
-					<button onclick="editHtmlTbleSelectedRow();">Edit</button>
-					<button onclick="removeSelectedRow();">Remove</button>
-				</div>
+				<p class="title">보유한 재료로 이용할 수 있는 레시피 검색 결과입니다</p>
+				<c:forEach var="ingredient" items="${userIngredients }">
+				<p class="list"> ${ingredient.ingredientName }</p>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
