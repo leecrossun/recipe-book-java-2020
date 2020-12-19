@@ -50,7 +50,7 @@ public class RecipeDAO {
 					result += jdbcUtil.executeUpdate();
 				}
 				if (result != rcpIngList.size())
-					throw new Exception("레시피 재료 저장에 실패했습니다. ");
+					throw new Exception("레시피 재료 저장에 실패했습니다.");
 				else
 					System.out.println("insert recipeIng success");
 				
@@ -64,7 +64,7 @@ public class RecipeDAO {
 					result = jdbcUtil.executeUpdate();
 				}
 				if (result != rcpStepList.size())
-					throw new Exception("레시피 순서 저장에 실패했습니다. ");
+					throw new Exception("레시피 순서 저장에 실패했습니다.");
 				else
 					System.out.println("insert recipeStep success");
 				
