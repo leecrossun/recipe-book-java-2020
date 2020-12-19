@@ -1,8 +1,10 @@
 package service.dto;
 
+import java.io.Serializable;
 
 //DAO����� �������� reviewId�� recipeName�� �ִ°� ���� �� ���� �߰��Ͽ����ϴ�.
-public class Review {
+@SuppressWarnings("serial")
+public class Review implements Serializable{
 	private String reviewId;
 	private String userId;
 	private String recipeId;
