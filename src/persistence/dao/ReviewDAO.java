@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.*;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -76,52 +77,56 @@ public class ReviewDAO {
 		return null;
 	}
 	
-	// 리뷰 작성 JDBC기반
-	public int writeMyReview(Review review) {
-		int generatedKey = 0;
-		String sql = "INSERT INTO REVIEW (REVIEWID, CONTENT, RATING, USERID, RECIPEID, PUBLISHED) VALUES(reviewId_seq.nextval, ?, ?, ?, ?, SYSDATE)";
-		
-		Object[] param = new Object[] {review.getContent(), review.getRating(), review.getUserId(), review.getRecipeId()};
-		jdbcUtil.setSqlAndParameters(sql, param);
-		
-		String key[] = {"reviewId"};
-		
-		
-		try {
-			jdbcUtil.executeUpdate(key);
-			ResultSet rs = jdbcUtil.getGeneratedKeys();
-			if (rs.next()) {
-			
-			generatedKey = rs.getInt(1);
-			}
-			/*
-			 * if (result > 0) System.out.println("createReview success"); else
-			 * System.out.println("createReview failed");
-			 */
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 諛섑솚
-		}
-		return generatedKey;
-	}
+//	// 리뷰 작성 JDBC기반
+//	public int writeMyReview(Review review) {
+//		int generatedKey = 0;
+//		String sql = "INSERT INTO REVIEW (REVIEWID, CONTENT, RATING, USERID, RECIPEID, PUBLISHED) VALUES(reviewId_seq.nextval, ?, ?, ?, ?, SYSDATE)";
+//		
+//		Object[] param = new Object[] {review.getContent(), review.getRating(), review.getUserId(), review.getRecipeId()};
+//		jdbcUtil.setSqlAndParameters(sql, param);
+//		
+//		String key[] = {"reviewId"};
+//		
+//		
+//		try {
+//			jdbcUtil.executeUpdate(key);
+//			ResultSet rs = jdbcUtil.getGeneratedKeys();
+//			if (rs.next()) {
+//			
+//			generatedKey = rs.getInt(1);
+//			}
+//			/*
+//			 * if (result > 0) System.out.println("createReview success"); else
+//			 * System.out.println("createReview failed");
+//			 */
+//		} catch (Exception ex) {
+//			jdbcUtil.rollback();
+//			ex.printStackTrace();
+//		} finally {
+//			jdbcUtil.commit();
+//			jdbcUtil.close(); // resource 諛섑솚
+//		}
+//		return generatedKey;
+//	}
 	
 	// 리뷰작성 MyBatis
-	/*public int writeMyReview(Review review) {
+	public int writeMyReview(Review review) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
 			
 			int result = sqlSession.insert(namespace + ".writeReview", review);
 			
-			if (result > 0) sqlSession.commit();
+			if (result > 0) 
+				sqlSession.commit();
 			return result;
 			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
 		} finally {
 			sqlSession.close();
 		}
-	}*/
+	}
 	
 	// 리뷰 삭제
 	public void deleteMyReview(Review review) {

@@ -11,7 +11,10 @@
 	recipeid AS recipeId,
 	published AS published
 </sql>
-	<insert id="writeReview" parameterType="service.dto.Review" useGeneratedKeys="true" keyProperty="reviewId">
-		INSERT INTO REVIEW (CONTENT, RATING, USERID, RECIPEID, PUBLISHED) VALUES(#{content}, #{rating}, #{userId}, #{recipeId}, SYSDATE)
+	<insert id="writeReview" parameterType="service.dto.Review">
+		<selectKey keyProperty="reviewId" resultType="String" order="BEFORE">
+			SELECT REVIEWID_SEQ.nextval AS reviewid FROM DUAL
+		</selectKey>
+		INSERT INTO REVIEW (REVIEWID, CONTENT, RATING, USERID, RECIPEID, PUBLISHED) VALUES(#{reviewId}, #{content}, #{rating}, #{userId}, #{recipeId}, SYSDATE)
 	</insert>
 </mapper>
