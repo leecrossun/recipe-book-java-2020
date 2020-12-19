@@ -45,12 +45,11 @@ public class CreateRecipeController2 implements Controller {
 		Recipe recipe = new Recipe();
 
 		recipe.setUserId(userId);
-		String filename = "";
 
 		boolean check = ServletFileUpload.isMultipartContent(request);
 
 		if (check) {// 파일 전송이 포함된 상태가 맞다면
-			String path = session.getServletContext().getRealPath("/upload");
+			String path = session.getServletContext().getRealPath("\\upload");
 			File dir = new File(path);
 			if (!dir.exists())
 				dir.mkdir();
@@ -63,7 +62,7 @@ public class CreateRecipeController2 implements Controller {
 				recipe.setSummary(multi.getParameter("summary"));
 				recipe.setNation(multi.getParameter("nation"));
 				recipe.setDifficulty(multi.getParameter("difficulty"));
-				recipe.setImage(dir + "\\" + multi.getFilesystemName("image"));
+				recipe.setImage(path + "\\" + multi.getFilesystemName("image"));
 
 				List<RecipeIngredient> rcpIngList = new ArrayList<RecipeIngredient>();
 				String[] ingName = multi.getParameterValues("ingName");
@@ -93,9 +92,18 @@ public class CreateRecipeController2 implements Controller {
 					RecipeStep rcpStep = new RecipeStep(i + 1, stepList[i]);
 					rcpStepList.add(rcpStep);
 				}
-
 				recipe.setStepList(rcpStepList);
-
+				
+				try {
+					int generatedKey = recipeDAO.insertRecipe(recipe);
+					recipeDAO.insertRecipeIngredient(String.valueOf(generatedKey), rcpIngList);
+					recipeDAO.insertRecipeStep(String.valueOf(generatedKey), rcpStepList);
+					request.setAttribute("recipeId", String.valueOf(generatedKey));
+					return "/recipe/view";
+				} catch (Exception e) {
+					System.out.println("recipe create failed");
+					return "/refrigerator/view";
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Failed");
@@ -103,14 +111,7 @@ public class CreateRecipeController2 implements Controller {
 			}
 		}
 		
-		try {
-			int generatedKey = recipeDAO.insertRecipe(recipe);
-			request.setAttribute("recipeId", String.valueOf(generatedKey));
-			return "/recipe/view";
-		} catch (Exception e) {
-			System.out.println("recipe create failed");
-			return "/refrigerator/view";
-		}
+		return null;
 		
 	}
 }
