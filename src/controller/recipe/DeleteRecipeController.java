@@ -25,9 +25,6 @@ public class DeleteRecipeController implements Controller{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String recipeId = request.getParameter("recipeId");
 		String userId = request.getParameter("userId");
-		recipeDAO.deleteRecipeStep(recipeId);
-		recipeDAO.deleteRecipeIngredient(recipeId);
-		reviewDAO.deleteByRecipeId(recipeId);
 		recipeDAO.deleteRecipe(recipeId);
 //		if (UserSessionUtils.isAdminUser(session))
 //			return "redirect:/recipe/findByRecipe2";

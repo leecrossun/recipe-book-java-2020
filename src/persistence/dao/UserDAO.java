@@ -40,10 +40,14 @@ public class UserDAO {
 			sql= "DELETE FROM REVIEW WHERE USERID=?";
 			jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});
 			jdbcUtil.executeUpdate();
+			sql = "UPDATE RECIPE SET USERID='hyosun' WHERE USERID=?";
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});
+			jdbcUtil.executeUpdate();
 			sql = "DELETE FROM USERINFO WHERE USERID=?";		
 			jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil에 delete문과 매개 변수 설정
 			int result = jdbcUtil.executeUpdate();	// delete 문 실행
-			if(result==0)
+			
+			if (result == 0)
 				throw new Exception("사용자가 삭제되지 않았습니다");
 			return result;
 		} catch (Exception ex) {
