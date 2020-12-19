@@ -129,7 +129,7 @@
 		<p class="mainTitle">🍧 나만의 레시피를 등록해보세요! 🍧</p>
 		<br>
 		<div class="sub-container" style="margin: 0px auto;">
-			<form name="form" method="POST" action="<c:url value='/recipe/create' />">
+			<form name="form" method="POST" enctype="multipart/form-data" action="<c:url value='/recipe/create' />">
 				<table>
 					<tr>
 						<td width="100px">레시피 이름</td>
