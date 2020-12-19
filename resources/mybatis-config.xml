@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<settings>	
+<!-- 	<settings>	
 		<setting name="cacheEnabled" value="false"/>
-	</settings>
+	</settings> -->
 	<typeAliases>
 		<typeAlias type="service.dto.Review" alias="REVEIW" />
 	</typeAliases>
@@ -21,6 +21,6 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="persistence.dao.CommentMapper.xml" />
+		<mapper resource="persistence/dao/CommentMapper.xml" />
 	</mappers>
 </configuration>
