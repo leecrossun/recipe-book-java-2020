@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="persistence.dao.CommentMapper">
+<cache />
+<sql id="writeColumns">
+	reviewid AS reviewId,
+	content AS content,
+	rating AS rating,
+	userid AS userId,
+	recipeid AS recipeId,
+	published AS published
+</sql>
+	<insert id="writeReview" parameterType="service.dto.Review" useGeneratedKeys="true" keyProperty="reviewId">
+		INSERT INTO REVIEW (CONTENT, RATING, USERID, RECIPEID, PUBLISHED) VALUES(#{content}, #{rating}, #{userId}, #{recipeId}, SYSDATE)
+	</insert>
+</mapper>

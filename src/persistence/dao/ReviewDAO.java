@@ -1,6 +1,13 @@
 package persistence.dao;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.*;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import java.sql.ResultSet;
 import service.dto.RecipeIngredient;
 import service.dto.Review;
@@ -8,9 +15,20 @@ import service.dto.Review;
 public class ReviewDAO {
 	
 	private static JDBCUtil jdbcUtil = null;
+	private SqlSessionFactory sqlSessionFactory;
 
+	String namespace = "persistence.dao.CommentMapper";
+	
 	public ReviewDAO() {
 		jdbcUtil = new JDBCUtil();
+		String resource = "mybatis-config.xml";
+		InputStream inputStream;
+		try {
+			inputStream = Resources.getResourceAsStream(resource);
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e);
+		}
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
 	// UserId와 일치하는 Review return
@@ -58,13 +76,10 @@ public class ReviewDAO {
 		return null;
 	}
 	
-	// 리뷰 작성
+	// 리뷰 작성 JDBC기반
 	public int writeMyReview(Review review) {
 		int generatedKey = 0;
 		String sql = "INSERT INTO REVIEW (REVIEWID, CONTENT, RATING, USERID, RECIPEID, PUBLISHED) VALUES(reviewId_seq.nextval, ?, ?, ?, ?, SYSDATE)";
-//		현재시간 구하기 (이걸 DAO에 포함시키는게 맞는지 고민 ... 이후에 SELECT할 떄  담을게 필요해서 published 추가했습니다.
-//		Calendar cal = new GregorianCalendar();
-//		Timestamp now = new Timestamp(cal.getTimeInMillis());
 		
 		Object[] param = new Object[] {review.getContent(), review.getRating(), review.getUserId(), review.getRecipeId()};
 		jdbcUtil.setSqlAndParameters(sql, param);
@@ -92,6 +107,21 @@ public class ReviewDAO {
 		}
 		return generatedKey;
 	}
+	
+	// 리뷰작성 MyBatis
+	/*public int writeMyReview(Review review) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			
+			int result = sqlSession.insert(namespace + ".writeReview", review);
+			
+			if (result > 0) sqlSession.commit();
+			return result;
+			
+		} finally {
+			sqlSession.close();
+		}
+	}*/
 	
 	// 리뷰 삭제
 	public void deleteMyReview(Review review) {
