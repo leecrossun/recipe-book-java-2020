@@ -19,7 +19,10 @@ public class RecipeDAO {
 
 	public int insertRecipe(Recipe rcp) {
 
+		int result = 0;
 		int generatedKey = 0;
+		
+		// insert Recipe
 		String sql = "INSERT INTO RECIPE (recipeId, recipeName, summary, nation, difficulty, userId, image, report, published) "
 				+ "VALUES (recipeId_seq.nextval, ?, ?, ?, ?, ?, ?, ?,SYSDATE )";
 		Object[] param = new Object[] { rcp.getRecipeName(), rcp.getSummary(), rcp.getNation(),
@@ -34,10 +37,41 @@ public class RecipeDAO {
 				generatedKey = rs.getInt(1);
 				rcp.setRecipeId(String.valueOf(generatedKey));
 				System.out.println("insert recipe success");
-				if(!insertRecipeIngredient(String.valueOf(generatedKey), rcp.getIngList()))
-					throw new Exception("레시피 재료 저장에 실패했습니다. "); //ingredient해결되면 주석 풀면 될 것 같습니다. 
-				if(!insertRecipeStep(String.valueOf(generatedKey), rcp.getStepList()))
-					throw new Exception("레시피 순서 저장에 실패했습니다. ");
+				
+				// insert RecipeIngredient
+				sql = "INSERT INTO RECIPE_INGREDIENT(recipeId, ingredientId, amount, unit) "
+						+ "VALUES (?, ?, ?, ?)";
+				List<RecipeIngredient> rcpIngList = rcp.getIngList();
+				for (int i = 0; i < rcpIngList.size(); i++) {
+					param = new Object[] { String.valueOf(generatedKey), rcpIngList.get(i).getIngredientId(),
+							 rcpIngList.get(i).getAmount(),
+							rcpIngList.get(i).getUnit() };
+					jdbcUtil.setSqlAndParameters(sql, param);
+					result += jdbcUtil.executeUpdate();
+				}
+				if (result != rcpIngList.size())
+					throw new Exception("레시피 재료 저장에 실패했습니다.");
+				else
+					System.out.println("insert recipeIng success");
+				
+				// insert RecipeStep
+				sql = "INSERT INTO RECIPESTEP(recipeId, stepNum, content) " + "VALUES (?, ?, ?)";
+				List<RecipeStep> rcpStepList = rcp.getStepList();
+				for (int i = 0; i < rcpStepList.size(); i++) {
+					param = new Object[] { String.valueOf(generatedKey), rcpStepList.get(i).getStepNum(),
+							rcpStepList.get(i).getContent() };
+					jdbcUtil.setSqlAndParameters(sql, param);
+					result = jdbcUtil.executeUpdate();
+				}
+				if (result != rcpStepList.size())
+					throw new Exception("레시피 순서 저장에 실패했습니다.");
+				else
+					System.out.println("insert recipeStep success");
+				
+//				if(!insertRecipeIngredient(String.valueOf(generatedKey), rcp.getIngList()))
+//					throw new Exception("레시피 재료 저장에 실패했습니다. "); //ingredient해결되면 주석 풀면 될 것 같습니다. 
+//				if(!insertRecipeStep(String.valueOf(generatedKey), rcp.getStepList()))
+//					throw new Exception("레시피 순서 저장에 실패했습니다. ");
 			}
 			return generatedKey;
 			
@@ -45,7 +79,7 @@ public class RecipeDAO {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
-			//jdbcUtil.commit();
+			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 		return generatedKey;
