@@ -111,8 +111,6 @@
 		function removeRow() {
 			oTbl.deleteRow(oTbl.clickedRowIndex);
 		}
-		
-		
 	</script>
 </head>
 
@@ -152,13 +150,16 @@
 						<!--  <td><input name="ingList" type="text" class="form" placeholder="재료명 입력"><a class="btn">검색</a><a
 								class="btn">등록</a></td>-->
 						<td>
-							<table id="table" border="1">
-								<tr>
-									<th width="300px">재료명</th>
-									<th width="100px">양</th>
-									<th width="100px">단위</th>
-
-								</tr>
+							<table border="1">
+								<thead>
+									<tr>
+										<th width="300px">재료명</th>
+										<th width="100px">양</th>
+										<th width="100px">단위</th>
+									</tr>
+								</thead>
+								<tbody id="table">
+								</tbody>
 							</table>
 
 							<div>
@@ -294,7 +295,6 @@
 					table.clickedRowIndex = this.rowIndex;
 				}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
 
-
 				cell1.innerHTML = "<input class=form type=text placeholder=검색버튼클릭 id=selectName name=ingName value='" +
 					fIngredientName + "' style=width:200px height:20px;>";
 				cell2.innerHTML = "<input placeholder=ex)300 class=form type=number name=amount value='" + fAmount +
@@ -302,16 +302,15 @@
 				cell3.innerHTML = "<input placeholder=ex)g class=form type=text name=unit value='" + fUnit +
 					"' style=width:60px; height:20px;> ";
 
-
 				// call the function to set the event to the new row
 				selectedRowToInput();
 			}
 		}
-		//Row 삭제
+/* 		//Row 삭제
 		function removeRow() {
 			table.deleteRow(table.clickedRowIndex);
 		}
-
+ */
 		// display selected row data into input text
 		function selectedRowToInput() {
 
@@ -327,6 +326,7 @@
 				};
 			}
 		}
+		
 		selectedRowToInput();
 
 		function editHtmlTbleSelectedRow() {
@@ -348,7 +348,6 @@
 			document.getElementById("fIngredientName").value = "";
 			document.getElementById("fAmount").value = "";
 			document.getElementById("fUnit").value = "";
-
 		}
 	</script>
 	<!-- 
