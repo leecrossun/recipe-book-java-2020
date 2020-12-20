@@ -119,6 +119,7 @@ public class UserDAO {
 			sqlSession.close();
 		}
 	}
+	
 //	private static JDBCUtil jdbcUtil = null;
 //
 //	public UserDAO() {

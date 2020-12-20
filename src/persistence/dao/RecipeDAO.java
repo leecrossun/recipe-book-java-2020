@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import service.dto.Ingredient;
 import service.dto.Recipe;
 import service.dto.RecipeIngredient;
 import service.dto.RecipeStep;
@@ -67,11 +66,7 @@ public class RecipeDAO {
 					throw new Exception("레시피 순서 저장에 실패했습니다.");
 				else
 					System.out.println("insert recipeStep success");
-				
-//				if(!insertRecipeIngredient(String.valueOf(generatedKey), rcp.getIngList()))
-//					throw new Exception("레시피 재료 저장에 실패했습니다. "); //ingredient해결되면 주석 풀면 될 것 같습니다. 
-//				if(!insertRecipeStep(String.valueOf(generatedKey), rcp.getStepList()))
-//					throw new Exception("레시피 순서 저장에 실패했습니다. ");
+
 			}
 			return generatedKey;
 			
@@ -84,156 +79,6 @@ public class RecipeDAO {
 		}
 		return generatedKey;
 	}
-
-//	public boolean insertRecipeStep(String rcpId, List<RecipeStep> rcpStepList) throws Exception {
-//		int result = 0;
-//		String sql = "INSERT INTO RECIPESTEP(recipeId, stepNum, content) " + "VALUES (?, ?, ?)";
-//		try {
-//			for (int i = 0; i < rcpStepList.size(); i++) {
-//				Object[] param = new Object[] { rcpId, rcpStepList.get(i).getStepNum(),
-//						rcpStepList.get(i).getContent() };
-//				jdbcUtil.setSqlAndParameters(sql, param);
-//				result += jdbcUtil.executeUpdate();
-//			}
-//			if (result == rcpStepList.size()) {
-//				System.out.println("insert recipeStep success");
-//				return true;
-//			}
-//			else 
-//				System.out.println("insert recipeStep failed");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			jdbcUtil.rollback();
-//		} finally {
-//			jdbcUtil.commit();
-//			jdbcUtil.close();
-//		}
-//		return false;
-//	}
-//
-//	public boolean insertRecipeIngredient(String rcpId, List<RecipeIngredient> rcpIngList) throws Exception {
-//		int result = 0;
-//		String sql = "INSERT INTO RECIPE_INGREDIENT(recipeId, ingredientId, amount, unit) "
-//				+ "VALUES (?, ?, ?, ?)";
-//		try {
-//			for (int i = 0; i < rcpIngList.size(); i++) {
-//				Object[] param = new Object[] { rcpId, rcpIngList.get(i).getIngredientId(),
-//						 rcpIngList.get(i).getAmount(),
-//						rcpIngList.get(i).getUnit() };
-//				jdbcUtil.setSqlAndParameters(sql, param);
-//				result += jdbcUtil.executeUpdate();
-//			}
-//			if (result == rcpIngList.size()) {
-//				System.out.println("insert recipeIngredient success");
-//				return true;
-//			}
-//			else 
-//				System.out.println("insert recipeIngredient failed");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			jdbcUtil.rollback();
-//		} finally {
-//			jdbcUtil.commit();
-//			jdbcUtil.close();
-//		}
-//		return false;
-//	}
-
-//	public int updateRecipe(Recipe rcp) {
-//
-//		String sql = "UPDATE RECIPE SET ";
-//		int index = 0;
-//
-//		Object[] tempParam = new Object[10];
-//
-//		if (rcp.getRecipeName() != null) { 
-//			sql += "recipeName = ?, "; 
-//			tempParam[index++] = rcp.getRecipeName(); 
-//		}
-//		if (rcp.getSummary() != null) { 
-//			sql += "summary = ?, ";
-//			tempParam[index++] = rcp.getSummary(); 
-//		}
-//		if (rcp.getNation() != null) { 
-//			sql += "nation = ?, "; 
-//			tempParam[index++] = rcp.getNation(); 
-//		}
-//		if (rcp.getDifficulty() != null) { 
-//			sql += "difficulty = ?, "; 
-//			tempParam[index++] = rcp.getDifficulty();
-//		}
-//		if (rcp.getImage() != null) { 
-//			sql += "image = ?, "; 
-//			tempParam[index++] = rcp.getImage();
-//		}
-//
-//		sql += "WHERE recipeId = ? "; 
-//		sql = sql.replace(", WHERE", " WHERE"); 
-//
-//		tempParam[index++] = rcp.getRecipeId(); 
-//
-//		Object[] newParam = new Object[index];
-//		for (int i = 0; i < newParam.length; i++)
-//			newParam[i] = tempParam[i];
-//
-//		jdbcUtil.setSqlAndParameters(sql, newParam);
-//
-//		try {
-//			int result = jdbcUtil.executeUpdate(); 
-//			return result;
-//		} catch (Exception ex) {
-//			jdbcUtil.rollback();
-//			ex.printStackTrace();
-//		} finally {
-//			jdbcUtil.commit();
-//			jdbcUtil.close(); 
-//		}
-//		return 0;
-//	}
-//
-//	public int updateRecipeStep (List<RecipeStep> rcpStepList) {
-//
-//		String sql = "UPDATE RECIPESTEP SET " + "SET STEPNUM=?, CONTENT=?" /*+  "WHERE RECIPEID=?"*/;
-//		int result = 0;
-//		try {
-//			for (RecipeStep rcpStep : rcpStepList) {
-//				Object[] param = new Object[] {rcpStep.getStepNum(), rcpStep.getContent()/*, rcpStep.getRecipeId() */};
-//				jdbcUtil.setSqlAndParameters(sql, param);
-//				result += jdbcUtil.executeUpdate();	
-//			}
-//			return result;		
-//		} catch (Exception ex) {
-//			jdbcUtil.rollback();
-//			ex.printStackTrace();
-//		}
-//		finally {
-//			jdbcUtil.commit();
-//			jdbcUtil.close();
-//		}		
-//		return 0;
-//	}
-//
-//	public int updateRecipeIngredient (List<RecipeIngredient> rcpIngList) {
-//
-//		String sql = "UPDATE RECIPEINGREDIENT SET " + "SET INGREDIENTID=?, INGREDIENTNAME=?, AMOUNT=?, UNIT=?" /* + "WHERE RECIPEID=? "*/;
-//		int result = 0;
-//		try {
-//			for (RecipeIngredient rcpIng : rcpIngList) {
-//				Object[] param = new Object[] {rcpIng.getIngredientId(), rcpIng.getIngredientName(), rcpIng.getAmount(), rcpIng.getUnit()};
-//				jdbcUtil.setSqlAndParameters(sql, param);
-//				result += jdbcUtil.executeUpdate();	
-//			}
-//			return result;		
-//		} catch (Exception ex) {
-//			jdbcUtil.rollback();
-//			ex.printStackTrace();
-//		}
-//		finally {
-//			jdbcUtil.commit();
-//			jdbcUtil.close();
-//		}		
-//		return 0;
-//	}
 
 	public void deleteRecipe (String rcpId) {
 		
@@ -276,34 +121,6 @@ public class RecipeDAO {
 			jdbcUtil.close();
 		}
 	}
-
-//	public void deleteRecipeStep (String recipeId) {
-//		String sql = "DELETE FROM RECIPESTEP WHERE recipeID = ?";
-//		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});
-//
-//		try {
-//			int result = jdbcUtil.executeUpdate();
-//			if (result > 0)		System.out.println("delete recipeSteps success");
-//			else	System.out.println("delete recipeSteps failed");
-//		} catch (Exception ex) {
-//			jdbcUtil.rollback();
-//			jdbcUtil.close();
-//		}
-//	}
-//
-//	public void deleteRecipeIngredient (String recipeId) {
-//		String sql = "DELETE FROM RECIPE_INGREDIENT WHERE recipeId = ?";
-//		jdbcUtil.setSqlAndParameters(sql, new Object[] {recipeId});
-//
-//		try {
-//			int result = jdbcUtil.executeUpdate();
-//			if (result > 0)		System.out.println("delete recipe_ingredient success");
-//			else	System.out.println("delete recipe_ingredient failed");
-//		} catch (Exception ex) {
-//			jdbcUtil.rollback();
-//			jdbcUtil.close(); 
-//		}
-//	}
 
 	public List<Recipe> getMyRecipeList(String userId){
 		List<Recipe> myRecipeList = null;
