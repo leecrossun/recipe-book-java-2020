@@ -96,8 +96,6 @@ public class CreateRecipeController2 implements Controller {
 				
 				try {
 					int generatedKey = recipeDAO.insertRecipe(recipe);
-					recipeDAO.insertRecipeIngredient(String.valueOf(generatedKey), rcpIngList);
-					recipeDAO.insertRecipeStep(String.valueOf(generatedKey), rcpStepList);
 					request.setAttribute("recipeId", String.valueOf(generatedKey));
 					return "/recipe/view";
 				} catch (Exception e) {
