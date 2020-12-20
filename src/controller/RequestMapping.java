@@ -42,8 +42,7 @@ public class RequestMapping {
         mappings.put("/refrigerator/delete", new DeleteIngredientController());
         // Recipe
         mappings.put("/recipe/createForm", new ForwardController("/recipe/writeRecipe.jsp"));
-        mappings.put("/recipe/create", new CreateRecipeController2());
-        mappings.put("/recipe/update", new UpdateRecipeController());
+        mappings.put("/recipe/create", new CreateRecipeController());
         mappings.put("/recipe/delete", new DeleteRecipeController());
         mappings.put("/recipe/view", new ViewRecipeController());
         mappings.put("/recipe/myList", new ViewMyRecipeController());
