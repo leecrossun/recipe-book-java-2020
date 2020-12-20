@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="persistence.dao.CommentMapperUser">
+<cache />
+<sql id="userColumns">
+	USERID as userId,
+	USERNAME as name,
+	PASSWORD,
+	PHONE,
+	EMAIL,
+	AUTHORITY
+</sql>
+
+<sql id="userRecipeColumns">
+	RECIPEID as recipeId,
+	RECIPENAME as recipeName,
+	USERID as userId,
+	SUMMARY,
+	NATION,
+	DIFFICULTY, 
+	IMAGE, 
+	REPORT
+</sql>
+
+<sql id="userIngredientColumns">
+	USERID as userId,
+	INGREDIENTID as ingredientId,
+	AMOUNT,
+	UNIT,
+	EXPIRATION as expireDate
+</sql>
+
+<sql id="userReviewColumns">
+	REVIEWID,
+	CONTENT,
+	RATING,
+	USERID,
+	RECIPEID,
+	PUBLISHED
+</sql>
+	<select id="findUser" parameterType="String" resultType="service.dto.User">
+		SELECT <include refid="userColumns"/>
+		FROM USERINFO
+		WHERE USERID=#{userId} 
+	</select>
+	<insert id="createUser" parameterType="service.dto.User">
+		INSERT INTO USERINFO(USERID, USERNAME, PASSWORD, PHONE, EMAIL)
+		VALUES(#{userId}, #{name}, #{password}, #{phone}, #{email})
+	</insert>
+	<update id="updateUser" parameterType="service.dto.User">
+		UPDATE USERINFO SET USERNAME=#{name}, PASSWORD=#{password}, PHONE=#{phone}, EMAIL=#{email} 
+		WHERE USERID=#{userId}
+	</update>
+	
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM USERINFO WHERE USERID=#{userId}
+	</delete>
+	
+	<select id="findUserFavorite" parameterType="String" resultType="String">
+		SELECT RECIPEID
+		FROM FAVORITE WHERE USERID=#{userId}
+	</select>
+	<delete id="deleteUserFavorite" parameterType="String">
+		DELETE FROM FAVORITE WHERE USERID=#{userId}
+	</delete>
+	
+	<select id="findUserIngredient" parameterType="String" resultType="String">
+		SELECT INGREDIENTID  
+		FROM USER_INGREDIENT WHERE USERID=#{userId}
+	</select>
+	<delete id="deleteUserIngredient" parameterType="String">
+		DELETE FROM USER_INGREDIENT WHERE USERID=#{userId}
+	</delete>
+	
+	<select id="findUserReview" parameterType="String" resultType="String">
+		SELECT REVIEWID FROM REVIEW WHERE USERID=#{userId}
+	</select>
+	<delete id="deleteUserReview" parameterType="String">
+		DELETE FROM REVIEW WHERE USERID=#{userId}
+	</delete>
+	
+	<select id="findUserRecipe" parameterType="String" resultType="String">
+		SELECT RECIPEID
+		FROM RECIPE
+		WHERE USERID=#{userId}
+	</select>
+	<update id="updateUserRecipe" parameterType="java.util.Map">
+		UPDATE RECIPE SET USERID=#{adminUser} WHERE USERID=#{deleteUser}
+	</update>
+
+</mapper>
