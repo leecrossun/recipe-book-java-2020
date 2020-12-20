@@ -153,9 +153,10 @@
 							<table border="1">
 								<thead>
 									<tr>
-										<th width="300px">재료명</th>
-										<th width="100px">양</th>
-										<th width="100px">단위</th>
+										<th width="200px">재료명</th>
+										<th width="50px">양</th>
+										<th width="50px">단위</th>
+										<th width="50px"></th>
 									</tr>
 								</thead>
 								<tbody id="table">
@@ -172,7 +173,6 @@
 
 								<input type="button" onclick="addHtmlTableRow();" value="ADD">
 								<!-- <button onclick="editHtmlTbleSelectedRow();">Edit</button> -->
-								<input type="button" onclick="removeSelectedRow();" value="REMOVE">
 							</div>
 						</td>
 					</tr>
@@ -286,6 +286,7 @@
 					cell1 = newRow.insertCell(0),
 					cell2 = newRow.insertCell(1),
 					cell3 = newRow.insertCell(2),
+					cell4 = newRow.insertCell(3),
 
 					fIngredientName = document.getElementById("fIngredientName").value,
 					fAmount = document.getElementById("fAmount").value,
@@ -301,22 +302,19 @@
 					"' style=width:60px; height:20px;> ";
 				cell3.innerHTML = "<input placeholder=ex)g class=form type=text name=unit value='" + fUnit +
 					"' style=width:60px; height:20px;> ";
+				cell4.innerHTML = "<input type=button value='삭제' class='btn' onClick='removeSelectedRow()' style='cursor:hand'>";
 
 				// call the function to set the event to the new row
 				selectedRowToInput();
 			}
 		}
-/* 		//Row 삭제
-		function removeRow() {
-			table.deleteRow(table.clickedRowIndex);
-		}
- */
+		
 		// display selected row data into input text
 		function selectedRowToInput() {
 
 			for (var i = 1; i < table.rows.length; i++) {
 				table.rows[i].onclick = function () {
-					// get the seected row index
+					// get the selected row index
 					rIndex = this.rowIndex;
 
 					//document.getElementById("fIngredientName").value = this.cells[0].innerHTML;
@@ -325,6 +323,10 @@
 					//document.getElementById("fExpireDate").value = this.cells[3].innerHTML;
 				};
 			}
+			// clear input text
+			document.getElementById("fIngredientName").value = "";
+			document.getElementById("fAmount").value = "";
+			document.getElementById("fUnit").value = "";
 		}
 		
 		selectedRowToInput();
@@ -338,12 +340,11 @@
 				table.rows[rIndex].cells[0].innerHTML = fIngredientName;
 				table.rows[rIndex].cells[1].innerHTML = fAmount;
 				table.rows[rIndex].cells[2].innerHTML = fUnit;
-
 			}
 		}
 
 		function removeSelectedRow() {
-			table.deleteRow(rIndex);
+			table.deleteRow(table.clickedRowIndex-1);
 			// clear input text
 			document.getElementById("fIngredientName").value = "";
 			document.getElementById("fAmount").value = "";
