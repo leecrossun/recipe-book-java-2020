@@ -4,9 +4,6 @@
 ID : hyosun
 PW : 1212
 
-// 실행방법
-loginForm.jsp (초기페이지) 에서 Run on server
-
 // 기능
 
 1. 회원관리 (가입, 탈퇴, 로그인, 로그아웃) : loginForm(초기페이지)와 햄버거 메뉴 이용
